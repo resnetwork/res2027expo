@@ -1,0 +1,40 @@
+.logos-category {
+  margin-bottom: 4rem;
+}
+
+.category-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--text-muted);
+}
+
+.logos-grid {
+  margin-bottom: 2rem;
+}
+
+.logo-card {
+  aspect-ratio: 2/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  transition: transform var(--transition-fast);
+}
+
+.logo-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-primary);
+}
+
+.logo-placeholder {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-family: var(--font-display);
+  opacity: 0.5;
+}
+
+.show-more-btn {
+  display: block;
+  margin: 0 auto;
+}
