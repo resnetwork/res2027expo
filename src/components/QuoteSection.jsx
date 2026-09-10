@@ -3,24 +3,24 @@ import './Sections.css';
 
 const QuoteSection = () => {
   return (
-    <section className="quote-section section-padding bg-green">
-      <div className="container" style={{display: 'flex', gap: '3rem', alignItems: 'center'}}>
-        <div style={{flex: 1}}>
-          <h3 className="text-yellow" style={{fontSize: '1.2rem', marginBottom: '2rem'}}>
+    <section className="quote-section section-padding bg-white">
+      <div className="container" style={{display: 'flex', gap: '4rem', alignItems: 'center', justifyContent: 'space-between'}}>
+        <div style={{flex: '0 0 55%', paddingRight: '1rem'}}>
+          <h3 className="text-main" style={{fontSize: '1.2rem', marginBottom: '1.5rem', fontWeight: 800}}>
             ЦИТАТА ПРЕЗИДЕНТА РЕСПУБЛИКИ КАЗАХСТАН:
           </h3>
-          <p style={{fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '2rem', fontWeight: 500, textAlign: 'justify'}}>
-            «МНОГИЕ РАЗВИВАЮЩИЕСЯ СТРАНЫ, НЕ ИМЕЮЩИЕ ВЫХОДА К МОРЮ, СТАЛКИВАЮТСЯ С НЕХВАТКОЙ ВОДЫ, ТАЯНИЕМ ЛЕДНИКОВ, ОПУСТЫНИВАНИЕМ И ДРУГИМИ ЭКСТРЕМАЛЬНЫМИ ПОГОДНЫМИ ЯВЛЕНИЯМИ. РЕШЕНИЕ ЭТИХ ПРОБЛЕМ ТРЕБУЕТ СКООРДИНИРОВАННЫХ РЕГИОНАЛЬНЫХ УСИЛИЙ И АКТИВНОЙ МЕЖДУНАРОДНОЙ ПОДДЕРЖКИ. В ТО ЖЕ ВРЕМЯ, Я СЧИТАЮ, ЧТО МЕРЫ ПО БОРЬБЕ С ИЗМЕНЕНИЕМ КЛИМАТА ДОЛЖНЫ ОСТАВАТЬСЯ СБАЛАНСИРОВАННЫМИ И ИНКЛЮЗИВНЫМИ, ОТВЕЧАТЬ ОБОСНОВАННЫМ ПОТРЕБНОСТЯМ СТРАН В ОБЛАСТИ РАЗВИТИЯ. ДЛЯ УКРЕПЛЕНИЯ НАШИХ СОВМЕСТНЫХ УСИЛИЙ ПО БОРЬБЕ С ИЗМЕНЕНИЕМ КЛИМАТА Я ПРИГЛАШАЮ ВАС НА РЕГИОНАЛЬНЫЙ ЭКОЛОГИЧЕСКИЙ САММИТ, КОТОРЫЙ ПРОЙДЕТ В АСТАНЕ В ПАРТНЕРСТВЕ С ОРГАНИЗАЦИЕЙ ОБЪЕДИНЕННЫХ НАЦИЙ В АПРЕЛЕ СЛЕДУЮЩЕГО ГОДА».
+          <p style={{fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '2rem', fontWeight: 500, color: 'var(--text-main)', fontStyle: 'italic'}}>
+            «Многие развивающиеся страны, не имеющие выхода к морю, сталкиваются с нехваткой воды, таянием ледников, опустыниванием и другими экстремальными погодными явлениями. Решение этих проблем требует скоординированных региональных усилий и активной международной поддержки. В то же время, я считаю, что меры по борьбе с изменением климата должны оставаться сбалансированными и инклюзивными, отвечать обоснованным потребностям стран в области развития. Для укрепления наших совместных усилий по борьбе с изменением климата я приглашаю вас на Региональный экологический саммит, который пройдет в Астане в партнерстве с Организацией Объединенных Наций в апреле следующего года».
           </p>
-          <p className="text-yellow" style={{fontSize: '0.9rem', fontWeight: 600}}>
-            ИЗ ВЫСТУПЛЕНИЯ ПРЕЗИДЕНТА КАЗАХСТАНА КАСЫМ-ЖОМАРТА ТОКАЕВА НА III КОНФЕРЕНЦИИ ОРГАНИЗАЦИИ ОБЪЕДИНЕННЫХ НАЦИЙ ПО РАЗВИВАЮЩИМСЯ СТРАНАМ, НЕ ИМЕЮЩИМ ВЫХОДА К МОРЮ, ТУРКМЕНИСТАН, Г. АВАЗА, 2025 ГОД
+          <p className="text-muted" style={{fontSize: '0.9rem', fontWeight: 600, lineHeight: '1.5', maxWidth: '90%'}}>
+            Из выступления Президента Казахстана Касым-Жомарта Токаева на III Конференции Организации Объединенных Наций по развивающимся странам, не имеющим выхода к морю, Туркменистан, г. Аваза, 2025 год
           </p>
         </div>
-        <div style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+        <div style={{flex: '0 0 40%', display: 'flex', justifyContent: 'flex-end'}}>
           <img 
             src="/president.png" 
             alt="Касым-Жомарт Токаев" 
-            style={{width: '100%', maxWidth: '480px', borderRadius: '16px', boxShadow: '0 15px 35px rgba(0,0,0,0.3)', objectFit: 'cover'}}
+            style={{width: '100%', maxWidth: '500px', height: 'auto', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.15)', objectFit: 'cover'}}
           />
         </div>
       </div>

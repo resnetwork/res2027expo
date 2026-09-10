@@ -24,8 +24,8 @@ const Header = () => {
 
         <nav className={`desktop-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
           <a href="#about">О выставке</a>
-          <a href="#programs">Программы</a>
-          <a href="#contacts">Контакты</a>
+          <a href="#reviews">Партнеры</a>
+          <a href="#footer">Контакты</a>
           {/* Socials replaced with standard a tags for now, keeping spacing */}
           <div className="social-mini-links">
             <a href="https://wa.me/" target="_blank" rel="noreferrer" className="social-circle" aria-label="WhatsApp">
@@ -57,9 +57,9 @@ const Header = () => {
         </nav>
 
         <div className="header-actions">
-          <button className="btn btn-primary btn-sm header-btn">Посетить бесплатно</button>
+          <button className="btn btn-primary btn-sm header-btn">Забронировать стенд</button>
           <div className="lang-switch">RUS</div>
-          <img src="/logo.png" alt="RES 2026" className="small-logo" />
+          <img src="/logo.png" alt="RES 2027" className="small-logo" />
           
           <button 
             className="mobile-menu-btn"

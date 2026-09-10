@@ -95,6 +95,16 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-main);
 }
 
+.bg-light-green {
+  background-color: #f0fdf4;
+  color: var(--text-main);
+}
+
+.bg-light-gray {
+  background-color: #f8fafc;
+  color: var(--text-main);
+}
+
 .text-yellow {
   color: var(--text-yellow);
 }

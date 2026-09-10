@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import './HeroSection.css';
 
@@ -36,6 +36,28 @@ const HeroSection = () => {
       );
     }
   };
+  const targetDate = new Date('2027-05-05T00:00:00').getTime();
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000)
+        });
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -47,7 +69,7 @@ const HeroSection = () => {
             <div className="video-scale-wrapper">
               <iframe
                 ref={iframeRef}
-                src="https://www.youtube.com/embed/y8pZx1hrPmI?autoplay=1&mute=1&loop=1&playlist=y8pZx1hrPmI&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1"
+                src="https://www.youtube.com/embed/y8pZx1hrPmI?autoplay=1&mute=1&loop=1&playlist=y8pZx1hrPmI&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&disablekb=1"
                 title="RES 2027 EXPO Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -71,7 +93,7 @@ const HeroSection = () => {
           {/* Right Card: Content */}
           <div className="hero-card hero-content-card">
             <h1 className="hero-title-ws">
-              Международная выставка зеленых технологий и устойчивых решений «RES 2027 EXPO»
+              Международная выставка зеленых технологий и устойчивых решений «RES&nbsp;2027&nbsp;EXPO»
             </h1>
             
             <p className="hero-subtitle-ws">
@@ -80,34 +102,29 @@ const HeroSection = () => {
             
             <div className="countdown-ws">
               <div className="count-item-ws">
-                <span className="count-num-ws">00</span>
+                <span className="count-num-ws">{String(timeLeft.days).padStart(2, '0')}</span>
                 <span className="count-label-ws">Дней</span>
               </div>
               <div className="count-item-ws">
-                <span className="count-num-ws">00</span>
+                <span className="count-num-ws">{String(timeLeft.hours).padStart(2, '0')}</span>
                 <span className="count-label-ws">Часов</span>
               </div>
               <div className="count-item-ws">
-                <span className="count-num-ws">00</span>
+                <span className="count-num-ws">{String(timeLeft.minutes).padStart(2, '0')}</span>
                 <span className="count-label-ws">Минут</span>
               </div>
               <div className="count-item-ws">
-                <span className="count-num-ws">00</span>
+                <span className="count-num-ws">{String(timeLeft.seconds).padStart(2, '0')}</span>
                 <span className="count-label-ws">Секунд</span>
               </div>
             </div>
 
             <div className="hero-actions-ws">
               <button className="btn-ws-primary">ЗАБРОНИРОВАТЬ СТЕНД</button>
-              <button className="btn-ws-secondary">ПОСЕТИТЬ ВЫСТАВКУ</button>
             </div>
           </div>
         </div>
       </section>
-      
-      <div className="sub-banner">
-        МЫ — ОБЛАДАТЕЛИ ЗОЛОТОГО ЗНАЧКА SMART PLASTIC ZONE: ПОДТВЕРЖДЁННАЯ ЭКОЛОГИЧЕСКАЯ ОТВЕТСТВЕННОСТЬ
-      </div>
     </>
   );
 };

@@ -3,59 +3,42 @@ import { Globe, MessageCircle, Send, AtSign, Mail, Phone, MapPin } from 'lucide-
 import './Footer.css';
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="footer section-padding">
-      <div className="container">
-        <div className="footer-grid">
-          <div className="footer-col">
-            <div className="logo-text" style={{marginBottom: '1rem'}}>RES<span className="text-gradient">2027</span></div>
-            <p className="footer-desc">
-              Главное событие будущего в Центральной Азии. Присоединяйтесь к нам, чтобы создавать инновации вместе.
-            </p>
-            <div className="social-links">
-              <a href="#" className="social-link"><Globe size={20}/></a>
-              <a href="#" className="social-link"><MessageCircle size={20}/></a>
-              <a href="#" className="social-link"><Send size={20}/></a>
-              <a href="#" className="social-link"><AtSign size={20}/></a>
+    <footer className="footer-ws" id="footer">
+      <div className="container footer-ws-content">
+        <div className="footer-ws-top">
+          <div className="footer-ws-left">
+            <img src="/logo.png" alt="RES 2027" className="footer-ws-logo" />
+            <p className="footer-ws-copyright">&copy; Regional Ecological Summit EXPO 2027</p>
+          </div>
+          
+          <div className="footer-ws-middle">
+            <button className="btn-ws-primary footer-ws-btn">ЗАБРОНИРОВАТЬ СТЕНД</button>
+            <div className="footer-ws-contacts">
+              <p>+ 7 775 026 66 88</p>
+              <p>office@res2026expo.kz</p>
+              <p>pr@res2026expo.kz</p>
             </div>
           </div>
-          
-          <div className="footer-col">
-            <h4 className="footer-title">Навигация</h4>
-            <ul className="footer-links">
-              <li><a href="#about">О выставке</a></li>
-              <li><a href="#zones">Тематические зоны</a></li>
-              <li><a href="#participate">Участие</a></li>
-              <li><a href="#news">Новости</a></li>
-            </ul>
-          </div>
-          
-          <div className="footer-col">
-            <h4 className="footer-title">Информация</h4>
-            <ul className="footer-links">
-              <li><a href="#">Для экспонентов</a></li>
-              <li><a href="#">Для спонсоров</a></li>
-              <li><a href="#">Пресс-центр</a></li>
-              <li><a href="#">FAQ</a></li>
-            </ul>
-          </div>
-          
-          <div className="footer-col">
-            <h4 className="footer-title">Контакты</h4>
-            <ul className="footer-contacts">
-              <li><MapPin size={16}/> г. Астана, EXPO Center</li>
-              <li><Phone size={16}/> +7 (7172) 123-456</li>
-              <li><Mail size={16}/> info@res2027expo.kz</li>
-            </ul>
+
+          <div className="footer-ws-right">
+            <div className="footer-ws-info">
+              <p className="footer-ws-date">5-7 мая, 2027</p>
+              <p className="footer-ws-location">Астана, МВЦ "EXPO"</p>
+            </div>
           </div>
         </div>
         
-        <div className="footer-bottom">
-          <p>&copy; 2027 RES EXPO. Все права защищены.</p>
-          <div className="footer-bottom-links">
+        <div className="footer-ws-bottom">
+          <div className="footer-ws-links">
             <a href="#">Политика конфиденциальности</a>
-            <a href="#">Условия использования</a>
+            <a href="#">Договор оферты</a>
           </div>
+          <button className="footer-ws-up" onClick={scrollToTop}>наверх &uarr;</button>
         </div>
       </div>
     </footer>

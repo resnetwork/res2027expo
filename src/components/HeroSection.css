@@ -96,37 +96,47 @@
 
 /* Right Content Card: Compact & Neat */
 .hero-content-card {
-  background: #ffffff;
-  padding: 2.2rem 2.5rem;
+  background: linear-gradient(to bottom right, #ffffff, #f8fafc);
+  padding: 2.5rem 3rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-bottom: 4px solid var(--accent-light);
 }
 
 .hero-title-ws {
+  background: linear-gradient(135deg, var(--bg-dark-green) 0%, #10b981 50%, var(--text-yellow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   color: var(--bg-dark-green);
-  font-size: clamp(1.25rem, 1.6vw, 1.55rem);
-  font-weight: 800;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: 900;
   line-height: 1.25;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 
 .hero-subtitle-ws {
-  color: #4b5563;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  margin-bottom: 0.9rem;
-  font-weight: 500;
+  color: #1a594f;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
 }
 
 .countdown-ws {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.2rem;
-  background: #f0fdf4;
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  background: linear-gradient(to right, #f0fdf4, #ffffff);
   border: 1px solid #dcfce7;
-  padding: 0.75rem 1rem;
-  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(22, 163, 74, 0.05);
+  width: 100%;
 }
 
 .count-item-ws {

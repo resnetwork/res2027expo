@@ -30,7 +30,7 @@ const LogosCategory = ({ title, count }) => {
 
 const LogosSection = () => {
   return (
-    <section className="logos-section section-padding bg-white">
+    <section className="logos-section section-padding bg-light-gray">
       <div className="container">
         <LogosCategory title="ОНИ БЫЛИ НАШИМИ ОРГАНИЗАТОРАМИ" count={2} />
         <LogosCategory title="ОНИ БЫЛИ НАШИМИ GOLDEN СПОНСОРАМИ" count={8} />

@@ -11,7 +11,7 @@ const WhyParticipate = () => {
   ];
 
   return (
-    <section className="why-participate section-padding" id="participate">
+    <section className="why-participate section-padding bg-green" id="participate">
       <div className="why-overlay"></div>
       <div className="container" style={{position: 'relative', zIndex: 2}}>
         <h2 className="section-title text-inverse">ПОЧЕМУ СТОИТ УЧАСТВОВАТЬ</h2>

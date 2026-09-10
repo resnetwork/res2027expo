@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
+import BadgeSection from './components/BadgeSection';
 import QuoteSection from './components/QuoteSection';
 import AboutSection from './components/AboutSection';
 import ThematicZones from './components/ThematicZones';
@@ -22,9 +23,10 @@ function App() {
         <AboutSection />
         <ThematicZones />
         <WhyParticipate />
-        <WaysToParticipate />
         <ReviewsSection />
+        <WaysToParticipate />
         <PartnersInvite />
+        <BadgeSection />
         <LogosSection />
         <NewsSection />
       </main>
