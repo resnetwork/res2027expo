@@ -59,6 +59,32 @@ const HeroSection = ({ onOpenModal }) => {
     return () => clearInterval(interval);
   }, []);
 
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  useEffect(() => {
+    // Listen to YouTube IFrame API messages to know when video actually starts playing
+    const handleMessage = (event) => {
+      try {
+        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        // YouTube API sends info: 1 when playing
+        if (data && (data.info === 1 || data.event === 'onStateChange' && data.info === 1)) {
+          setIsVideoPlaying(true);
+        }
+      } catch (e) {
+        // ignore parsing errors from non-json messages
+      }
+    };
+    window.addEventListener('message', handleMessage);
+
+    // Fallback: reveal after 3.5s in case postMessage is blocked
+    const fallbackTimer = setTimeout(() => setIsVideoPlaying(true), 3500);
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+      clearTimeout(fallbackTimer);
+    };
+  }, []);
+
   return (
     <>
       <section className="hero-websummit">
@@ -69,12 +95,16 @@ const HeroSection = ({ onOpenModal }) => {
             <div className="video-scale-wrapper">
               <iframe
                 ref={iframeRef}
-                src="https://www.youtube.com/embed/y8pZx1hrPmI?autoplay=1&mute=1&loop=1&playlist=y8pZx1hrPmI&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&disablekb=1"
+                src="https://www.youtube.com/embed/y8pZx1hrPmI?autoplay=1&mute=1&loop=1&playlist=y8pZx1hrPmI&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&disablekb=1&iv_load_policy=3"
                 title="RES 2027 EXPO Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="hero-iframe"
               />
+            </div>
+            
+            <div className={`video-loading-cover ${isVideoPlaying ? 'fade-out' : ''}`}>
+              <div className="video-spinner"></div>
             </div>
             
             <div className="video-blocker" onClick={togglePlay}></div>

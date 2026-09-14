@@ -32,9 +32,9 @@ const Header = ({ onOpenModal }) => {
         </a>
 
         <nav className={`desktop-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-          <a href="#about">О выставке</a>
-          <a href="#reviews">Партнеры</a>
-          <a href="#footer">Контакты</a>
+          <a href="#about" onClick={() => setMobileMenuOpen(false)}>О выставке</a>
+          <a href="#reviews" onClick={() => setMobileMenuOpen(false)}>Партнеры</a>
+          <a href="#footer" onClick={() => setMobileMenuOpen(false)}>Контакты</a>
           {/* Socials replaced with standard a tags for now, keeping spacing */}
           <div className="social-mini-links">
             <a href="https://api.whatsapp.com/send/?phone=77750266688&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" className="social-circle" aria-label="WhatsApp">

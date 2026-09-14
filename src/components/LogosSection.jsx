@@ -9,12 +9,12 @@ const LogosCategory = ({ category }) => {
   // Layout type
   let layoutClass = 'logos-grid-multi';
   if (name === 'ОРГАНИЗАТОРЫ') layoutClass = 'logos-row-organizers';
+  else if (logos.length <= 2) layoutClass = 'logos-row-single';
   else if (name === 'GOLDEN SPONSOR') layoutClass = 'logos-row-golden';
   else if (name === 'BRONZE SPONSOR') layoutClass = 'logos-row-bronze';
   else if (name === 'VIP LOUNGE SPONSOR') layoutClass = 'logos-row-vip';
   else if (name === 'OFFICIAL PARTNER') layoutClass = 'logos-grid-official';
   else if (name === 'ECO-SYSTEM ПАРТНЕРЫ' || name === 'Участники' || name.includes('Медиа')) layoutClass = 'logos-grid-5col';
-  else if (logos.length <= 1) layoutClass = 'logos-row-single';
 
   const isGrid = layoutClass.startsWith('logos-grid');
   // 2 rows initially: 10 logos for 5-col grid, 12 logos for 6-col grid

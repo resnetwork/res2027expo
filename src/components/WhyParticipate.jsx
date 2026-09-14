@@ -19,7 +19,7 @@ const WhyParticipate = () => {
           Будущее устойчивой экономики формируется здесь - в RES 2027 EXPO
         </p>
         
-        <div className="grid-4 text-center">
+        <div className="grid-4 text-center mobile-carousel">
           {reasons.map((r, i) => (
             <div key={i} className="why-card">
               <div className="why-icon">{r.icon}</div>

@@ -22,7 +22,7 @@ const ThematicZones = () => {
           Каждая зона - новая идея для <span style={{ color: 'var(--text-yellow)', fontWeight: 700 }}>зелёного будущего</span>
         </p>
 
-        <div className="grid-4" style={{ gap: '1.5rem' }}>
+        <div className="grid-4 mobile-carousel" style={{ gap: '1.5rem' }}>
           {zones.map((zone, index) => (
             <div key={index} className="zone-card-light" style={{ padding: '1.5rem 1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div className="zone-icon-green" style={{ marginBottom: '1rem', height: '110px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

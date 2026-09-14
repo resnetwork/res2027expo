@@ -333,10 +333,17 @@
 }
 
 @media screen and (max-width: 600px) {
+  .logos-section {
+    padding: 40px 0 40px;
+  }
   .category-title {
     font-size: 1.35rem;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.5rem;
   }
+  .logos-category {
+    margin-bottom: 3rem;
+  }
+
   .logos-row-organizers {
     gap: 20px;
   }
@@ -366,34 +373,74 @@
     max-height: 42px;
     max-width: 105px;
   }
+  .logos-row-single,
+  .logos-row-vip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .logos-row-single .logo-card,
+  .logos-row-vip .logo-card {
+    height: 52px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .logos-row-single .logo-card a,
+  .logos-row-vip .logo-card a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
   .logos-row-single .logo-card img,
   .logos-row-vip .logo-card img {
-    max-height: 40px;
-    max-width: 105px;
+    max-height: 44px;
+    max-width: 130px;
+    display: block;
+    margin: 0 auto;
   }
   .logos-grid-official,
   .logos-grid-multi,
   .logos-grid-5col {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px 14px;
+    width: 100%;
+    margin: 0 auto;
   }
   .logos-grid-official .logo-card,
   .logos-grid-multi .logo-card,
   .logos-grid-5col .logo-card {
     height: 52px;
+    flex: 0 0 calc((100% - 28px) / 3);
+    max-width: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .logos-grid-official .logo-card img,
   .logos-grid-multi .logo-card img,
   .logos-grid-5col .logo-card img {
     max-width: 105px;
     max-height: 42px;
+    display: block;
+    margin: 0 auto;
   }
 }
 
 @media screen and (max-width: 420px) {
-  .logos-grid-official,
-  .logos-grid-multi,
-  .logos-grid-5col {
-    grid-template-columns: repeat(2, 1fr);
+  .logos-grid-official .logo-card,
+  .logos-grid-multi .logo-card,
+  .logos-grid-5col .logo-card {
+    flex: 0 0 calc((100% - 16px) / 2);
+    max-width: 150px;
   }
 }
