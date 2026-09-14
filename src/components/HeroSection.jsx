@@ -177,7 +177,7 @@ const HeroSection = ({ onOpenModal }) => {
                 ЗАБРОНИРОВАТЬ СТЕНД
               </button>
               <a 
-                href="https://resnetwork.kz/" 
+                href="https://resnetwork.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn-ws-network"
