@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, Globe } from 'lucide-react';
 import './HeroSection.css';
 
 const HeroSection = ({ onOpenModal }) => {
@@ -60,6 +60,7 @@ const HeroSection = ({ onOpenModal }) => {
   }, []);
 
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const hasStartedPlaying = useRef(false);
 
   useEffect(() => {
     // Listen to YouTube IFrame API messages to know when video actually starts playing
@@ -67,8 +68,22 @@ const HeroSection = ({ onOpenModal }) => {
       try {
         const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
         // YouTube API sends info: 1 when playing
-        if (data && (data.info === 1 || data.event === 'onStateChange' && data.info === 1)) {
-          setIsVideoPlaying(true);
+        if (data && (data.info === 1 || (data.event === 'onStateChange' && data.info === 1))) {
+          if (!hasStartedPlaying.current) {
+            hasStartedPlaying.current = true;
+            setIsVideoPlaying(true);
+            // Restart video from beginning so user doesn't miss the first seconds during load
+            if (iframeRef.current && iframeRef.current.contentWindow) {
+              iframeRef.current.contentWindow.postMessage(
+                JSON.stringify({
+                  event: 'command',
+                  func: 'seekTo',
+                  args: [0, true]
+                }),
+                '*'
+              );
+            }
+          }
         }
       } catch (e) {
         // ignore parsing errors from non-json messages
@@ -77,7 +92,12 @@ const HeroSection = ({ onOpenModal }) => {
     window.addEventListener('message', handleMessage);
 
     // Fallback: reveal after 3.5s in case postMessage is blocked
-    const fallbackTimer = setTimeout(() => setIsVideoPlaying(true), 3500);
+    const fallbackTimer = setTimeout(() => {
+      if (!hasStartedPlaying.current) {
+        hasStartedPlaying.current = true;
+        setIsVideoPlaying(true);
+      }
+    }, 3500);
 
     return () => {
       window.removeEventListener('message', handleMessage);
@@ -156,6 +176,16 @@ const HeroSection = ({ onOpenModal }) => {
               >
                 ЗАБРОНИРОВАТЬ СТЕНД
               </button>
+              <a 
+                href="https://resnetwork.kz/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn-ws-network"
+                style={{ textDecoration: 'none' }}
+              >
+                <Globe size={18} />
+                RES Network
+              </a>
             </div>
           </div>
         </div>

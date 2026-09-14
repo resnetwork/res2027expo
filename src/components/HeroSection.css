@@ -197,29 +197,34 @@
 
 .hero-actions-ws {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
 }
 
 .btn-ws-primary {
-  background: var(--bg-dark-green);
+  background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #10b981 100%);
   color: white;
   border: none;
   border-radius: 30px;
   padding: 0.85rem 1.5rem;
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   width: 100%;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(24, 88, 75, 0.25);
+  box-shadow: 0 4px 15px rgba(4, 120, 87, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .btn-ws-primary:hover {
-  background: var(--accent-light);
+  background: linear-gradient(135deg, #064e3b 0%, #059669 50%, #34d399 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(24, 88, 75, 0.35);
+  box-shadow: 0 6px 20px rgba(4, 120, 87, 0.45);
 }
 
 .btn-ws-secondary {
@@ -239,6 +244,31 @@
 .btn-ws-secondary:hover {
   background: #f0fdf4;
   transform: translateY(-2px);
+}
+
+.btn-ws-network {
+  background: linear-gradient(135deg, var(--bg-dark-green) 0%, #10b981 50%, var(--text-yellow) 100%);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-ws-network:hover {
+  background: linear-gradient(135deg, var(--bg-dark-green) 0%, #34d399 50%, var(--text-yellow) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
 }
 
 .sub-banner {
@@ -312,6 +342,11 @@
 }
 
 @media (max-width: 480px) {
+  .hero-actions-ws {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
   .hero-content-card {
     padding: 1.5rem 1rem;
   }
