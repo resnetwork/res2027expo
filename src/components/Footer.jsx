@@ -2,7 +2,7 @@ import React from 'react';
 import { Globe, MessageCircle, Send, AtSign, Mail, Phone, MapPin } from 'lucide-react';
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ onOpenModal }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -17,7 +17,12 @@ const Footer = () => {
           </div>
           
           <div className="footer-ws-middle">
-            <button className="btn-ws-primary footer-ws-btn">ЗАБРОНИРОВАТЬ СТЕНД</button>
+            <button 
+              className="btn-ws-primary footer-ws-btn"
+              onClick={() => onOpenModal && onOpenModal('Забронировать стенд')}
+            >
+              ЗАБРОНИРОВАТЬ СТЕНД
+            </button>
             <div className="footer-ws-contacts">
               <p>+ 7 775 026 66 88</p>
               <p>office@res2026expo.kz</p>

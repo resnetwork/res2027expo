@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import './HeroSection.css';
 
-const HeroSection = () => {
+const HeroSection = ({ onOpenModal }) => {
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
   const iframeRef = useRef(null);
@@ -120,7 +120,12 @@ const HeroSection = () => {
             </div>
 
             <div className="hero-actions-ws">
-              <button className="btn-ws-primary">ЗАБРОНИРОВАТЬ СТЕНД</button>
+              <button 
+                className="btn-ws-primary"
+                onClick={() => onOpenModal && onOpenModal('Забронировать стенд')}
+              >
+                ЗАБРОНИРОВАТЬ СТЕНД
+              </button>
             </div>
           </div>
         </div>

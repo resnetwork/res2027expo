@@ -1,40 +1,399 @@
+/* =============================================
+   LOGOS SECTION — matching res2026expo.kz
+   Tilda reference: grid imgs use max-width:150px
+   Zero-block artboards are 210-250px high
+============================================= */
+.logos-section {
+  background-color: #ffffff;
+  padding: 60px 0 80px;
+}
+
+.logos-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
 .logos-category {
-  margin-bottom: 4rem;
+  margin-bottom: 4.8rem;
 }
 
 .category-title {
   text-align: center;
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  color: var(--text-muted);
+  font-size: 1.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2.6rem;
+  color: #02493f;
 }
 
-.logos-grid {
-  margin-bottom: 2rem;
-}
-
+/* ── Shared logo card ── */
 .logo-card {
-  aspect-ratio: 2/1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  transition: transform var(--transition-fast);
+  transition: transform 0.2s ease;
+}
+
+.logo-card a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-card img {
+  display: block;
+  object-fit: contain;
 }
 
 .logo-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent-primary);
+  transform: scale(1.05);
 }
 
-.logo-placeholder {
-  color: var(--text-muted);
-  font-weight: 600;
-  font-family: var(--font-display);
-  opacity: 0.5;
+/* =============================================
+   ОРГАНИЗАТОРЫ — 2 logos centered
+   Sized to match Bronze Sponsor scale
+============================================= */
+.logos-row-organizers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 10px 0;
 }
 
+.logos-row-organizers .logo-card {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logos-row-organizers .logo-card img {
+  max-height: 62px;
+  max-width: 170px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =============================================
+   GOLDEN SPONSOR — 2 rows (5 in first row, rest in second row centered)
+   Sized to match Bronze Sponsor scale
+============================================= */
+.logos-row-golden {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px 40px;
+  flex-wrap: wrap;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.logos-row-golden .logo-card {
+  /* Exactly 5 items fit in the first row on desktop */
+  flex: 0 0 calc((100% - (4 * 40px)) / 5 - 1px);
+  max-width: calc((100% - (4 * 40px)) / 5 - 1px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75px;
+}
+
+.logos-row-golden .logo-card img {
+  max-height: 62px;
+  max-width: 145px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =============================================
+   BRONZE SPONSOR — 4 logos, centered row
+   Ref: artboard 210px, logos 127-145px wide
+============================================= */
+.logos-row-bronze {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 10px 0;
+}
+
+.logos-row-bronze .logo-card img {
+  max-height: 100px;
+  max-width: 170px;
+}
+
+/* =============================================
+   SINGLE SPONSOR & VIP LOUNGE
+   (Forte, South Oil, LiXiang, VIP Lounge)
+   Sized to match Bronze Sponsor scale
+============================================= */
+.logos-row-single,
+.logos-row-vip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.logos-row-single .logo-card,
+.logos-row-vip .logo-card {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logos-row-single .logo-card img,
+.logos-row-vip .logo-card img {
+  max-height: 58px;
+  max-width: 145px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =============================================
+   OFFICIAL PARTNER — 6 columns, sized like Bronze Sponsor
+============================================= */
+.logos-grid-official {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 48px 20px;
+  align-items: center;
+  justify-items: center;
+}
+
+.logos-grid-official .logo-card {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  box-sizing: border-box;
+}
+
+.logos-grid-official .logo-card img {
+  max-height: 62px;
+  max-width: 145px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =============================================
+   GRID — 6 columns (Fallback multi-grid)
+============================================= */
+.logos-grid-multi {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 48px 16px;
+  align-items: center;
+  justify-items: center;
+}
+
+.logos-grid-multi .logo-card {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  box-sizing: border-box;
+}
+
+.logos-grid-multi .logo-card img {
+  max-width: 145px;
+  max-height: 62px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =============================================
+   GRID — 5 columns (ECO-SYSTEM, Участники, Медиа партнеры)
+   Sized to match Bronze Sponsor scale
+============================================= */
+.logos-grid-5col {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 48px 24px;
+  align-items: center;
+  justify-items: center;
+}
+
+.logos-grid-5col .logo-card {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  box-sizing: border-box;
+}
+
+.logos-grid-5col .logo-card img {
+  max-height: 62px;
+  max-width: 145px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =============================================
+   «Показать еще» — styled to match site theme
+============================================= */
 .show-more-btn {
   display: block;
-  margin: 0 auto;
+  margin: 2rem auto 0;
+  padding: 12px 36px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #02493f;
+  border: 2px solid #02493f;
+  background: transparent;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.show-more-btn:hover {
+  background: linear-gradient(135deg, #02493f, #047857);
+  color: #ffffff;
+  border-color: #047857;
+  box-shadow: 0 4px 16px rgba(4, 120, 87, 0.3);
+}
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media screen and (max-width: 950px) {
+  .logos-row-organizers {
+    gap: 32px;
+  }
+  .logos-row-organizers .logo-card {
+    height: 65px;
+  }
+  .logos-row-organizers .logo-card img {
+    max-height: 52px;
+    max-width: 145px;
+  }
+  .logos-row-golden {
+    gap: 20px 24px;
+  }
+  .logos-row-golden .logo-card {
+    flex: 0 0 calc((100% - (2 * 24px)) / 3 - 1px);
+    max-width: calc((100% - (2 * 24px)) / 3 - 1px);
+    height: 65px;
+  }
+  .logos-row-golden .logo-card img {
+    max-height: 52px;
+    max-width: 125px;
+  }
+  .logos-row-bronze {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .logos-row-bronze .logo-card img {
+    max-height: 56px;
+    max-width: 140px;
+  }
+  .logos-row-single .logo-card img,
+  .logos-row-vip .logo-card img {
+    max-height: 50px;
+    max-width: 125px;
+  }
+  .logos-grid-official,
+  .logos-grid-multi,
+  .logos-grid-5col {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px 16px;
+  }
+  .logos-grid-official .logo-card,
+  .logos-grid-multi .logo-card,
+  .logos-grid-5col .logo-card {
+    height: 65px;
+  }
+  .logos-grid-official .logo-card img,
+  .logos-grid-multi .logo-card img,
+  .logos-grid-5col .logo-card img {
+    max-height: 52px;
+    max-width: 125px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .category-title {
+    font-size: 1.35rem;
+    margin-bottom: 1.8rem;
+  }
+  .logos-row-organizers {
+    gap: 20px;
+  }
+  .logos-row-organizers .logo-card {
+    height: 52px;
+  }
+  .logos-row-organizers .logo-card img {
+    max-height: 42px;
+    max-width: 120px;
+  }
+  .logos-row-bronze {
+    gap: 16px;
+  }
+  .logos-row-bronze .logo-card img {
+    max-height: 44px;
+    max-width: 115px;
+  }
+  .logos-row-golden {
+    gap: 20px 16px;
+  }
+  .logos-row-golden .logo-card {
+    flex: 0 0 calc((100% - 16px) / 2 - 1px);
+    max-width: calc((100% - 16px) / 2 - 1px);
+    height: 52px;
+  }
+  .logos-row-golden .logo-card img {
+    max-height: 42px;
+    max-width: 105px;
+  }
+  .logos-row-single .logo-card img,
+  .logos-row-vip .logo-card img {
+    max-height: 40px;
+    max-width: 105px;
+  }
+  .logos-grid-official,
+  .logos-grid-multi,
+  .logos-grid-5col {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px 12px;
+  }
+  .logos-grid-official .logo-card,
+  .logos-grid-multi .logo-card,
+  .logos-grid-5col .logo-card {
+    height: 52px;
+  }
+  .logos-grid-official .logo-card img,
+  .logos-grid-multi .logo-card img,
+  .logos-grid-5col .logo-card img {
+    max-width: 105px;
+    max-height: 42px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .logos-grid-official,
+  .logos-grid-multi,
+  .logos-grid-5col {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

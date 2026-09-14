@@ -1,46 +1,61 @@
 import React, { useState } from 'react';
 import './LogosSection.css';
+import partnerData from '../data/partner_logos.json';
 
-const LogosCategory = ({ title, count }) => {
+const LogosCategory = ({ category }) => {
+  const { name, logos } = category;
   const [showAll, setShowAll] = useState(false);
-  const logos = Array(count).fill(0);
-  const visibleLogos = showAll ? logos : logos.slice(0, 12);
+
+  // Layout type
+  let layoutClass = 'logos-grid-multi';
+  if (name === 'ОРГАНИЗАТОРЫ') layoutClass = 'logos-row-organizers';
+  else if (name === 'GOLDEN SPONSOR') layoutClass = 'logos-row-golden';
+  else if (name === 'BRONZE SPONSOR') layoutClass = 'logos-row-bronze';
+  else if (name === 'VIP LOUNGE SPONSOR') layoutClass = 'logos-row-vip';
+  else if (name === 'OFFICIAL PARTNER') layoutClass = 'logos-grid-official';
+  else if (name === 'ECO-SYSTEM ПАРТНЕРЫ' || name === 'Участники' || name.includes('Медиа')) layoutClass = 'logos-grid-5col';
+  else if (logos.length <= 1) layoutClass = 'logos-row-single';
+
+  const isGrid = layoutClass.startsWith('logos-grid');
+  // 2 rows initially: 10 logos for 5-col grid, 12 logos for 6-col grid
+  const initialCount = layoutClass === 'logos-grid-5col' ? 10 : 12;
+  const visibleLogos = (isGrid && logos.length > initialCount && !showAll)
+    ? logos.slice(0, initialCount)
+    : logos;
 
   return (
     <div className="logos-category">
-      <h3 className="category-title" style={{color: 'var(--bg-dark-green)', fontWeight: 800, textTransform: 'uppercase'}}>{title}</h3>
-      <div className="grid-6 logos-grid">
-        {visibleLogos.map((_, idx) => (
-          <div key={idx} className="logo-card" style={{border: '1px solid #eee', background: 'white'}}>
-            <span className="logo-placeholder">Logo {idx + 1}</span>
+      <h3 className="category-title">{name}</h3>
+      <div className={layoutClass}>
+        {visibleLogos.map((logo, idx) => (
+          <div key={idx} className="logo-card">
+            {logo.url && logo.url !== '#' ? (
+              <a href={logo.url} target="_blank" rel="noopener noreferrer">
+                <img src={logo.image} alt={`${name} ${idx + 1}`} loading="lazy" />
+              </a>
+            ) : (
+              <img src={logo.image} alt={`${name} ${idx + 1}`} loading="lazy" />
+            )}
           </div>
         ))}
       </div>
-      {logos.length > 12 && (
-        <button 
-          className="btn btn-outline show-more-btn"
-          onClick={() => setShowAll(!showAll)}
-        >
-          {showAll ? 'Скрыть' : `Показать еще (${logos.length - 12})`}
+      {isGrid && logos.length > initialCount && (
+        <button className="show-more-btn" onClick={() => setShowAll(!showAll)}>
+          {showAll ? 'Скрыть' : 'Показать еще'}
         </button>
       )}
     </div>
   );
 };
 
-const LogosSection = () => {
-  return (
-    <section className="logos-section section-padding bg-light-gray">
-      <div className="container">
-        <LogosCategory title="ОНИ БЫЛИ НАШИМИ ОРГАНИЗАТОРАМИ" count={2} />
-        <LogosCategory title="ОНИ БЫЛИ НАШИМИ GOLDEN СПОНСОРАМИ" count={8} />
-        <LogosCategory title="ОНИ БЫЛИ НАШИМИ BRONZE СПОНСОРАМИ" count={4} />
-        <LogosCategory title="ЭКСКЛЮЗИВНЫЕ ЭКО-ПАРТНЕРЫ" count={1} />
-        {/* Added a big category to test the "Show More" functionality as requested */}
-        <LogosCategory title="ИНФОРМАЦИОННЫЕ ПАРТНЕРЫ" count={18} />
-      </div>
-    </section>
-  );
-};
+const LogosSection = () => (
+  <section className="logos-section section-padding" id="logos">
+    <div className="logos-container">
+      {partnerData.map((category, i) => (
+        <LogosCategory key={i} category={category} />
+      ))}
+    </div>
+  </section>
+);
 
 export default LogosSection;

@@ -1,0 +1,1285 @@
+[
+  {
+    "name": "ОРГАНИЗАТОРЫ",
+    "logos": [
+      {
+        "image": "/logos/organizers/org_0.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/organizers/org_1.png",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "name": "GOLDEN SPONSOR",
+    "logos": [
+      {
+        "image": "/logos/golden/golden_0.png",
+        "url": "https://www.freedomholdingcorp.com/"
+      },
+      {
+        "image": "/logos/golden/golden_1.png",
+        "url": "https://www.kpo.kz/ru"
+      },
+      {
+        "image": "/logos/golden/golden_2.png",
+        "url": "https://www.ncoc.kz/ru"
+      },
+      {
+        "image": "/logos/golden/golden_3.png",
+        "url": "https://www.tengizchevroil.com/ru/home"
+      },
+      {
+        "image": "/logos/golden/golden_4.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/golden/golden_5.png",
+        "url": "https://www.kmg.kz/ru/"
+      },
+      {
+        "image": "/logos/golden/golden_6.png",
+        "url": "https://qaztehna.kz/"
+      },
+      {
+        "image": "/logos/golden/golden_7.png",
+        "url": "https://allur.kz/en"
+      },
+      {
+        "image": "/logos/golden/golden_8.png",
+        "url": "http://fsbk.kz/"
+      }
+    ]
+  },
+  {
+    "name": "BRONZE SPONSOR",
+    "logos": [
+      {
+        "image": "https://static.tildacdn.pro/tild3735-6162-4465-a333-653762663266/1280px-Kazakhmyssvg.png",
+        "url": "https://www.kazminerals.com/"
+      },
+      {
+        "image": "https://static.tildacdn.pro/tild3936-3762-4137-a265-613163346336/image.png",
+        "url": "https://www.erg.kz/ru"
+      },
+      {
+        "image": "https://static.tildacdn.pro/tild3662-6465-4562-b861-396430376231/image.png",
+        "url": "https://www.kazzinc.com/rus"
+      },
+      {
+        "image": "https://static.tildacdn.pro/tild6666-3863-4937-b865-313966313331/image.png",
+        "url": "https://www.kazminerals.com/"
+      }
+    ]
+  },
+  {
+    "name": "Exclusive Eco-Mobility Партнер",
+    "logos": [
+      {
+        "image": "/logos/lixiang.png",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "name": "ASTANA ECO FILM SPONSOR",
+    "logos": [
+      {
+        "image": "https://static.tildacdn.pro/tild3730-6638-4664-b933-613465613337/Group_2087330514_1.png",
+        "url": "https://forte.kz/"
+      }
+    ]
+  },
+  {
+    "name": "ECO STARTUP COMPETITION SPONSOR",
+    "logos": [
+      {
+        "image": "https://static.tildacdn.pro/tild3532-6364-4032-a162-343736643161/logo.png",
+        "url": "https://south-oil.com/en/"
+      }
+    ]
+  },
+  {
+    "name": "VIP LOUNGE SPONSOR",
+    "logos": [
+      {
+        "image": "/logos/vip_lounge.png",
+        "url": "https://south-oil.com/en/"
+      }
+    ]
+  },
+  {
+    "name": "OFFICIAL PARTNER",
+    "logos": [
+      {
+        "image": "/logos/official/official_0.png",
+        "url": "https://adaoil.kz/en/"
+      },
+      {
+        "image": "/logos/official/official_1.png",
+        "url": "https://adaoil.kz/en/"
+      },
+      {
+        "image": "/logos/official/official_2.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/official/official_3.png",
+        "url": "https://www.biooperations.com/ru/"
+      },
+      {
+        "image": "/logos/official/official_4.png",
+        "url": "https://www.yertai.kz/"
+      },
+      {
+        "image": "/logos/official/official_5.png",
+        "url": "https://gpc-aktobe.kz"
+      },
+      {
+        "image": "/logos/official/official_6.png",
+        "url": "https://kia.com.kz"
+      },
+      {
+        "image": "/logos/official/official_7.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/official/official_8.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/official/official_9.png",
+        "url": "https://nobiliscorp.kz/"
+      },
+      {
+        "image": "/logos/official/official_10.png",
+        "url": "https://kaz.qarabulaqgold.kz/"
+      },
+      {
+        "image": "/logos/official/official_11.png",
+        "url": "https://varro.kz/"
+      },
+      {
+        "image": "/logos/official/official_12.png",
+        "url": "https://caspiy-nefts.kz/"
+      },
+      {
+        "image": "/logos/official/official_13.png",
+        "url": "https://www.ags.kz/"
+      },
+      {
+        "image": "/logos/official/official_14.png",
+        "url": "https://kmkmunai.com/"
+      },
+      {
+        "image": "/logos/official/official_15.png",
+        "url": "https://km.kz/"
+      },
+      {
+        "image": "/logos/official/official_16.png",
+        "url": "https://www.maikainzoloto.kz/"
+      },
+      {
+        "image": "/logos/official/official_17.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/official/official_18.png",
+        "url": "http://www.ahps.kz/"
+      },
+      {
+        "image": "/logos/official/official_19.png",
+        "url": "https://buzachi-neft.com/home.php?lang=ru"
+      },
+      {
+        "image": "/logos/official/official_20.png",
+        "url": "https://www.kpp.kz/ru"
+      },
+      {
+        "image": "/logos/official/official_21.png",
+        "url": "https://aitas.kz/"
+      },
+      {
+        "image": "/logos/official/official_22.png",
+        "url": "https://petrokazakhstan.kz/"
+      },
+      {
+        "image": "/logos/official/official_23.png",
+        "url": "https://kgm.kz/ru/"
+      },
+      {
+        "image": "/logos/official/official_24.png",
+        "url": "https://ughk.kazatomprom.kz/ru"
+      },
+      {
+        "image": "/logos/official/official_25.png",
+        "url": "https://sgsk.kz/ru/"
+      },
+      {
+        "image": "/logos/official/official_26.png",
+        "url": "https://tazalyk-2012.kz/"
+      },
+      {
+        "image": "/logos/official/official_27.png",
+        "url": "https://brendt.kz/"
+      },
+      {
+        "image": "/logos/official/official_28.png",
+        "url": "https://www.grkmld.kz/#"
+      },
+      {
+        "image": "/logos/official/official_29.png",
+        "url": "https://ndpp.kz/"
+      },
+      {
+        "image": "/logos/official/official_30.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/official/official_31.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/official/official_32.png",
+        "url": "https://www.westdala.kz/"
+      },
+      {
+        "image": "/logos/official/official_33.png",
+        "url": "https://standard-cement.com/ru"
+      },
+      {
+        "image": "/logos/official/official_34.png",
+        "url": "https://dportalyk.kazatomprom.kz/ru"
+      },
+      {
+        "image": "/logos/official/official_35.png",
+        "url": "https://epc.group/"
+      },
+      {
+        "image": "/logos/official/official_36.png",
+        "url": "https://tengeoilandgas.com/"
+      },
+      {
+        "image": "/logos/official/official_37.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/official/official_38.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/official/official_39.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/official/official_40.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/official/official_41.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/official/official_42.png",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "name": "ECO-SYSTEM ПАРТНЕРЫ",
+    "logos": [
+      {
+        "image": "/logos/ecosystem/eco_0.png",
+        "url": "https://amcham.kz/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_1.png",
+        "url": "https://www.unicef.org/kazakhstan/en"
+      },
+      {
+        "image": "/logos/ecosystem/eco_2.png",
+        "url": "https://atameken.kz/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_3.png",
+        "url": "https://asianecology.kz/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_4.png",
+        "url": "https://kaz-waste.kz/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_5.png",
+        "url": "https://climateaction.kz/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_6.png",
+        "url": "https://www.instagram.com/jasylel_kz/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_7.png",
+        "url": "https://geoparkaral.kz/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_8.png",
+        "url": "https://kazgbc.kz/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_9.png",
+        "url": "http://savethecaspiansea.com/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_10.png",
+        "url": "https://gpi.kz/en/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_11.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/ecosystem/eco_12.png",
+        "url": "https://petrocouncil.kz/ru"
+      },
+      {
+        "image": "/logos/ecosystem/eco_13.png",
+        "url": "https://www.biosphere3.cn/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_14.png",
+        "url": "https://eurasiancouncil.org/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_15.png",
+        "url": "https://dipclub.kz/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_16.png",
+        "url": "https://praktikoffice.kz/en/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_17.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/ecosystem/eco_18.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/ecosystem/eco_19.png",
+        "url": "https://kazrenergy.com/en"
+      },
+      {
+        "image": "/logos/ecosystem/eco_20.png",
+        "url": "https://aeok.kz/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_21.png",
+        "url": "https://www.kazhydromet.kz/ru/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_22.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/ecosystem/eco_23.png",
+        "url": "https://britishchamber.kz/"
+      },
+      {
+        "image": "/logos/ecosystem/eco_24.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/ecosystem/eco_25.png",
+        "url": "https://globalnomadswear.com/"
+      }
+    ]
+  },
+  {
+    "name": "Участники",
+    "logos": [
+      {
+        "image": "/logos/participants/part_0.png",
+        "url": "https://solidcore-resources.com/en/"
+      },
+      {
+        "image": "/logos/participants/part_1.png",
+        "url": "https://www.mckinsey.com/"
+      },
+      {
+        "image": "/logos/participants/part_2.png",
+        "url": "https://rbpartners.kz/"
+      },
+      {
+        "image": "/logos/participants/part_3.png",
+        "url": "https://www.bcg.com/"
+      },
+      {
+        "image": "/logos/participants/part_4.png",
+        "url": "https://www.kdb.kz/"
+      },
+      {
+        "image": "/logos/participants/part_5.png",
+        "url": "https://www.ey.com/en_kz"
+      },
+      {
+        "image": "/logos/participants/part_6.png",
+        "url": "https://en.ccb.com/en/home/indexv3.html"
+      },
+      {
+        "image": "/logos/participants/part_7.png",
+        "url": "https://kpmg.com/kz/en.html"
+      },
+      {
+        "image": "/logos/participants/part_8.png",
+        "url": "https://www.arek.kz/ru/main.html"
+      },
+      {
+        "image": "/logos/participants/part_9.png",
+        "url": "https://www.arek.kz/ru/main.html"
+      },
+      {
+        "image": "/logos/participants/part_10.png",
+        "url": "https://kazgreentoken.kz/"
+      },
+      {
+        "image": "/logos/participants/part_11.png",
+        "url": "https://kdr.kz/"
+      },
+      {
+        "image": "/logos/participants/part_12.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_13.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_14.png",
+        "url": "https://aikos.kz/catalog/tyres/?srsltid=AfmBOopZwDIQkIN3Tn8ryQ9ZKIm5OW-4A8-mZ_EQb1Y9dbH9asGLXFm0"
+      },
+      {
+        "image": "/logos/participants/part_15.png",
+        "url": "https://export.gov.kg/ky/agency/services"
+      },
+      {
+        "image": "/logos/participants/part_16.png",
+        "url": "https://www.arek.kz/ru/main.html"
+      },
+      {
+        "image": "/logos/participants/part_17.png",
+        "url": "https://minpromtorg.permkrai.ru/"
+      },
+      {
+        "image": "/logos/participants/part_18.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_19.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_20.png",
+        "url": "https://gov.uz/ru/mingeo"
+      },
+      {
+        "image": "/logos/participants/part_21.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_22.png",
+        "url": "https://agmk.uz/ru"
+      },
+      {
+        "image": "/logos/participants/part_23.png",
+        "url": "https://www.krastsvetmet.ru/"
+      },
+      {
+        "image": "/logos/participants/part_24.png",
+        "url": "https://uztmk.uz/management"
+      },
+      {
+        "image": "/logos/participants/part_25.png",
+        "url": "https://www.unops.org/"
+      },
+      {
+        "image": "/logos/participants/part_26.png",
+        "url": "https://www.ngmk.uz/ru/"
+      },
+      {
+        "image": "/logos/participants/part_27.png",
+        "url": "https://naraspace.com/"
+      },
+      {
+        "image": "/logos/participants/part_28.png",
+        "url": "https://cne-images.xinnet.com/xinnet/interdict.html?s=cloud&blockurl=http%3A%2F%2Fhuashijie.com.cn%2F&blockdomain=huashijie.com.cn"
+      },
+      {
+        "image": "/logos/participants/part_29.png",
+        "url": "http://en.fecomee.org.cn/"
+      },
+      {
+        "image": "/logos/participants/part_30.png",
+        "url": "https://www.enggenv.com/resources/downloads/ene-softwares"
+      },
+      {
+        "image": "/logos/participants/part_31.png",
+        "url": "https://qazaqelectric.kz/"
+      },
+      {
+        "image": "/logos/participants/part_32.png",
+        "url": "www.greensolarkg.com"
+      },
+      {
+        "image": "/logos/participants/part_33.png",
+        "url": "https://eldik.kg/en"
+      },
+      {
+        "image": "/logos/participants/part_34.png",
+        "url": "https://www.afd.fr/fr"
+      },
+      {
+        "image": "/logos/participants/part_35.png",
+        "url": "https://www.greenenergy.kg/"
+      },
+      {
+        "image": "/logos/participants/part_36.png",
+        "url": "https://www.unisongroup.org/"
+      },
+      {
+        "image": "/logos/participants/part_37.png",
+        "url": "https://abank.kg/"
+      },
+      {
+        "image": "/logos/participants/part_38.png",
+        "url": "http://www.geo.kg/"
+      },
+      {
+        "image": "/logos/participants/part_39.png",
+        "url": "https://binteq-group.kg/"
+      },
+      {
+        "image": "/logos/participants/part_40.png",
+        "url": "https://www.junxinep.com/index.html"
+      },
+      {
+        "image": "/logos/participants/part_41.png",
+        "url": "https://www.asgroup.az/en"
+      },
+      {
+        "image": "/logos/participants/part_42.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_43.png",
+        "url": "https://rubiconwater.com/"
+      },
+      {
+        "image": "/logos/participants/part_44.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_45.png",
+        "url": "https://www.greenenergy.gov.kg/ru/"
+      },
+      {
+        "image": "/logos/participants/part_46.png",
+        "url": "https://mdn.kg/"
+      },
+      {
+        "image": "/logos/participants/part_47.png",
+        "url": "https://minenergo.gov.kg/ru/sidebar/aboutUs?title=%D0%9E+%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D0%B5%D1%80%D1%81%D1%82%D0%B2%D0%B5"
+      },
+      {
+        "image": "/logos/participants/part_48.png",
+        "url": "https://spark.kg/iso"
+      },
+      {
+        "image": "/logos/participants/part_49.png",
+        "url": "https://azpromo.az/ru"
+      },
+      {
+        "image": "/logos/participants/part_50.png",
+        "url": "https://seabreeze.az/ru/pages/about"
+      },
+      {
+        "image": "/logos/participants/part_51.png",
+        "url": "https://egov.tj/site/sarmoyaguzori?lang=ru"
+      },
+      {
+        "image": "/logos/participants/part_52.png",
+        "url": "https://avesto.tj/ru/"
+      },
+      {
+        "image": "/logos/participants/part_53.png",
+        "url": "https://akia-avesto.tj/"
+      },
+      {
+        "image": "/logos/participants/part_54.png",
+        "url": "https://arvis.tj/"
+      },
+      {
+        "image": "/logos/participants/part_55.png",
+        "url": "https://tgem.tj/"
+      },
+      {
+        "image": "/logos/participants/part_56.png",
+        "url": "https://www.neqsolholding.com/"
+      },
+      {
+        "image": "/logos/participants/part_57.png",
+        "url": "https://artman.kz/"
+      },
+      {
+        "image": "/logos/participants/part_58.png",
+        "url": "https://vernadsky.ru/"
+      },
+      {
+        "image": "/logos/participants/part_59.png",
+        "url": "https://www.edf.fr/"
+      },
+      {
+        "image": "/logos/participants/part_60.png",
+        "url": "https://www.veolia.com/en"
+      },
+      {
+        "image": "/logos/participants/part_61.png",
+        "url": "https://erp.iprofi.pro/"
+      },
+      {
+        "image": "/logos/participants/part_62.png",
+        "url": "https://totalenergies.com/"
+      },
+      {
+        "image": "/logos/participants/part_63.png",
+        "url": "https://www.hydroplus.com/"
+      },
+      {
+        "image": "/logos/participants/part_64.png",
+        "url": "https://www.se.com/ww/en/"
+      },
+      {
+        "image": "/logos/participants/part_65.png",
+        "url": "https://www.nijhuissaurindustries.com/"
+      },
+      {
+        "image": "/logos/participants/part_66.png",
+        "url": "https://www.bauku.com/"
+      },
+      {
+        "image": "/logos/participants/part_67.png",
+        "url": "https://www.finnishwaterforum.fi/wp/fi/"
+      },
+      {
+        "image": "/logos/participants/part_68.png",
+        "url": "https://www.epse.fi/en/"
+      },
+      {
+        "image": "/logos/participants/part_69.png",
+        "url": "https://mittausguru.fi/en/about-us/"
+      },
+      {
+        "image": "/logos/participants/part_70.png",
+        "url": "https://honka.com/en/"
+      },
+      {
+        "image": "/logos/participants/part_71.png",
+        "url": "https://www.peikko.com/"
+      },
+      {
+        "image": "/logos/participants/part_72.png",
+        "url": "https://www.linkedin.com/company/confindustria-centro-asia-e-caucaso/"
+      },
+      {
+        "image": "/logos/participants/part_73.png",
+        "url": "https://permscience.ru/"
+      },
+      {
+        "image": "/logos/participants/part_74.png",
+        "url": "https://kredoplast.ru/about/"
+      },
+      {
+        "image": "/logos/participants/part_75.png",
+        "url": "https://permodezhda.com/"
+      },
+      {
+        "image": "/logos/participants/part_76.png",
+        "url": "https://odu100.activcarbon.ru/"
+      },
+      {
+        "image": "/logos/participants/part_77.png",
+        "url": "https://uzpm.ru/"
+      },
+      {
+        "image": "/logos/participants/part_78.png",
+        "url": "https://taleng.uz/"
+      },
+      {
+        "image": "/logos/participants/part_79.png",
+        "url": "https://www.daneng.cc/"
+      },
+      {
+        "image": "/logos/participants/part_80.png",
+        "url": "https://www.adal-meteo.kz/"
+      },
+      {
+        "image": "/logos/participants/part_81.png",
+        "url": "https://www.tialocgroup.com/"
+      },
+      {
+        "image": "/logos/participants/part_82.png",
+        "url": "https://en.ccepc.com/ccepcen/aboutProfile.html"
+      },
+      {
+        "image": "/logos/participants/part_83.png",
+        "url": "https://firstrecycling.eco/"
+      },
+      {
+        "image": "/logos/participants/part_84.png",
+        "url": "https://www.longi.com/en/products/silicon/n-type/"
+      },
+      {
+        "image": "/logos/participants/part_85.png",
+        "url": "https://intagokazakhstan.kz/"
+      },
+      {
+        "image": "/logos/participants/part_86.png",
+        "url": "https://www.unep.org/"
+      },
+      {
+        "image": "/logos/participants/part_87.png",
+        "url": "https://recycle.kz/ru"
+      },
+      {
+        "image": "/logos/participants/part_88.png",
+        "url": "fwr.kz"
+      },
+      {
+        "image": "/logos/participants/part_89.png",
+        "url": "https://nesori.kz/"
+      },
+      {
+        "image": "/logos/participants/part_90.png",
+        "url": "https://ecomg.ru/"
+      },
+      {
+        "image": "/logos/participants/part_91.png",
+        "url": "https://uralgidromash.ru/"
+      },
+      {
+        "image": "/logos/participants/part_92.png",
+        "url": "https://www.saiman.kz/"
+      },
+      {
+        "image": "/logos/participants/part_93.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_94.png",
+        "url": "https://ecomaf.kz/"
+      },
+      {
+        "image": "/logos/participants/part_95.png",
+        "url": "https://www.sparklo.com/https://www.sparklo.com/https://www.sparklo.com/https://www.sparklo.com/https://www.sparklo.com/https://www.sparklo.com/"
+      },
+      {
+        "image": "/logos/participants/part_96.png",
+        "url": "https://solarway.kz/solnechnayaenergetika2_afnm/"
+      },
+      {
+        "image": "/logos/participants/part_97.png",
+        "url": "https://www.swissenviro.ch/"
+      },
+      {
+        "image": "/logos/participants/part_98.png",
+        "url": "https://gwf-group.com/en/"
+      },
+      {
+        "image": "/logos/participants/part_99.png",
+        "url": "https://www.helvetas.org/en/switzerland"
+      },
+      {
+        "image": "/logos/participants/part_100.png",
+        "url": "https://hofstetter-swiss.com/"
+      },
+      {
+        "image": "/logos/participants/part_101.png",
+        "url": "https://holinger.com/en/career/translate-to-englisch-darum-holinger/"
+      },
+      {
+        "image": "/logos/participants/part_102.png",
+        "url": "https://geosystems.kz/"
+      },
+      {
+        "image": "/logos/participants/part_103.png",
+        "url": "https://www.sgs.com/ru-kz"
+      },
+      {
+        "image": "/logos/participants/part_104.png",
+        "url": "https://krofta.ba/"
+      },
+      {
+        "image": "/logos/participants/part_105.png",
+        "url": "https://kaz.sika.com/"
+      },
+      {
+        "image": "/logos/participants/part_106.png",
+        "url": "https://qaztrade.org.kz/eng/"
+      },
+      {
+        "image": "/logos/participants/part_107.png",
+        "url": "https://cesna.kz/"
+      },
+      {
+        "image": "/logos/participants/part_108.png",
+        "url": "https://www.kazazot.kz/"
+      },
+      {
+        "image": "/logos/participants/part_109.png",
+        "url": "https://www.iom.int/"
+      },
+      {
+        "image": "/logos/participants/part_110.png",
+        "url": "https://soventus.org/ru"
+      },
+      {
+        "image": "/logos/participants/part_111.png",
+        "url": "https://www.sulzer.com/en"
+      },
+      {
+        "image": "/logos/participants/part_112.png",
+        "url": "https://jinkosolar.eu/"
+      },
+      {
+        "image": "/logos/participants/part_113.png",
+        "url": "https://consumer.huawei.com/kz/"
+      },
+      {
+        "image": "/logos/participants/part_114.png",
+        "url": "https://dsc.tj/ru/glavnaya/"
+      },
+      {
+        "image": "/logos/participants/part_115.png",
+        "url": "https://smart-e.kz/"
+      },
+      {
+        "image": "/logos/participants/part_116.png",
+        "url": "https://dandelion.club"
+      },
+      {
+        "image": "/logos/participants/part_117.png",
+        "url": "https://sevkom.kz/"
+      },
+      {
+        "image": "/logos/participants/part_118.png",
+        "url": "http://liheroglobal.com/"
+      },
+      {
+        "image": "/logos/participants/part_119.png",
+        "url": "https://ecoexpert.kz/"
+      },
+      {
+        "image": "/logos/participants/part_120.png",
+        "url": "https://green-bridge.kz/"
+      },
+      {
+        "image": "/logos/participants/part_121.png",
+        "url": "https://www.oice.it/279184/what-is-oice"
+      },
+      {
+        "image": "/logos/participants/part_122.png",
+        "url": "https://www.aristoscientific.uz/"
+      },
+      {
+        "image": "/logos/participants/part_123.png",
+        "url": "https://kazecotech.com/"
+      },
+      {
+        "image": "/logos/participants/part_124.png",
+        "url": "https://www.arcwater.com.tr/en"
+      },
+      {
+        "image": "/logos/participants/part_125.png",
+        "url": "https://www.ghgsat.com/en/"
+      },
+      {
+        "image": "/logos/participants/part_126.png",
+        "url": "https://ag-tech.kz/template/images/logo-dark.svg"
+      },
+      {
+        "image": "/logos/participants/part_127.png",
+        "url": "https://hyrasia.one/"
+      },
+      {
+        "image": "/logos/participants/part_128.png",
+        "url": "https://miami-solar.org/ru"
+      },
+      {
+        "image": "/logos/participants/part_129.png",
+        "url": "https://ecoton.kz/"
+      },
+      {
+        "image": "/logos/participants/part_130.png",
+        "url": "https://www.aswanenergy.com/"
+      },
+      {
+        "image": "/logos/participants/part_131.png",
+        "url": "https://agrosintez.ru/"
+      },
+      {
+        "image": "/logos/participants/part_132.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_133.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_134.png",
+        "url": "https://www.algoritmi.kz"
+      },
+      {
+        "image": "/logos/participants/part_135.png",
+        "url": "https://www.bagsplitter.com/"
+      },
+      {
+        "image": "/logos/participants/part_136.png",
+        "url": "http://auasense.com/"
+      },
+      {
+        "image": "/logos/participants/part_137.png",
+        "url": "https://www.microstep.eu/"
+      },
+      {
+        "image": "/logos/participants/part_138.png",
+        "url": "https://www.rcp-systems.org/"
+      },
+      {
+        "image": "/logos/participants/part_139.png",
+        "url": "https://www.stiloevora.ro/?lang=ru"
+      },
+      {
+        "image": "/logos/participants/part_140.png",
+        "url": "https://green-spark.net/"
+      },
+      {
+        "image": "/logos/participants/part_141.png",
+        "url": "https://www.instagram.com/kazrez.group/"
+      },
+      {
+        "image": "/logos/participants/part_142.png",
+        "url": "https://orkin.kz/"
+      },
+      {
+        "image": "/logos/participants/part_143.png",
+        "url": "http://www.asiafilter.kz/"
+      },
+      {
+        "image": "/logos/participants/part_144.png",
+        "url": "https://cpcholding.kz/"
+      },
+      {
+        "image": "/logos/participants/part_145.png",
+        "url": "https://aliya-eco.kz/"
+      },
+      {
+        "image": "/logos/participants/part_146.png",
+        "url": "https://site.cft.kz/"
+      },
+      {
+        "image": "/logos/participants/part_147.png",
+        "url": "http://en.trgis.com/index"
+      },
+      {
+        "image": "/logos/participants/part_148.png",
+        "url": "https://www.wallereclamation.com/"
+      },
+      {
+        "image": "/logos/participants/part_149.png",
+        "url": "https://ionos.kz/"
+      },
+      {
+        "image": "/logos/participants/part_150.png",
+        "url": "https://ektu.kz/"
+      },
+      {
+        "image": "/logos/participants/part_151.png",
+        "url": "https://auezov.edu.kz/index.php/rus/"
+      },
+      {
+        "image": "/logos/participants/part_152.png",
+        "url": "https://yu.edu.kz/ru/glavnaya-stranicza-2/"
+      },
+      {
+        "image": "/logos/participants/part_153.png",
+        "url": "https://www.kaznpu.kz/ru/2209/page/"
+      },
+      {
+        "image": "/logos/participants/part_154.png",
+        "url": "https://shakarim.university/ru"
+      },
+      {
+        "image": "/logos/participants/part_155.png",
+        "url": "https://atyrau.edu.kz/ru"
+      },
+      {
+        "image": "/logos/participants/part_156.png",
+        "url": "https://zhetysu.edu.kz/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F/"
+      },
+      {
+        "image": "/logos/participants/part_157.png",
+        "url": "https://www.kaznaru.edu.kz/ru"
+      },
+      {
+        "image": "/logos/participants/part_158.png",
+        "url": "https://www.google.com/search?sca_esv=00e10f0057297768&sxsrf=ANbL-n6MebyVepqf25l9zBaTQRv7n-w6Rw:1776346854186&udm=2&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3izczKHhF2wgz0AoHZ2f_yJ4zQ_V75tA8EUhOa7p9-hLY7goj5pkOHREhyYy92fHIr2YW1iCtbYAirgTMBF2Q6TjAaeeYclwbvUPQqfcm_UtWvBsmKD1MQus9CZW-PCAaGCrAjbWMosIYQwqdWbPHtog8AB6b9fLLI1i-ArEarmQ51VXRA&q=%D0%9D%D0%90%D0%9E+%C2%AB%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B8%D0%B9+%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9+%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9+%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82+%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8+%D0%9A.%D0%98.+%D0%A1%D0%B0%D1%82%D0%BF%D0%B0%D0%B5%D0%B2%D0%B0%C2%BB&sa=X&ved=2ahUKEwjLkffZv_KTAxXtU1UIHVYCPXkQtKgLegQIDxAB&biw=1366&bih=641&dpr=1#sv=CAMSVhoyKhBlLVpVN0tIM1FybmhsRVlNMg5aVTdLSDNRcm5obEVZTToOSjZHbk12N3ZXbjBsQU0gBCocCgZtb3NhaWMSEGUtWlU3S0gzUXJuaGxFWU0YADABGAcgg8n42g9KCBACGAEgAigB"
+      },
+      {
+        "image": "/logos/participants/part_159.png",
+        "url": "https://farabi.university/?lang=ru"
+      },
+      {
+        "image": "/logos/participants/part_160.png",
+        "url": "https://kazatu.edu.kz/ru"
+      },
+      {
+        "image": "/logos/participants/part_161.png",
+        "url": "https://mastercoffee.kz/"
+      },
+      {
+        "image": "/logos/participants/part_162.png",
+        "url": "https://www.instagram.com/likekomek?igsh=MTlpdDl1NHZuOTd4Mw%3D%3D&utm_source=qr"
+      },
+      {
+        "image": "/logos/participants/part_163.png",
+        "url": "https://miglior.kz/"
+      },
+      {
+        "image": "/logos/participants/part_164.png",
+        "url": "https://business.beeline.kz/senim?utm_source=google_ads_search&utm_medium=cpc&utm_campaign=b2b_senim_google_ads_traffic_17.04.2026&gad_source=1&gad_campaignid=23769366959&gbraid=0AAAAACzuWcvZhbkhHfoQT25VK-lIzpX6F&gclid=CjwKCAjwwJzPBhBREiwAJfHRnUN9gHVxbyAW40JF3YFaU5rzo5UmlVIdojFB-g69yjEjvKjMI51I8BoChNsQAvD_BwE"
+      },
+      {
+        "image": "/logos/participants/part_165.png",
+        "url": "https://ctsolutions.kz/"
+      },
+      {
+        "image": "/logos/participants/part_166.png",
+        "url": "https://wrkz.kz/"
+      },
+      {
+        "image": "/logos/participants/part_167.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_168.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_169.png",
+        "url": "http://qazaqastyq.kz/"
+      },
+      {
+        "image": "/logos/participants/part_170.png",
+        "url": "#"
+      },
+      {
+        "image": "/logos/participants/part_171.png",
+        "url": "https://go.beeco.kz/"
+      },
+      {
+        "image": "/logos/participants/part_172.png",
+        "url": "auasense.com"
+      },
+      {
+        "image": "/logos/participants/part_173.png",
+        "url": "http://greenparkvip.kz/"
+      },
+      {
+        "image": "/logos/participants/part_174.png",
+        "url": "katonkaragaytour.kz"
+      },
+      {
+        "image": "/logos/participants/part_175.png",
+        "url": "https://altay-pro.kz/"
+      },
+      {
+        "image": "/logos/participants/part_176.png",
+        "url": "https://www.gov.kz/memleket/entities/astana?lang=ru"
+      },
+      {
+        "image": "/logos/participants/part_177.png",
+        "url": "https://www.gov.kz/memleket/entities/almaty"
+      },
+      {
+        "image": "/logos/participants/part_178.png",
+        "url": "https://www.gov.kz/memleket/entities/shymkent"
+      },
+      {
+        "image": "/logos/participants/part_179.png",
+        "url": "https://www.gov.kz/memleket/entities/abay?lang=ru&ysclid=mno879lftm48700609"
+      },
+      {
+        "image": "/logos/participants/part_180.png",
+        "url": "https://www.gov.kz/memleket/entities/sko?lang=en"
+      },
+      {
+        "image": "/logos/participants/part_181.png",
+        "url": "https://visiteast.kz/"
+      },
+      {
+        "image": "/logos/participants/part_182.png",
+        "url": "https://www.gov.kz/memleket/entities/aqmola"
+      },
+      {
+        "image": "/logos/participants/part_183.png",
+        "url": "https://www.gov.kz/memleket/entities/aktobe?lang=ru"
+      },
+      {
+        "image": "/logos/participants/part_184.png",
+        "url": "https://www.gov.kz/memleket/entities/almobl"
+      },
+      {
+        "image": "/logos/participants/part_185.png",
+        "url": "https://www.gov.kz/memleket/entities/atyrau?lang=ru"
+      },
+      {
+        "image": "/logos/participants/part_186.png",
+        "url": "https://www.gov.kz/memleket/entities/zhetysu-oblysy?lang=ru"
+      },
+      {
+        "image": "/logos/participants/part_187.png",
+        "url": "https://www.gov.kz/memleket/entities/bko"
+      },
+      {
+        "image": "/logos/participants/part_188.png",
+        "url": "https://www.gov.kz/memleket/entities/karaganda"
+      },
+      {
+        "image": "/logos/participants/part_189.png",
+        "url": "https://www.gov.kz/memleket/entities/kostanay"
+      },
+      {
+        "image": "/logos/participants/part_190.png",
+        "url": "https://www.gov.kz/memleket/entities/kyzylorda"
+      },
+      {
+        "image": "/logos/participants/part_191.png",
+        "url": "https://www.gov.kz/memleket/entities/mangystau"
+      },
+      {
+        "image": "/logos/participants/part_192.png",
+        "url": "https://www.gov.kz/memleket/entities/pavlodar"
+      },
+      {
+        "image": "/logos/participants/part_193.png",
+        "url": "https://www.gov.kz/memleket/entities/ontustik?lang=ru"
+      },
+      {
+        "image": "/logos/participants/part_194.png",
+        "url": "https://www.gov.kz/memleket/entities/ulytau?lang=ru"
+      }
+    ]
+  },
+  {
+    "name": "Медиа партнеры",
+    "logos": [
+      {
+        "image": "/logos/media/media_0.png",
+        "url": "https://nationalgeographic.kz/"
+      },
+      {
+        "image": "/logos/media/media_1.png",
+        "url": "https://kzmedia.kz/"
+      },
+      {
+        "image": "/logos/media/media_2.png",
+        "url": "https://turningpoints.kz/"
+      },
+      {
+        "image": "/logos/media/media_3.png",
+        "url": "https://www.instagram.com/kaztourism.media?igsh=MWpsN2tibzhvZGpsMA=="
+      },
+      {
+        "image": "/logos/media/media_4.png",
+        "url": "https://www.kazenergy.com/ru/"
+      },
+      {
+        "image": "/logos/media/media_5.png",
+        "url": "https://sheinneuasia.com/"
+      },
+      {
+        "image": "/logos/media/media_6.png",
+        "url": "https://baq.kz/"
+      },
+      {
+        "image": "/logos/media/media_7.png",
+        "url": "https://qazcontent.kz/"
+      },
+      {
+        "image": "/logos/media/media_8.png",
+        "url": "https://azertag.az/en/"
+      },
+      {
+        "image": "/logos/media/media_9.png",
+        "url": "https://qazaqstan.tv/"
+      },
+      {
+        "image": "/logos/media/media_10.png",
+        "url": "https://khabar.kz/ru"
+      },
+      {
+        "image": "/logos/media/media_11.png",
+        "url": "https://astanatv.kz/ru/live"
+      },
+      {
+        "image": "/logos/media/media_12.png",
+        "url": "https://jjtv.kz/ru/live"
+      },
+      {
+        "image": "/logos/media/media_13.png",
+        "url": "https://www.inform.kz/"
+      },
+      {
+        "image": "/logos/media/media_14.png",
+        "url": "https://kz.kursiv.media/"
+      },
+      {
+        "image": "/logos/media/media_15.png",
+        "url": "https://ecojer.kz/ru"
+      },
+      {
+        "image": "/logos/media/media_16.png",
+        "url": "https://qazaqgreen.kz/ru"
+      },
+      {
+        "image": "/logos/media/media_17.png",
+        "url": "https://emf.kz/"
+      },
+      {
+        "image": "/logos/media/media_18.png",
+        "url": "https://worldexpo.pro/"
+      },
+      {
+        "image": "/logos/media/media_19.png",
+        "url": "https://expomap.ru/"
+      },
+      {
+        "image": "/logos/media/media_20.png",
+        "url": "https://expotobi.com/"
+      },
+      {
+        "image": "/logos/media/media_21.png",
+        "url": "https://www.totalexpo.ru/"
+      },
+      {
+        "image": "/logos/media/media_22.png",
+        "url": "https://petrocouncil.kz/ru"
+      },
+      {
+        "image": "/logos/media/media_23.png",
+        "url": "https://tabigat.media/"
+      }
+    ]
+  }
+]

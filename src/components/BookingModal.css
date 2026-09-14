@@ -1,0 +1,327 @@
+/* =============================================
+   BOOKING MODAL (Поп-ап «Оставьте заявку»)
+   Matching res2026expo.kz popup design
+============================================= */
+
+.bm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  animation: bmFadeIn 0.25s ease-out;
+}
+
+@keyframes bmFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.bm-close-btn {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  z-index: 10000;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 38px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.bm-close-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.bm-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+  animation: bmSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes bmSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header Banner */
+.bm-header {
+  background-color: #12453a;
+  background: linear-gradient(180deg, #103d33 0%, #175246 100%);
+  padding: 22px 24px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bm-logo {
+  height: 52px;
+  max-width: 220px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Body */
+.bm-body {
+  padding: 28px 34px 34px;
+  background: #ffffff;
+}
+
+.bm-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #12453a;
+  text-align: center;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.bm-subtitle {
+  font-size: 0.92rem;
+  color: #3b7a6e;
+  text-align: center;
+  margin: 0 0 24px 0;
+  font-weight: 500;
+}
+
+/* Form Fields */
+.bm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bm-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.bm-label {
+  color: #2b7a69;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.bm-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.bm-select {
+  width: 100%;
+  height: 48px;
+  padding: 0 38px 0 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1f2937;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bm-select:focus {
+  border-color: #12453a;
+  box-shadow: 0 0 0 3px rgba(18, 69, 58, 0.12);
+}
+
+.bm-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1f2937;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bm-input::placeholder,
+.bm-textarea::placeholder,
+.bm-phone-input::placeholder {
+  color: #9ca3af;
+}
+
+.bm-input:focus,
+.bm-textarea:focus {
+  border-color: #12453a;
+  box-shadow: 0 0 0 3px rgba(18, 69, 58, 0.12);
+}
+
+/* Phone input with KZ flag */
+.bm-phone-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  height: 48px;
+  padding: 0 12px;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.bm-phone-box:focus-within {
+  border-color: #12453a;
+  box-shadow: 0 0 0 3px rgba(18, 69, 58, 0.12);
+}
+
+.bm-flag-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 8px;
+  margin-right: 8px;
+  border-right: 1px solid #e5e7eb;
+  user-select: none;
+}
+
+.bm-flag-svg {
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.bm-flag-caret {
+  font-size: 10px;
+  color: #6b7280;
+}
+
+.bm-phone-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #1f2937;
+  background: transparent;
+}
+
+/* Textareas (Company & Country) */
+.bm-textarea {
+  width: 100%;
+  min-height: 58px;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1f2937;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Submit button */
+.bm-submit-btn {
+  margin-top: 4px;
+  width: 100%;
+  padding: 14px 20px;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  letter-spacing: 0.2px;
+}
+
+.bm-submit-btn:hover {
+  background-color: #222222;
+}
+
+.bm-submit-btn:active {
+  transform: scale(0.99);
+}
+
+/* Success state */
+.bm-success-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.bm-success-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #12453a;
+  color: #ffffff;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .bm-close-btn {
+    top: 14px;
+    right: 14px;
+    font-size: 32px;
+  }
+  .bm-body {
+    padding: 22px 20px 24px;
+  }
+  .bm-title {
+    font-size: 1.55rem;
+  }
+  .bm-header {
+    padding: 18px 20px 16px;
+  }
+  .bm-logo {
+    height: 44px;
+  }
+}
