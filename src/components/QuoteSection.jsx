@@ -4,10 +4,11 @@ import './Sections.css';
 const QuoteSection = () => {
   return (
     <section className="quote-section">
-      <div className="quote-container">
-        <div className="quote-image-wrapper">
-          <img src="/president.png" alt="Касым-Жомарт Токаев" className="quote-image" />
-        </div>
+      <div className="container">
+        <div className="quote-container">
+          <div className="quote-image-wrapper">
+            <img src="/president.png" alt="Касым-Жомарт Токаев" className="quote-image" />
+          </div>
         <div className="quote-content">
           <h3 className="quote-title">
             ЦИТАТА ПРЕЗИДЕНТА РЕСПУБЛИКИ КАЗАХСТАН:
@@ -19,6 +20,7 @@ const QuoteSection = () => {
             ИЗ ВЫСТУПЛЕНИЯ ПРЕЗИДЕНТА КАЗАХСТАНА КАСЫМ-ЖОМАРТА ТОКАЕВА НА III КОНФЕРЕНЦИИ ОРГАНИЗАЦИИ ОБЪЕДИНЕННЫХ НАЦИЙ ПО РАЗВИВАЮЩИМСЯ СТРАНАМ, НЕ ИМЕЮЩИМ ВЫХОДА К МОРЮ, ТУРКМЕНИСТАН, Г. АВАЗА, 2025 ГОД
           </p>
         </div>
+      </div>
       </div>
     </section>
   );

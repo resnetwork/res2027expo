@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import './Header.css';
 
 const Header = ({ onOpenModal }) => {
@@ -16,26 +16,30 @@ const Header = ({ onOpenModal }) => {
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container header-content">
-        <a 
-          href="/" 
-          className="logo" 
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            window.history.pushState(null, '', '/');
-          }}
-          style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
-          title="RES 2027 EXPO"
-        >
-          <img src="/logo.png" alt="RES EXPO Logo" style={{height: '50px'}} />
-        </a>
+      <div className="header-content">
+        <div className="header-left">
+          <a 
+            href="/" 
+            className="logo" 
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.history.pushState(null, '', '/');
+            }}
+            style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+            title="RES 2027 EXPO"
+          >
+            <img src="/logo.png" alt="RES EXPO Logo" className="header-logo-img" style={{ height: '46px' }} />
+          </a>
 
-        <nav className={`desktop-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-          <a href="#about" onClick={() => setMobileMenuOpen(false)}>О выставке</a>
-          <a href="#reviews" onClick={() => setMobileMenuOpen(false)}>Партнеры</a>
-          <a href="#footer" onClick={() => setMobileMenuOpen(false)}>Контакты</a>
-          {/* Socials replaced with standard a tags for now, keeping spacing */}
+          <nav className={`desktop-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)}>О выставке</a>
+            <a href="#reviews" onClick={() => setMobileMenuOpen(false)}>Партнеры</a>
+            <a href="#footer" onClick={() => setMobileMenuOpen(false)}>Контакты</a>
+          </nav>
+        </div>
+
+        <div className="header-right">
           <div className="social-mini-links">
             <a href="https://api.whatsapp.com/send/?phone=77750266688&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" className="social-circle" aria-label="WhatsApp">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -63,23 +67,33 @@ const Header = ({ onOpenModal }) => {
               </svg>
             </a>
           </div>
-        </nav>
 
-        <div className="header-actions">
-          <button 
-            className="btn btn-primary btn-sm header-btn"
-            onClick={() => onOpenModal && onOpenModal('Забронировать стенд')}
-          >
-            Забронировать стенд
-          </button>
-          <div className="lang-switch">RUS</div>
-          
-          <button 
-            className="mobile-menu-btn"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="header-actions">
+            <button 
+              className="btn btn-primary btn-sm header-btn"
+              onClick={() => onOpenModal && onOpenModal('Забронировать стенд')}
+            >
+              Забронировать стенд
+            </button>
+            <a 
+              href="https://resnetwork.org/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-network-header"
+            >
+              <Globe size={16} />
+              <span>RES Network</span>
+            </a>
+            <div className="lang-switch">RUS</div>
+            
+            <button 
+              className="mobile-menu-btn"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
     </header>

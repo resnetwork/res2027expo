@@ -107,85 +107,78 @@ const HeroSection = ({ onOpenModal }) => {
 
   return (
     <>
-      <section className="hero-websummit">
-        <div className="hero-grid container">
-          {/* Left Card: Video */}
-          <div className="hero-card hero-video-card">
-            
-            <div className="video-scale-wrapper">
-              <iframe
-                ref={iframeRef}
-                src="https://www.youtube.com/embed/y8pZx1hrPmI?autoplay=1&mute=1&loop=1&playlist=y8pZx1hrPmI&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&disablekb=1&iv_load_policy=3"
-                title="RES 2027 EXPO Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="hero-iframe"
-              />
-            </div>
-            
-            <div className={`video-loading-cover ${isVideoPlaying ? 'fade-out' : ''}`}>
-              <div className="video-spinner"></div>
-            </div>
-            
-            <div className="video-blocker" onClick={togglePlay}></div>
+      <section className="hero-slush">
+        
+        {/* Background Video Elements */}
+        <div className="video-scale-wrapper">
+          <iframe
+            ref={iframeRef}
+            src="https://www.youtube.com/embed/y8pZx1hrPmI?autoplay=1&mute=1&loop=1&playlist=y8pZx1hrPmI&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&disablekb=1&iv_load_policy=3"
+            title="RES 2027 EXPO Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="hero-iframe"
+          />
+        </div>
+        
+        <div className={`video-loading-cover ${isVideoPlaying ? 'fade-out' : ''}`}>
+          <div className="video-spinner"></div>
+        </div>
+        
+        <div className="video-blocker" onClick={togglePlay}></div>
 
-            <div className="video-controls-overlay">
-              <button className="control-btn" onClick={togglePlay} aria-label="Воспроизвести / Пауза">
-                {playing ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" />}
-              </button>
-              <button className="control-btn" onClick={toggleMute} aria-label="Звук">
-                {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-              </button>
-            </div>
-            
-          </div>
+        <div className="video-controls-overlay">
+          <button className="control-btn" onClick={togglePlay} aria-label="Воспроизвести / Пауза">
+            {playing ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" />}
+          </button>
+          <button className="control-btn" onClick={toggleMute} aria-label="Звук">
+            {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+          </button>
+        </div>
+        
+        {/* Dark overlay for readability */}
+        <div className="hero-overlay"></div>
 
-          {/* Right Card: Content */}
-          <div className="hero-card hero-content-card">
-            <h1 className="hero-title-ws">
-              Международная выставка зеленых технологий и устойчивых решений «RES&nbsp;2027&nbsp;EXPO»
+        {/* Foreground Content */}
+        <div className="hero-content-slush container">
+          <div className="hero-text-wrapper">
+            <h1 className="hero-title-slush">
+              Международная выставка<br/>зеленых технологий и устойчивых решений<br/>
+              <span className="hero-highlight">«RES&nbsp;2027&nbsp;EXPO»</span>
             </h1>
             
-            <p className="hero-subtitle-ws">
+            <p className="hero-subtitle-slush">
               От видения к реализации: будущее устойчивого развития начинается здесь
             </p>
-            
-            <div className="countdown-ws">
-              <div className="count-item-ws">
-                <span className="count-num-ws">{String(timeLeft.days).padStart(2, '0')}</span>
-                <span className="count-label-ws">Дней</span>
+          </div>
+          
+          <div className="hero-bottom-bar">
+            <div className="countdown-slush">
+              <div className="count-item-slush">
+                <span className="count-num-slush">{String(timeLeft.days).padStart(2, '0')}</span>
+                <span className="count-label-slush">Дней</span>
               </div>
-              <div className="count-item-ws">
-                <span className="count-num-ws">{String(timeLeft.hours).padStart(2, '0')}</span>
-                <span className="count-label-ws">Часов</span>
+              <div className="count-item-slush">
+                <span className="count-num-slush">{String(timeLeft.hours).padStart(2, '0')}</span>
+                <span className="count-label-slush">Часов</span>
               </div>
-              <div className="count-item-ws">
-                <span className="count-num-ws">{String(timeLeft.minutes).padStart(2, '0')}</span>
-                <span className="count-label-ws">Минут</span>
+              <div className="count-item-slush">
+                <span className="count-num-slush">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                <span className="count-label-slush">Минут</span>
               </div>
-              <div className="count-item-ws">
-                <span className="count-num-ws">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                <span className="count-label-ws">Секунд</span>
+              <div className="count-item-slush">
+                <span className="count-num-slush">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                <span className="count-label-slush">Секунд</span>
               </div>
             </div>
 
-            <div className="hero-actions-ws">
+            <div className="hero-actions-slush">
               <button 
                 className="btn-ws-primary"
                 onClick={() => onOpenModal && onOpenModal('Забронировать стенд')}
               >
                 ЗАБРОНИРОВАТЬ СТЕНД
               </button>
-              <a 
-                href="https://resnetwork.org/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn-ws-network"
-                style={{ textDecoration: 'none' }}
-              >
-                <Globe size={18} />
-                RES Network
-              </a>
             </div>
           </div>
         </div>

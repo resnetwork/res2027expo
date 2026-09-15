@@ -193,7 +193,7 @@
 /* Quote Section specific styles */
 .quote-section {
   background-color: var(--bg-dark-green);
-  padding: 0;
+  padding: 4rem 0;
   margin: 0;
 }
 
@@ -201,7 +201,10 @@
   display: flex;
   flex-direction: row-reverse;
   align-items: stretch;
-  background-color: var(--bg-dark-green);
+  background-color: rgba(255, 255, 255, 0.05); /* Slight glassmorphism to lift it */
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
 .quote-image-wrapper {
