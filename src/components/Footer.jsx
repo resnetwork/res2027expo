@@ -40,8 +40,8 @@ const Footer = ({ onOpenModal }) => {
         
         <div className="footer-ws-bottom">
           <div className="footer-ws-links">
-            <a href="#">Политика конфиденциальности</a>
-            <a href="#">Договор оферты</a>
+            <a href="/policy-ru">Политика конфиденциальности</a>
+            <a href="/oferta-ru">Договор оферты</a>
           </div>
           <button className="footer-ws-up" onClick={scrollToTop}>наверх &uarr;</button>
         </div>

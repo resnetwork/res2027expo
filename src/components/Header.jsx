@@ -22,9 +22,10 @@ const Header = ({ onOpenModal }) => {
             href="/" 
             className="logo" 
             onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-              window.history.pushState(null, '', '/');
+              if (window.location.pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
             }}
             style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
             title="RES 2027 EXPO"
@@ -33,9 +34,9 @@ const Header = ({ onOpenModal }) => {
           </a>
 
           <nav className={`desktop-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)}>О выставке</a>
-            <a href="#reviews" onClick={() => setMobileMenuOpen(false)}>Партнеры</a>
-            <a href="#footer" onClick={() => setMobileMenuOpen(false)}>Контакты</a>
+            <a href="/#about" onClick={() => setMobileMenuOpen(false)}>О выставке</a>
+            <a href="/#reviews" onClick={() => setMobileMenuOpen(false)}>Партнеры</a>
+            <a href="/#footer" onClick={() => setMobileMenuOpen(false)}>Контакты</a>
           </nav>
         </div>
 

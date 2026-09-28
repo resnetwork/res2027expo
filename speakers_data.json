@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1",
+    "image": "/speakers/speaker1.jpeg"
+  },
+  {
+    "id": "7",
+    "image": "/speakers/speaker7.jpg"
+  },
+  {
+    "id": "5",
+    "image": "/speakers/speaker5.jpg"
+  },
+  {
+    "id": "10",
+    "image": "/speakers/speaker10.jpg"
+  },
+  {
+    "id": "13",
+    "image": "/speakers/speaker13.jpg"
+  },
+  {
+    "id": "8",
+    "image": "/speakers/speaker8.jpeg"
+  },
+  {
+    "id": "4",
+    "image": "/speakers/speaker4.webp"
+  },
+  {
+    "id": "6",
+    "image": "/speakers/speaker6.jpg"
+  },
+  {
+    "id": "2",
+    "image": "/speakers/speaker2.jpg"
+  },
+  {
+    "id": "15",
+    "image": "/speakers/speaker15.jpg"
+  },
+  {
+    "id": "14",
+    "image": "/speakers/speaker14.jpg"
+  },
+  {
+    "id": "16",
+    "image": "/speakers/speaker16.png"
+  },
+  {
+    "id": "3",
+    "image": "/speakers/speaker3.jpg"
+  },
+  {
+    "id": "9",
+    "image": "/speakers/speaker9.jpeg"
+  },
+  {
+    "id": "11",
+    "image": "/speakers/speaker11.jpeg"
+  },
+  {
+    "id": "12",
+    "image": "/speakers/speaker12.webp"
+  }
+]
