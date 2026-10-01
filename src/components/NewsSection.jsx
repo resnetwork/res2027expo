@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import './NewsSection.css';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const NewsSection = () => {
+  const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -12,26 +14,19 @@ const NewsSection = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const news = [
-    { 
-      title: 'Фонд Булата Утемуратова поддержал проект газификации Алматы', 
-      desc: 'Фонд Булата Утемуратова оказал благотворительную помощь в размере 460 млн тенге для реализации социально значимого проекта по газификации жилых домов города Алматы.',
-      image: '/news/news1.png',
-      url: 'https://res2026expo.kz/page221633103.html'
-    },
-    { 
-      title: 'Казахмыс усиливает ESG-трансформацию и экологические инициативы', 
-      desc: 'Корпорация Казахмыс продолжает внедрять принципы устойчивого развития, объединяя экологию, социальную ответственность и прозрачное управление.',
-      image: '/news/news2.png',
-      url: 'https://res2026expo.kz/page139192823.html'
-    },
-    { 
-      title: 'Тенгизшевройл принял участие в Региональном экологическом саммите ЭКСПО 2026', 
-      desc: 'В Астане прошла международная выставка зеленых технологий и устойчивых решений «RES 2026 EXPO» с участием глав государств Центральной Азии, посвященная переходу к экологически ответственному развитию и зеленой экономике.',
-      image: '/news/news3.png',
-      url: 'https://res2026expo.kz/page139165293.html'
-    },
+  const translatedNews = t('news.list') || [];
+  const urlsAndImages = [
+    { image: '/news/news1.png', url: 'https://res2026expo.kz/page221633103.html' },
+    { image: '/news/news2.png', url: 'https://res2026expo.kz/page139192823.html' },
+    { image: '/news/news3.png', url: 'https://res2026expo.kz/page139165293.html' }
   ];
+
+  const news = Array.isArray(translatedNews) 
+    ? translatedNews.map((item, index) => ({
+        ...item,
+        ...urlsAndImages[index]
+      }))
+    : [];
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % news.length);
@@ -44,7 +39,7 @@ const NewsSection = () => {
   return (
     <section className="news-section section-padding bg-green" id="news">
       <div className="container">
-        <h2 className="section-title text-inverse" style={{marginBottom: '3rem', textAlign: 'center'}}>НОВОСТИ</h2>
+        <h2 className="section-title text-inverse" style={{marginBottom: '3rem', textAlign: 'center'}}>{t('news.title')}</h2>
 
         <div className="news-carousel-container" style={{ position: 'relative' }}>
           {isMobile && (
@@ -93,7 +88,7 @@ const NewsSection = () => {
                     alignSelf: 'flex-start',
                     transition: 'background-color 0.2s'
                   }}>
-                    Подробнее
+                    {t('news.readMore')}
                   </a>
                 </div>
               </div>

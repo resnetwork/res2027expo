@@ -1,25 +1,28 @@
 import React from 'react';
 import { Leaf, Droplet, Cpu, Recycle, ShieldCheck, Banknote, Tractor, Building2 } from 'lucide-react';
 import './Sections.css';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ThematicZones = () => {
+  const { t } = useLanguage();
+  const zonesText = t('thematic.zones') || [];
   const zones = [
-    { iconImage: '/zones/energy.png', title: 'НОВАЯ ЭНЕРГИЯ', desc: 'Решения для перехода к низкоуглеродной экономике' },
-    { iconImage: '/zones/water.png', title: 'ВОДА', desc: 'Эффективное орошение, фильтрация и повторное использование' },
-    { iconImage: '/zones/ai.png', title: 'ИИ И УМНЫЙ ГОРОД', desc: 'Решения для энергоэффективных и цифровых городов' },
-    { iconImage: '/zones/waste.png', title: 'УПРАВЛЕНИЕ ОТХОДАМИ', desc: 'Новые решения для эффективного использования ресурсов' },
-    { iconImage: '/zones/eco.png', title: 'ЭКОЛОГИЧНЫЕ ТЕХНОЛОГИИ', desc: 'Улавливание углерода и адаптация к климатическим изменениям' },
-    { iconImage: '/zones/esg.png', title: 'ESG И ЗЕЛЕНЫЕ ФИНАНСЫ', desc: 'Инвестиции и практики для перехода к экологичной экономике' },
-    { iconImage: '/zones/agro.png', title: 'СЕЛЬСКОЕ ХОЗЯЙСТВО', desc: 'Технологии точного земледелия и устойчивого производства' },
-    { iconImage: '/zones/build.png', title: 'ЗЕЛЕНОЕ СТРОИТЕЛЬСТВО', desc: 'Природные решения для сохранения и восстановления экоресурсов' },
+    { iconImage: '/zones/energy.png', title: zonesText[0]?.title, desc: zonesText[0]?.desc },
+    { iconImage: '/zones/water.png', title: zonesText[1]?.title, desc: zonesText[1]?.desc },
+    { iconImage: '/zones/ai.png', title: zonesText[2]?.title, desc: zonesText[2]?.desc },
+    { iconImage: '/zones/waste.png', title: zonesText[3]?.title, desc: zonesText[3]?.desc },
+    { iconImage: '/zones/eco.png', title: zonesText[4]?.title, desc: zonesText[4]?.desc },
+    { iconImage: '/zones/esg.png', title: zonesText[5]?.title, desc: zonesText[5]?.desc },
+    { iconImage: '/zones/agro.png', title: zonesText[6]?.title, desc: zonesText[6]?.desc },
+    { iconImage: '/zones/build.png', title: zonesText[7]?.title, desc: zonesText[7]?.desc },
   ];
 
   return (
     <section className="thematic-zones bg-green" id="zones" style={{ padding: '3rem 0 4rem 0', background: "linear-gradient(180deg, #12453a 0%, #18584b 100%)" }}>
       <div className="container">
-        <h2 className="section-title" style={{ color: 'var(--text-yellow)', marginBottom: '0.5rem', fontSize: '2.5rem' }}>ТЕМАТИЧЕСКИЕ ЗОНЫ</h2>
+        <h2 className="section-title" style={{ color: 'var(--text-yellow)', marginBottom: '0.5rem', fontSize: '2.5rem' }}>{t('thematic.title')}</h2>
         <p className="section-subtitle" style={{ color: 'white', marginBottom: '2rem', fontWeight: 400, fontSize: '1.2rem' }}>
-          Каждая зона - новая идея для <span style={{ color: 'var(--text-yellow)', fontWeight: 700 }}>зелёного будущего</span>
+          {t('thematic.subtitle')}
         </p>
 
         <div className="grid-4 mobile-carousel" style={{ gap: '1.5rem' }}>

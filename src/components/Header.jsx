@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import './Header.css';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Header = ({ onOpenModal }) => {
+  const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,9 +37,9 @@ const Header = ({ onOpenModal }) => {
           </a>
 
           <nav className={`desktop-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-            <a href="/#about" onClick={() => setMobileMenuOpen(false)}>О выставке</a>
-            <a href="/#reviews" onClick={() => setMobileMenuOpen(false)}>Партнеры</a>
-            <a href="/#footer" onClick={() => setMobileMenuOpen(false)}>Контакты</a>
+            <a href="/#about" onClick={() => setMobileMenuOpen(false)}>{t('nav.about')}</a>
+            <a href="/#reviews" onClick={() => setMobileMenuOpen(false)}>{t('nav.partners')}</a>
+            <a href="/#footer" onClick={() => setMobileMenuOpen(false)}>{t('nav.contacts')}</a>
           </nav>
         </div>
 
@@ -74,7 +77,7 @@ const Header = ({ onOpenModal }) => {
               className="btn btn-primary btn-sm header-btn"
               onClick={() => onOpenModal && onOpenModal('Забронировать стенд')}
             >
-              Забронировать стенд
+              {t('header.bookStand')}
             </button>
             <a 
               href="https://resnetwork.org/" 
@@ -85,7 +88,48 @@ const Header = ({ onOpenModal }) => {
               <Globe size={16} />
               <span>RES Network</span>
             </a>
-            <div className="lang-switch">RUS</div>
+            
+            <div className="language-selector" style={{ position: 'relative' }} 
+                 onMouseEnter={() => setLangDropdownOpen(true)}
+                 onMouseLeave={() => setLangDropdownOpen(false)}>
+              <div className="lang-switch" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                {language === 'ru' ? 'RUS' : language === 'kk' ? 'KAZ' : 'ENG'}
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              {langDropdownOpen && (
+                <div className="lang-dropdown" style={{
+                  position: 'absolute', top: '100%', right: '0',
+                  backgroundColor: 'white', color: '#333', padding: '10px 0',
+                  borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+                  display: 'flex', flexDirection: 'column', minWidth: '120px', zIndex: 100
+                }}>
+                  {[
+                    { code: 'kk', label: 'Қазақша' },
+                    { code: 'ru', label: 'Русский' },
+                    { code: 'en', label: 'English' }
+                  ].map(l => (
+                    <div 
+                      key={l.code} 
+                      onClick={() => setLanguage(l.code)}
+                      style={{ 
+                        cursor: 'pointer', fontSize: '14px', fontWeight: '500', 
+                        padding: '8px 20px',
+                        backgroundColor: language === l.code ? '#f5f5f5' : 'transparent',
+                        color: language === l.code ? 'var(--primary-green)' : '#333'
+                      }}
+                      onMouseEnter={(e) => e.target.style.backgroundColor = '#f5f5f5'}
+                      onMouseLeave={(e) => {
+                        if (language !== l.code) e.target.style.backgroundColor = 'transparent';
+                      }}
+                    >
+                      {l.label}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
             
             <button 
               className="mobile-menu-btn"

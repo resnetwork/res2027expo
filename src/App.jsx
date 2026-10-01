@@ -17,6 +17,7 @@ import BookingModal from './components/BookingModal';
 
 import PolicyPage from './components/PolicyPage';
 import OfertaPage from './components/OfertaPage';
+import LocationSection from './components/LocationSection';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,7 +30,7 @@ function App() {
     setIsModalOpen(true);
   };
 
-  if (currentPath === '/policy-ru') {
+  if (currentPath === '/policy') {
     return (
       <>
         <PolicyPage onOpenModal={handleOpenModal} />
@@ -42,7 +43,7 @@ function App() {
     );
   }
 
-  if (currentPath === '/oferta-ru') {
+  if (currentPath === '/oferta') {
     return (
       <>
         <OfertaPage onOpenModal={handleOpenModal} />
@@ -71,6 +72,7 @@ function App() {
         <PartnersInvite />
         <LogosSection />
         <NewsSection />
+        <LocationSection />
       </main>
       <Footer onOpenModal={handleOpenModal} />
 

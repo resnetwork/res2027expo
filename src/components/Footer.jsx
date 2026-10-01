@@ -1,8 +1,10 @@
 import React from 'react';
 import { Globe, MessageCircle, Send, AtSign, Mail, Phone, MapPin } from 'lucide-react';
 import './Footer.css';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = ({ onOpenModal }) => {
+  const { t } = useLanguage();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -21,7 +23,7 @@ const Footer = ({ onOpenModal }) => {
               className="btn-ws-primary footer-ws-btn"
               onClick={() => onOpenModal && onOpenModal('Забронировать стенд')}
             >
-              ЗАБРОНИРОВАТЬ СТЕНД
+              {t('header.bookStand')}
             </button>
             <div className="footer-ws-contacts">
               <p>+ 7 775 026 66 88</p>
@@ -32,18 +34,18 @@ const Footer = ({ onOpenModal }) => {
 
           <div className="footer-ws-right">
             <div className="footer-ws-info">
-              <p className="footer-ws-date">5-7 мая, 2027</p>
-              <p className="footer-ws-location">Астана, МВЦ "EXPO"</p>
+              <p className="footer-ws-date">{t('footer.date')}</p>
+              <p className="footer-ws-location">{t('footer.location')}</p>
             </div>
           </div>
         </div>
         
         <div className="footer-ws-bottom">
           <div className="footer-ws-links">
-            <a href="/policy-ru">Политика конфиденциальности</a>
-            <a href="/oferta-ru">Договор оферты</a>
+            <a href="/policy">{t('footer.privacy')}</a>
+            <a href="/oferta">{t('footer.oferta')}</a>
           </div>
-          <button className="footer-ws-up" onClick={scrollToTop}>наверх &uarr;</button>
+          <button className="footer-ws-up" onClick={scrollToTop}>{t('footer.up')}</button>
         </div>
       </div>
     </footer>

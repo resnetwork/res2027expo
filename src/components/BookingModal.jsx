@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './BookingModal.css';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const BookingModal = ({ isOpen, onClose, initialOption = 'Забронировать стенд' }) => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     intent: initialOption,
     name: '',
@@ -114,25 +116,25 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
           {submitted ? (
             <div className="bm-success-state">
               <div className="bm-success-icon">✓</div>
-              <h3 className="bm-title">Заявка принята!</h3>
-              <p className="bm-subtitle">Спасибо! Мы свяжемся с Вами в ближайшее время.</p>
+              <h3 className="bm-title">{t('bookingModal.successTitle')}</h3>
+              <p className="bm-subtitle">{t('bookingModal.successSubtitle')}</p>
               <button 
                 type="button" 
                 className="bm-submit-btn" 
                 style={{ marginTop: '1.5rem' }} 
                 onClick={onClose}
               >
-                Закрыть
+                {t('bookingModal.closeBtn')}
               </button>
             </div>
           ) : (
             <>
-              <h3 className="bm-title">Оставьте заявку</h3>
-              <p className="bm-subtitle">Мы обязательно с Вами свяжемся</p>
+              <h3 className="bm-title">{t('bookingModal.title')}</h3>
+              <p className="bm-subtitle">{t('bookingModal.subtitle')}</p>
 
               <form onSubmit={handleSubmit} className="bm-form">
                 <div className="bm-field">
-                  <label htmlFor="bm-intent" className="bm-label">Вы хотите:</label>
+                  <label htmlFor="bm-intent" className="bm-label">{t('bookingModal.intentLabel')}</label>
                   <div className="bm-select-wrapper">
                     <select
                       id="bm-intent"
@@ -141,9 +143,9 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
                       onChange={handleChange}
                       className="bm-select"
                     >
-                      <option value="Стать партнером">Стать партнером</option>
-                      <option value="Забронировать стенд">Забронировать стенд</option>
-                      <option value="Стать спикером">Стать спикером</option>
+                      <option value="Стать партнером">{t('bookingModal.intentOptions.partner')}</option>
+                      <option value="Забронировать стенд">{t('bookingModal.intentOptions.stand')}</option>
+                      <option value="Стать спикером">{t('bookingModal.intentOptions.speaker')}</option>
                     </select>
                   </div>
                 </div>
@@ -154,7 +156,7 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="ФИО"
+                    placeholder={t('bookingModal.namePlaceholder')}
                     className="bm-input"
                     required
                   />
@@ -166,7 +168,7 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Email"
+                    placeholder={t('bookingModal.emailPlaceholder')}
                     className="bm-input"
                     required
                   />
@@ -199,7 +201,7 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    placeholder="Название компании"
+                    placeholder={t('bookingModal.companyPlaceholder')}
                     rows={2}
                     className="bm-textarea"
                   />
@@ -210,7 +212,7 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
                     name="country"
                     value={formData.country}
                     onChange={handleChange}
-                    placeholder="Страна"
+                    placeholder={t('bookingModal.countryPlaceholder')}
                     rows={2}
                     className="bm-textarea"
                   />
@@ -228,7 +230,7 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
                   disabled={isSubmitting}
                   style={isSubmitting ? { opacity: 0.7, cursor: 'not-allowed' } : {}}
                 >
-                  {isSubmitting ? 'Отправка...' : 'Отправить'}
+                  {isSubmitting ? t('bookingModal.submittingBtn') : t('bookingModal.submitBtn')}
                 </button>
               </form>
             </>

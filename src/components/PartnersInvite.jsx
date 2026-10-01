@@ -1,23 +1,33 @@
 import React, { useRef, useState } from 'react';
 import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import './Participate.css';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const PartnersInvite = () => {
+  const { t } = useLanguage();
   const [playingIndex, setPlayingIndex] = useState(null);
   const scrollRef = useRef(null);
 
-  const partners = [
-    { name: 'ОШУРБАЕВ\nМАНСУР', role: 'ВИЦЕ-МИНИСТР ЭКОЛОГИИ И ПРИРОДНЫХ РЕСУРСОВ РЕСПУБЛИКИ КАЗАХСТАН', url: 'iB3IymXl59g', image: '/partners/oshurbaev.png' },
-    { name: 'АЙГЕРИМ\nКЕНЕСОВА', role: 'ОФИЦИАЛЬНЫЙ ПРЕДСТАВИТЕЛЬ ASIAFILTER INC.', url: 'jAU1aWs9oYA', image: '/partners/kenesova.png' },
-    { name: 'ТАЛГАТ\nТОРЕБЕКОВ', role: 'ДИРЕКТОР ДЕПАРТАМЕНТА ОХРАНЫ ОКРУЖАЮЩЕЙ СРЕДЫ МЕЖДУНАРОДНОЙ ГОРНО-МЕТАЛЛУРГИЧЕСКОЙ КОМПАНИИ ERG В КАЗАХСТАНЕ', url: 'q4mT-CuxSXQ', image: '/partners/torebekov.png' },
-    { name: 'YAYU WU', role: 'РУКОВОДИТЕЛЬ LI AUTO ЦЕНТРАЛЬНОЙ АЗИИ', url: 'IGq8L-DmRMk', image: '/partners/wu.png' },
-    { name: 'ЧАН ХЭ\nЧУНЬ', role: 'ГЕНЕРАЛЬНЫЙ МЕНЕДЖЕР ФИЛИАЛА "ENERGY CHINA" В КАЗАХСТАНЕ', url: 'ngMzlE68Z40', image: '/partners/chan.png' },
-    { name: 'КАЙЫРБОЛАТ\nСАХМЕТОВ', role: 'РУКОВОДИТЕЛЬ УПРАВЛЕНИЯ ПРИРОДНЫХ РЕСУРСОВ', url: '9qR1eA5_jCg', image: '/partners/sahmetov.png' },
-    { name: 'НУРЛАН\nСАДИРОВ', role: 'ДИРЕКТОР ТОО "GREEN LINE"', url: 'r0r9B2xZ-uQ', image: '/partners/sadirov.png' },
-    { name: 'УЛУГБЕК\nАЛЬТАЕВ', role: 'ГЛАВНЫЙ ИНЖЕНЕР ПО ЭКОЛОГИИ АО "QAZAQ ENERGY"', url: 'k8d9R4mF_pM', image: '/partners/altaev.png' },
-    { name: 'МЕРГЕН\nИЗБАСАРОВ', role: 'ВЕДУЩИЙ ЭКСПЕРТ ПО УСТОЙЧИВОМУ РАЗВИТИЮ', url: 'b2m5K8lP_xN', image: '/partners/izbasarov.png' },
-    { name: 'АХМЕД\nСЕРИКОВ', role: 'ПРЕЗИДЕНТ ФОНДА "ЭКО-КАЗАХСТАН"', url: 'v7n4C1sT_bV', image: '/partners/serikov.png' }
+  const translatedPartners = t('partnersInvite.list') || [];
+  const mediaData = [
+    { url: 'iB3IymXl59g', image: '/partners/oshurbaev.png' },
+    { url: 'jAU1aWs9oYA', image: '/partners/kenesova.png' },
+    { url: 'q4mT-CuxSXQ', image: '/partners/torebekov.png' },
+    { url: 'IGq8L-DmRMk', image: '/partners/wu.png' },
+    { url: 'ngMzlE68Z40', image: '/partners/chan.png' },
+    { url: '9qR1eA5_jCg', image: '/partners/sahmetov.png' },
+    { url: 'r0r9B2xZ-uQ', image: '/partners/sadirov.png' },
+    { url: 'k8d9R4mF_pM', image: '/partners/altaev.png' },
+    { url: 'b2m5K8lP_xN', image: '/partners/izbasarov.png' },
+    { url: 'v7n4C1sT_bV', image: '/partners/serikov.png' }
   ];
+
+  const partners = Array.isArray(translatedPartners) 
+    ? translatedPartners.map((p, i) => ({
+        ...p,
+        ...mediaData[i]
+      }))
+    : [];
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -32,9 +42,9 @@ const PartnersInvite = () => {
   return (
     <section className="partners-invite bg-green" style={{ padding: '3rem 0' }}>
       <div className="container text-center" style={{position: 'relative'}}>
-        <h2 className="section-title text-inverse" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>НАШИ ПАРТНЕРЫ ПРИГЛАШАЮТ</h2>
+        <h2 className="section-title text-inverse" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{t('partnersInvite.title')}</h2>
         <p className="section-subtitle" style={{marginBottom: '2.5rem', fontWeight: 400, color: 'rgba(255,255,255,0.8)'}}>
-          Видео обращения участников мероприятия
+          {t('partnersInvite.subtitle')}
         </p>
 
         <div className="carousel-wrapper">

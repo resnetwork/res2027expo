@@ -1,7 +1,9 @@
 import React from 'react';
 import './Sections.css';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const BadgeSection = () => {
+  const { t } = useLanguage();
   return (
     <section className="badge-section bg-white">
       <div className="container">
@@ -13,7 +15,7 @@ const BadgeSection = () => {
           />
           <div className="badge-pill">
             <h3 className="badge-text">
-              МЫ — ОБЛАДАТЕЛИ ЗОЛОТОГО ЗНАЧКА SMART PLASTIC ZONE: ПОДТВЕРЖДЁННАЯ ЭКОЛОГИЧЕСКАЯ ОТВЕТСТВЕННОСТЬ
+              {t('smartPlastic')}
             </h3>
           </div>
         </div>

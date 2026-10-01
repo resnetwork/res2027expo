@@ -1,0 +1,130 @@
+.location-section {
+  background-color: var(--bg-dark-green, #064e3b);
+  padding: 4rem 0;
+  color: white;
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.location-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.map-container {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  aspect-ratio: 4 / 3;
+}
+
+.location-map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-container {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.gallery-slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  background-color: white;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.info-container {
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.info-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: white;
+}
+
+.info-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+  opacity: 0.9;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.info-list li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 992px) {
+  .location-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .map-container, .gallery-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .location-section {
+    padding: 3rem 0;
+  }
+}

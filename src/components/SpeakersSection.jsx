@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './SpeakersSection.css';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const speakers = [
   {
@@ -86,6 +87,7 @@ const speakers = [
 
 const SpeakersSection = () => {
   const [showAll, setShowAll] = useState(false);
+  const { t } = useLanguage();
   
   const displayedSpeakers = showAll ? speakers : speakers.slice(0, 10);
 
@@ -93,24 +95,30 @@ const SpeakersSection = () => {
     <section className="speakers-section bg-white section-padding" id="speakers">
       <div className="container">
         <div className="section-header text-center" style={{ marginBottom: '3rem' }}>
-          <h2 className="section-title">Спикеры 2026 года</h2>
+          <h2 className="section-title">{t('speakers.title')}</h2>
           <p className="section-subtitle" style={{ color: 'var(--text-muted)' }}>
-            Ведущие эксперты, государственные деятели и представители международного бизнеса
+            {t('speakers.subtitle')}
           </p>
         </div>
 
         <div className="speakers-grid">
-          {displayedSpeakers.map((speaker, idx) => (
-            <div className="speaker-card" key={idx}>
-              <div className="speaker-image-wrapper">
-                <img src={speaker.image} alt={speaker.name} className="speaker-image" />
+          {displayedSpeakers.map((speaker, idx) => {
+            const roles = t('speakers.roles');
+            const names = t('speakers.names');
+            const roleText = Array.isArray(roles) ? roles[idx] : speaker.title;
+            const nameText = Array.isArray(names) ? names[idx] : speaker.name;
+            return (
+              <div className="speaker-card" key={idx}>
+                <div className="speaker-image-wrapper">
+                  <img src={speaker.image} alt={nameText} className="speaker-image" />
+                </div>
+                <div className="speaker-info">
+                  <h4 className="speaker-name">{nameText}</h4>
+                  <p className="speaker-title">{roleText}</p>
+                </div>
               </div>
-              <div className="speaker-info">
-                <h4 className="speaker-name">{speaker.name}</h4>
-                <p className="speaker-title">{speaker.title}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="speakers-action">
@@ -119,7 +127,7 @@ const SpeakersSection = () => {
               className="btn btn-outline" 
               onClick={() => setShowAll(true)}
             >
-              Показать всех
+              {t('speakers.showAll')}
             </button>
           ) : (
             <button 
@@ -130,7 +138,7 @@ const SpeakersSection = () => {
                 document.getElementById('speakers')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              Скрыть
+              {t('speakers.hide')}
             </button>
           )}
         </div>

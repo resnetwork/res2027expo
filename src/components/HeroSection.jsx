@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, Volume2, VolumeX, Globe } from 'lucide-react';
 import './HeroSection.css';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const HeroSection = ({ onOpenModal }) => {
+  const { t } = useLanguage();
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
   const iframeRef = useRef(null);
@@ -143,12 +145,12 @@ const HeroSection = ({ onOpenModal }) => {
         <div className="hero-content-slush container">
           <div className="hero-text-wrapper">
             <h1 className="hero-title-slush">
-              Международная выставка<br/>зеленых технологий и устойчивых решений<br/>
-              <span className="hero-highlight">«RES&nbsp;2027&nbsp;EXPO»</span>
+              <span className="hero-highlight" style={{ display: 'block', marginBottom: '0.2em' }}>«RES&nbsp;2027&nbsp;EXPO»</span>
+              <span dangerouslySetInnerHTML={{ __html: t('hero.title') }} style={{ display: 'block', lineHeight: '1.2' }} />
             </h1>
             
             <p className="hero-subtitle-slush">
-              От видения к реализации: будущее устойчивого развития начинается здесь
+              {t('hero.subtitle')}
             </p>
           </div>
           
@@ -156,19 +158,19 @@ const HeroSection = ({ onOpenModal }) => {
             <div className="countdown-slush">
               <div className="count-item-slush">
                 <span className="count-num-slush">{String(timeLeft.days).padStart(2, '0')}</span>
-                <span className="count-label-slush">Дней</span>
+                <span className="count-label-slush">{t('hero.days')}</span>
               </div>
               <div className="count-item-slush">
                 <span className="count-num-slush">{String(timeLeft.hours).padStart(2, '0')}</span>
-                <span className="count-label-slush">Часов</span>
+                <span className="count-label-slush">{t('hero.hours')}</span>
               </div>
               <div className="count-item-slush">
                 <span className="count-num-slush">{String(timeLeft.minutes).padStart(2, '0')}</span>
-                <span className="count-label-slush">Минут</span>
+                <span className="count-label-slush">{t('hero.minutes')}</span>
               </div>
               <div className="count-item-slush">
                 <span className="count-num-slush">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                <span className="count-label-slush">Секунд</span>
+                <span className="count-label-slush">{t('hero.seconds')}</span>
               </div>
             </div>
 
@@ -177,7 +179,7 @@ const HeroSection = ({ onOpenModal }) => {
                 className="btn-ws-primary"
                 onClick={() => onOpenModal && onOpenModal('Забронировать стенд')}
               >
-                ЗАБРОНИРОВАТЬ СТЕНД
+                {t('hero.bookStand')}
               </button>
             </div>
           </div>

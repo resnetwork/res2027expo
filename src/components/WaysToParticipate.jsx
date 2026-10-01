@@ -1,20 +1,22 @@
 import React from 'react';
 import { Presentation, DollarSign, Briefcase, Handshake, Users } from 'lucide-react';
 import './Participate.css';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const WaysToParticipate = () => {
+  const { t } = useLanguage();
   const ways = [
-    { icon: <Presentation size={45} />, title: 'УЧАСТИЕ СО\nСТЕНДОМ' },
-    { icon: <DollarSign size={45} />, title: 'СПОНСОРСКОЕ\nУЧАСТИЕ' },
-    { icon: <Briefcase size={45} />, title: 'УЧАСТИЕ В ДЕЛОВОЙ\nПРОГРАММЕ' },
-    { icon: <Handshake size={45} />, title: 'ПАРТНЕРСТВО' },
-    { icon: <Users size={45} />, title: 'ДЕЛЕГАТСКОЕ\nУЧАСТИЕ' }
+    { icon: <Presentation size={45} />, title: t('ways.stand') },
+    { icon: <DollarSign size={45} />, title: t('ways.sponsor') },
+    { icon: <Briefcase size={45} />, title: t('ways.program') },
+    { icon: <Handshake size={45} />, title: t('ways.partner') },
+    { icon: <Users size={45} />, title: t('badges.title') }
   ];
 
   return (
     <section className="ways-to-participate section-padding bg-white" style={{paddingBottom: '2.5rem'}}>
       <div className="container text-center">
-        <h2 className="section-title" style={{color: 'var(--bg-dark-green)'}}>СПОСОБЫ УЧАСТИЯ</h2>
+        <h2 className="section-title" style={{color: 'var(--bg-dark-green)'}}>{t('ways.title')}</h2>
 
         <div style={{display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap', marginTop: '3.5rem'}}>
           {ways.map((way, index) => (

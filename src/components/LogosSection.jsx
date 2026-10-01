@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './LogosSection.css';
 import partnerData from '../data/partner_logos.json';
+import { useLanguage } from '../contexts/LanguageContext';
 
-const LogosCategory = ({ category }) => {
+const LogosCategory = ({ category, t }) => {
   const { name, logos } = category;
   const [showAll, setShowAll] = useState(false);
 
@@ -23,9 +24,20 @@ const LogosCategory = ({ category }) => {
     ? logos.slice(0, initialCount)
     : logos;
 
+  const getTranslatedName = (categoryName) => {
+    switch (categoryName) {
+      case 'ОРГАНИЗАТОРЫ': return t('logos.organizers') || categoryName;
+      case 'Exclusive Eco-Mobility Партнер': return t('logos.exclusive') || categoryName;
+      case 'ECO-SYSTEM ПАРТНЕРЫ': return t('logos.ecosystem') || categoryName;
+      case 'Участники': return t('logos.participants') || categoryName;
+      case 'Медиа партнеры': return t('logos.media') || categoryName;
+      default: return categoryName;
+    }
+  };
+
   return (
     <div className="logos-category">
-      <h3 className="category-title">{name}</h3>
+      <h3 className="category-title">{getTranslatedName(name)}</h3>
       <div className={layoutClass}>
         {visibleLogos.map((logo, idx) => (
           <div key={idx} className="logo-card">
@@ -41,21 +53,24 @@ const LogosCategory = ({ category }) => {
       </div>
       {isGrid && logos.length > initialCount && (
         <button className="show-more-btn" onClick={() => setShowAll(!showAll)}>
-          {showAll ? 'Скрыть' : 'Показать еще'}
+          {showAll ? t('logos.hide') : t('logos.showMore')}
         </button>
       )}
     </div>
   );
 };
 
-const LogosSection = () => (
-  <section className="logos-section section-padding" id="logos">
-    <div className="logos-container">
-      {partnerData.map((category, i) => (
-        <LogosCategory key={i} category={category} />
-      ))}
-    </div>
-  </section>
-);
+const LogosSection = () => {
+  const { t } = useLanguage();
+  return (
+    <section className="logos-section section-padding" id="logos">
+      <div className="logos-container">
+        {partnerData.map((category, i) => (
+          <LogosCategory key={i} category={category} t={t} />
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default LogosSection;
