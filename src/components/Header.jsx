@@ -31,7 +31,7 @@ const Header = ({ onOpenModal }) => {
               }
             }}
             style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
-            title="RES 2027 EXPO"
+            title="RES+ EXPO 2027"
           >
             <img src="/logo.png" alt="RES EXPO Logo" className="header-logo-img" style={{ height: '46px' }} />
           </a>
@@ -93,7 +93,7 @@ const Header = ({ onOpenModal }) => {
                  onMouseEnter={() => setLangDropdownOpen(true)}
                  onMouseLeave={() => setLangDropdownOpen(false)}>
               <div className="lang-switch" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                {language === 'ru' ? 'RUS' : language === 'kk' ? 'KAZ' : 'ENG'}
+                {language === 'ru' ? 'RUS' : language === 'kk' ? 'KAZ' : language === 'zh' ? '中文' : 'ENG'}
                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
@@ -108,7 +108,8 @@ const Header = ({ onOpenModal }) => {
                   {[
                     { code: 'kk', label: 'Қазақша' },
                     { code: 'ru', label: 'Русский' },
-                    { code: 'en', label: 'English' }
+                    { code: 'en', label: 'English' },
+                    { code: 'zh', label: '中文' }
                   ].map(l => (
                     <div 
                       key={l.code} 

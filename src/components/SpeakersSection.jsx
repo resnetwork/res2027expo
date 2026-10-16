@@ -4,6 +4,11 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const speakers = [
   {
+    name: 'Ерлан Нысанбаев',
+    title: 'Внештатный советник Премьер-Министра Республики Казахстан',
+    image: '/speakers/erlan_nysanbaev.jpg'
+  },
+  {
     name: 'Саясат Нурбек',
     title: 'Министр науки и высшего образования Республики Казахстан',
     image: '/speakers/speaker1.jpeg'

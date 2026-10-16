@@ -7,36 +7,40 @@ const HeroSection = ({ onOpenModal }) => {
   const { t } = useLanguage();
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
+  const [scale, setScale] = useState(1.35);
   const iframeRef = useRef(null);
+  const containerRef = useRef(null);
 
-  const togglePlay = () => {
-    const nextState = !playing;
-    setPlaying(nextState);
+  const sendCommand = (func, args = []) => {
     if (iframeRef.current && iframeRef.current.contentWindow) {
       iframeRef.current.contentWindow.postMessage(
         JSON.stringify({
           event: 'command',
-          func: nextState ? 'playVideo' : 'pauseVideo',
-          args: ''
+          func,
+          args: Array.isArray(args) ? args : [args]
         }),
         '*'
       );
     }
   };
 
+  const enforceQuality = () => {
+    sendCommand('setPlaybackQuality', ['hd1080']);
+    sendCommand('setPlaybackQualityRange', ['hd1080', 'hd1080']);
+    sendCommand('setPlaybackQualityRange', ['hd1080', 'highres']);
+    sendCommand('setSuggestedQuality', ['hd1080']);
+  };
+
+  const togglePlay = () => {
+    const nextState = !playing;
+    setPlaying(nextState);
+    sendCommand(nextState ? 'playVideo' : 'pauseVideo');
+  };
+
   const toggleMute = () => {
     const nextMute = !muted;
     setMuted(nextMute);
-    if (iframeRef.current && iframeRef.current.contentWindow) {
-      iframeRef.current.contentWindow.postMessage(
-        JSON.stringify({
-          event: 'command',
-          func: nextMute ? 'mute' : 'unMute',
-          args: ''
-        }),
-        '*'
-      );
-    }
+    sendCommand(nextMute ? 'mute' : 'unMute');
   };
   const targetDate = new Date('2027-05-05T00:00:00').getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -65,26 +69,40 @@ const HeroSection = ({ onOpenModal }) => {
   const hasStartedPlaying = useRef(false);
 
   useEffect(() => {
+    // Dynamic scale calculation to fit 1920x1080 viewport into container with ~35% extra zoom to crop YouTube chrome
+    const updateScale = () => {
+      if (!containerRef.current) return;
+      const { clientWidth, clientHeight } = containerRef.current;
+      if (!clientWidth || !clientHeight) return;
+      const s = Math.max(clientWidth / 1920, clientHeight / 1080) * 1.35;
+      setScale(s);
+    };
+
+    updateScale();
+    const ro = new ResizeObserver(updateScale);
+    if (containerRef.current) {
+      ro.observe(containerRef.current);
+    }
+    window.addEventListener('resize', updateScale);
+
     // Listen to YouTube IFrame API messages to know when video actually starts playing
     const handleMessage = (event) => {
       try {
         const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        // YouTube API sends info: 1 when playing
-        if (data && (data.info === 1 || (data.event === 'onStateChange' && data.info === 1))) {
+        if (!data) return;
+
+        if (data.event === 'onReady' || data.event === 'initialDelivery') {
+          enforceQuality();
+        }
+
+        // YouTube API sends info: 1 or playerState: 1 when playing
+        if (data.info === 1 || (data.event === 'onStateChange' && data.info === 1) || data.info?.playerState === 1) {
+          enforceQuality();
           if (!hasStartedPlaying.current) {
             hasStartedPlaying.current = true;
             setIsVideoPlaying(true);
             // Restart video from beginning so user doesn't miss the first seconds during load
-            if (iframeRef.current && iframeRef.current.contentWindow) {
-              iframeRef.current.contentWindow.postMessage(
-                JSON.stringify({
-                  event: 'command',
-                  func: 'seekTo',
-                  args: [0, true]
-                }),
-                '*'
-              );
-            }
+            sendCommand('seekTo', [0, true]);
           }
         }
       } catch (e) {
@@ -93,16 +111,27 @@ const HeroSection = ({ onOpenModal }) => {
     };
     window.addEventListener('message', handleMessage);
 
+    // Initial quality enforcement timeouts
+    const qTimer1 = setTimeout(enforceQuality, 400);
+    const qTimer2 = setTimeout(enforceQuality, 1200);
+    const qTimer3 = setTimeout(enforceQuality, 2500);
+
     // Fallback: reveal after 3.5s in case postMessage is blocked
     const fallbackTimer = setTimeout(() => {
       if (!hasStartedPlaying.current) {
         hasStartedPlaying.current = true;
         setIsVideoPlaying(true);
+        enforceQuality();
       }
     }, 3500);
 
     return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', updateScale);
       window.removeEventListener('message', handleMessage);
+      clearTimeout(qTimer1);
+      clearTimeout(qTimer2);
+      clearTimeout(qTimer3);
       clearTimeout(fallbackTimer);
     };
   }, []);
@@ -112,14 +141,19 @@ const HeroSection = ({ onOpenModal }) => {
       <section className="hero-slush">
         
         {/* Background Video Elements */}
-        <div className="video-scale-wrapper">
+        <div className="video-scale-wrapper" ref={containerRef}>
           <iframe
             ref={iframeRef}
-            src="https://www.youtube.com/embed/y8pZx1hrPmI?autoplay=1&mute=1&loop=1&playlist=y8pZx1hrPmI&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&disablekb=1&iv_load_policy=3"
-            title="RES 2027 EXPO Video"
+            width="1920"
+            height="1080"
+            src="https://www.youtube.com/embed/y8pZx1hrPmI?autoplay=1&mute=1&loop=1&playlist=y8pZx1hrPmI&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&disablekb=1&iv_load_policy=3&vq=hd1080"
+            title="RES+ EXPO 2027 Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="hero-iframe"
+            style={{
+              transform: `translate(-50%, -50%) scale(${scale})`
+            }}
           />
         </div>
         
@@ -145,7 +179,7 @@ const HeroSection = ({ onOpenModal }) => {
         <div className="hero-content-slush container">
           <div className="hero-text-wrapper">
             <h1 className="hero-title-slush">
-              <span className="hero-highlight" style={{ display: 'block', marginBottom: '0.2em' }}>«RES&nbsp;2027&nbsp;EXPO»</span>
+              <span className="hero-highlight" style={{ display: 'block', marginBottom: '0.2em' }}>«RES+&nbsp;EXPO&nbsp;2027»</span>
               <span dangerouslySetInnerHTML={{ __html: t('hero.title') }} style={{ display: 'block', lineHeight: '1.2' }} />
             </h1>
             

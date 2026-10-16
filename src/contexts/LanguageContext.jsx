@@ -14,14 +14,27 @@ export const LanguageProvider = ({ children }) => {
   const t = (key) => {
     const keys = key.split('.');
     let result = translations[language];
+    let found = true;
     for (const k of keys) {
-      if (result && result[k]) {
+      if (result && result[k] !== undefined) {
         result = result[k];
       } else {
-        return key; // Fallback to key if translation not found
+        found = false;
+        break;
       }
     }
-    return result;
+    if (found && result !== undefined) return result;
+
+    // Fallback to Russian if translation is missing
+    let fallback = translations['ru'];
+    for (const k of keys) {
+      if (fallback && fallback[k] !== undefined) {
+        fallback = fallback[k];
+      } else {
+        return key;
+      }
+    }
+    return fallback !== undefined ? fallback : key;
   };
 
   return (

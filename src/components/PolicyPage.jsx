@@ -3,12 +3,14 @@ import { useLanguage } from '../contexts/LanguageContext';
 import PolicyPageRU from './PolicyPageRU';
 import PolicyPageKK from './PolicyPageKK';
 import PolicyPageEN from './PolicyPageEN';
+import PolicyPageZH from './PolicyPageZH';
 
 const PolicyPage = ({ onOpenModal }) => {
   const { language } = useLanguage();
 
   if (language === 'kk') return <PolicyPageKK onOpenModal={onOpenModal} />;
   if (language === 'en') return <PolicyPageEN onOpenModal={onOpenModal} />;
+  if (language === 'zh') return <PolicyPageZH onOpenModal={onOpenModal} />;
   return <PolicyPageRU onOpenModal={onOpenModal} />;
 };
 

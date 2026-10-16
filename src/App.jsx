@@ -5,6 +5,7 @@ import BadgeSection from './components/BadgeSection';
 import QuoteSection from './components/QuoteSection';
 import AboutSection from './components/AboutSection';
 import ThematicZones from './components/ThematicZones';
+import PastEventSection from './components/PastEventSection';
 import SpeakersSection from './components/SpeakersSection';
 import WhyParticipate from './components/WhyParticipate';
 import WaysToParticipate from './components/WaysToParticipate';
@@ -63,6 +64,7 @@ function App() {
         <HeroSection onOpenModal={handleOpenModal} />
         <QuoteSection />
         <AboutSection />
+        <PastEventSection />
         <ThematicZones />
         <SpeakersSection />
         <WhyParticipate />
