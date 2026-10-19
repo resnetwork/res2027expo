@@ -211,25 +211,15 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
                 </div>
 
                 <div className="bm-field">
-                  <div className="bm-phone-box">
-                    <div className="bm-flag-wrap">
-                      <svg width="22" height="15" viewBox="0 0 24 16" className="bm-flag-svg">
-                        <rect width="24" height="16" fill="#00afca" rx="2" />
-                        <circle cx="12" cy="8" r="3.2" fill="#fed100" />
-                        <path d="M7 8.5 C 9.5 11.2, 14.5 11.2, 17 8.5 C 14.5 9.8, 9.5 9.8, 7 8.5 Z" fill="#fed100" />
-                      </svg>
-                      <span className="bm-flag-caret">▾</span>
-                    </div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handlePhoneChange}
-                      placeholder="+7 (000) 000-00-00"
-                      className="bm-phone-input"
-                      required
-                    />
-                  </div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handlePhoneChange}
+                    placeholder={t('bookingModal.phonePlaceholder') || 'Номер телефона'}
+                    className="bm-input"
+                    required
+                  />
                 </div>
 
                 <div className="bm-field">

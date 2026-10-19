@@ -31,6 +31,12 @@ const LogosCategory = ({ category, t }) => {
       case 'ECO-SYSTEM ПАРТНЕРЫ': return t('logos.ecosystem') || categoryName;
       case 'Участники': return t('logos.participants') || categoryName;
       case 'Медиа партнеры': return t('logos.media') || categoryName;
+      case 'GOLDEN SPONSOR': return t('logos.golden') || categoryName;
+      case 'BRONZE SPONSOR': return t('logos.bronze') || categoryName;
+      case 'ASTANA ECO FILM SPONSOR': return t('logos.astanaEcoFilm') || categoryName;
+      case 'ECO STARTUP COMPETITION SPONSOR': return t('logos.ecoStartup') || categoryName;
+      case 'VIP LOUNGE SPONSOR': return t('logos.vipLounge') || categoryName;
+      case 'OFFICIAL PARTNER': return t('logos.officialPartner') || categoryName;
       default: return categoryName;
     }
   };

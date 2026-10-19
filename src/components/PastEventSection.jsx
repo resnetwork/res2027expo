@@ -4,7 +4,7 @@ import './PastEventSection.css';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const PastEventSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -109,7 +109,14 @@ const PastEventSection = () => {
     };
   }, []);
 
-  const reportUrl = 'https://drive.google.com/file/d/1qOGnpm9-26V8-SQrBwGDMst7UXKJFlqo/view?usp=drive_link';
+  const REPORT_URLS = {
+    ru: 'https://drive.google.com/file/d/1cSL_guBSJJpKAt_eW3NBL7GMe8QOVUtG/view?usp=sharing',
+    kk: 'https://drive.google.com/file/d/1xn5IDlJt_Z2sIa7AbFQc3a9zIn2zAYc9/view?usp=sharing',
+    en: 'https://drive.google.com/file/d/1okBMR38Mo_HC4-bigZGFO5IZ32fB0t7z/view?usp=sharing',
+    zh: 'https://drive.google.com/file/d/15KBYzYgtfIZunlRljm25LkORl73hGJCN/view?usp=sharing'
+  };
+
+  const reportUrl = REPORT_URLS[language] || REPORT_URLS.ru;
 
   return (
     <section className="past-event-section" id="past-event">
@@ -130,7 +137,7 @@ const PastEventSection = () => {
                 ref={iframeRef}
                 width="1920"
                 height="1080"
-                src="https://www.youtube.com/embed/znMwr3uSecU?autoplay=1&mute=1&loop=1&playlist=znMwr3uSecU&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0&vq=hd1080"
+                src="https://www.youtube.com/embed/pnlASh029Rs?autoplay=1&mute=1&loop=1&playlist=pnlASh029Rs&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0&vq=hd1080"
                 title={t('pastEvent.title')}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen

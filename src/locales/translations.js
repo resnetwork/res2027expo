@@ -173,6 +173,12 @@ export const translations = {
       ecosystem: 'ECO-SYSTEM ПАРТНЕРЫ',
       participants: 'Участники',
       media: 'Медиа партнеры',
+      golden: 'GOLDEN SPONSOR',
+      bronze: 'BRONZE SPONSOR',
+      astanaEcoFilm: 'ASTANA ECO FILM SPONSOR',
+      ecoStartup: 'ECO STARTUP COMPETITION SPONSOR',
+      vipLounge: 'VIP LOUNGE SPONSOR',
+      officialPartner: 'OFFICIAL PARTNER',
       showMore: 'Показать еще',
       hide: 'Скрыть'
     },
@@ -226,6 +232,7 @@ export const translations = {
       standAreaUnit: 'м²',
       namePlaceholder: 'ФИО',
       emailPlaceholder: 'Email',
+      phonePlaceholder: 'Номер телефона',
       companyPlaceholder: 'Название компании',
       countryPlaceholder: 'Страна',
       submitBtn: 'Отправить',
@@ -423,6 +430,12 @@ export const translations = {
       ecosystem: 'ECO-SYSTEM СЕРІКТЕСТЕРІ',
       participants: 'Қатысушылар',
       media: 'Медиа серіктестер',
+      golden: 'GOLDEN SPONSOR',
+      bronze: 'BRONZE SPONSOR',
+      astanaEcoFilm: 'ASTANA ECO FILM SPONSOR',
+      ecoStartup: 'ECO STARTUP COMPETITION SPONSOR',
+      vipLounge: 'VIP LOUNGE SPONSOR',
+      officialPartner: 'OFFICIAL PARTNER',
       showMore: 'Тағы көрсету',
       hide: 'Жасыру'
     },
@@ -476,6 +489,7 @@ export const translations = {
       standAreaUnit: 'м²',
       namePlaceholder: 'Толық аты-жөні',
       emailPlaceholder: 'Email',
+      phonePlaceholder: 'Телефон нөмірі',
       companyPlaceholder: 'Компания атауы',
       countryPlaceholder: 'Мемлекет',
       submitBtn: 'Жіберу',
@@ -674,6 +688,12 @@ export const translations = {
       ecosystem: 'ECO-SYSTEM PARTNERS',
       participants: 'Participants',
       media: 'Media Partners',
+      golden: 'GOLDEN SPONSOR',
+      bronze: 'BRONZE SPONSOR',
+      astanaEcoFilm: 'ASTANA ECO FILM SPONSOR',
+      ecoStartup: 'ECO STARTUP COMPETITION SPONSOR',
+      vipLounge: 'VIP LOUNGE SPONSOR',
+      officialPartner: 'OFFICIAL PARTNER',
       showMore: 'Show more',
       hide: 'Hide'
     },
@@ -727,6 +747,7 @@ export const translations = {
       standAreaUnit: 'm²',
       namePlaceholder: 'Full Name',
       emailPlaceholder: 'Email',
+      phonePlaceholder: 'Phone number',
       companyPlaceholder: 'Company Name',
       countryPlaceholder: 'Country',
       submitBtn: 'Submit',
@@ -761,7 +782,7 @@ export const translations = {
       bookStand: '预订展位',
     },
     hero: {
-      title: '绿色技术与可持续解决方案<br/>国际博览会',
+      title: '绿色技术与可持续解决方案<br/>国际展览会',
       subtitle: '从愿景到实践：可持续发展的未来从这里启航',
       days: '天',
       hours: '小时',
@@ -867,7 +888,7 @@ export const translations = {
       ]
     },
     ways: {
-      title: '参会参展形式',
+      title: '参展形式',
       subtitle: '每个展区都是迈向绿色未来坚实的一步！',
       stand: '展位参展',
       sponsor: '赞助合作',
@@ -925,6 +946,12 @@ export const translations = {
       ecosystem: '生态系统合作伙伴',
       participants: '参展商',
       media: '媒体合作伙伴',
+      golden: '金牌赞助商',
+      bronze: '铜牌赞助商',
+      astanaEcoFilm: '阿斯塔纳生态电影节赞助商',
+      ecoStartup: '生态初创企业大赛赞助商',
+      vipLounge: '贵宾休息室赞助商',
+      officialPartner: '官方合作伙伴',
       showMore: '查看更多',
       hide: '收起'
     },
@@ -978,6 +1005,7 @@ export const translations = {
       standAreaUnit: 'm²',
       namePlaceholder: '姓名 / 称谓',
       emailPlaceholder: '电子邮箱',
+      phonePlaceholder: '电话号码',
       companyPlaceholder: '公司名称',
       countryPlaceholder: '国家 / 地区',
       submitBtn: '提交申请',
@@ -997,7 +1025,7 @@ export const translations = {
         },
         {
           title: '田吉兹雪佛龙参加 2026 区域生态峰会暨博览会',
-          desc: '在阿斯塔纳举行的 “RES 2026 EXPO” 国际绿色技术与可持续解决方案博览会汇聚了中亚各国元首，共同探讨绿色经济与生态转型之路。'
+          desc: '在阿斯塔纳举行的 “RES 2026 EXPO” 国际绿色技术与可持续解决方案展览会汇聚了中亚各国元首，共同探讨绿色经济与生态转型之路。'
         }
       ]
     }
