@@ -191,6 +191,65 @@
   box-shadow: 0 0 0 3px rgba(18, 69, 58, 0.12);
 }
 
+/* Stand Area field */
+.bm-area-field {
+  animation: bmFieldSlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes bmFieldSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bm-area-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.bm-area-input {
+  width: 100%;
+  padding-right: 56px !important;
+}
+
+/* Hide spin buttons for clean modern look */
+.bm-area-input::-webkit-outer-spin-button,
+.bm-area-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.bm-area-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.bm-area-unit {
+  position: absolute;
+  right: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #12453a;
+  background: rgba(18, 69, 58, 0.08);
+  padding: 4px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.bm-hint {
+  font-size: 0.76rem;
+  color: #6b7280;
+  margin-top: 5px;
+  line-height: 1.3;
+}
+
 /* Phone input with KZ flag */
 .bm-phone-box {
   display: flex;

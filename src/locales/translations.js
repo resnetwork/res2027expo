@@ -220,6 +220,10 @@ export const translations = {
         stand: 'Забронировать стенд',
         speaker: 'Стать спикером'
       },
+      standAreaLabel: 'Желаемая площадь стенда',
+      standAreaPlaceholder: 'Например: 18',
+      standAreaHint: 'Укажите необходимую площадь в кв. метрах',
+      standAreaUnit: 'м²',
       namePlaceholder: 'ФИО',
       emailPlaceholder: 'Email',
       companyPlaceholder: 'Название компании',
@@ -466,6 +470,10 @@ export const translations = {
         stand: 'Стенд брондау',
         speaker: 'Спикер болу'
       },
+      standAreaLabel: 'Стендтің қалаған ауданы',
+      standAreaPlaceholder: 'Мысалы: 18',
+      standAreaHint: 'Қажетті ауданды шаршы метрмен көрсетіңіз',
+      standAreaUnit: 'м²',
       namePlaceholder: 'Толық аты-жөні',
       emailPlaceholder: 'Email',
       companyPlaceholder: 'Компания атауы',
@@ -713,6 +721,10 @@ export const translations = {
         stand: 'Book a stand',
         speaker: 'Become a speaker'
       },
+      standAreaLabel: 'Desired stand area',
+      standAreaPlaceholder: 'e.g. 18',
+      standAreaHint: 'Specify required area in square meters',
+      standAreaUnit: 'm²',
       namePlaceholder: 'Full Name',
       emailPlaceholder: 'Email',
       companyPlaceholder: 'Company Name',
@@ -960,6 +972,10 @@ export const translations = {
         stand: '预订展位',
         speaker: '成为演讲嘉宾'
       },
+      standAreaLabel: '期望展位面积',
+      standAreaPlaceholder: '例如：18',
+      standAreaHint: '请输入所需展位面积（平方米）',
+      standAreaUnit: 'm²',
       namePlaceholder: '姓名 / 称谓',
       emailPlaceholder: '电子邮箱',
       companyPlaceholder: '公司名称',

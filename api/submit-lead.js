@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     }
   }
 
-  const { intent, name, email, phone, company, country } = body || {};
+  const { intent, name, email, phone, company, country, standArea } = body || {};
 
   // Validation
   if (!name && !phone && !email) {
@@ -35,16 +35,20 @@ export default async function handler(req, res) {
 
   const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
   const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-  const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL;
+  const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytSyV1UGp-zgdPDasU6AQtbJSSy8ZKhRmmurZweUdP0pgfiXGl7ZN4VRBS0Ku0EpM3fQ/exec';
+  const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL || DEFAULT_GOOGLE_SCRIPT_URL;
 
   const now = new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Almaty' });
 
   // 1. Send to Telegram
   let telegramPromise = Promise.resolve(null);
   if (BOT_TOKEN && CHAT_ID) {
+    const standAreaLine = standArea ? `📐 <b>Площадь стенда:</b> ${escapeHtml(standArea)} м²\n` : '';
+
     const messageText = 
-      `🔔 <b>Новая заявка с сайта RES 2027 EXPO!</b>\n\n` +
+      `🔔 <b>Новая заявка с сайта RES+ EXPO 2027!</b>\n\n` +
       `🎯 <b>Цель:</b> ${escapeHtml(intent || 'Забронировать стенд')}\n` +
+      standAreaLine +
       `👤 <b>ФИО:</b> ${escapeHtml(name || '—')}\n` +
       `✉️ <b>Email:</b> ${escapeHtml(email || '—')}\n` +
       `📞 <b>Телефон:</b> ${escapeHtml(phone || '—')}\n` +
@@ -85,6 +89,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         date: now,
         intent: intent || 'Забронировать стенд',
+        standArea: standArea || '',
         name: name || '',
         email: email || '',
         phone: phone || '',

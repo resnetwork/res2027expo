@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './BookingModal.css';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const BookingModal = ({ isOpen, onClose, initialOption = 'Забронировать стенд' }) => {
+const BookingModal = ({ isOpen, onClose, initialOption = 'Забронировать стенд', initialArea = '' }) => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
     intent: initialOption,
+    standArea: initialArea || '',
     name: '',
     email: '',
     phone: '',
@@ -19,9 +20,13 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
 
   useEffect(() => {
     if (initialOption) {
-      setFormData(prev => ({ ...prev, intent: initialOption }));
+      setFormData(prev => ({
+        ...prev,
+        intent: initialOption,
+        ...(initialArea ? { standArea: initialArea } : {})
+      }));
     }
-  }, [initialOption]);
+  }, [initialOption, initialArea]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -95,6 +100,12 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
     }
   };
 
+  const isStandBooking =
+    formData.intent === 'Забронировать стенд' ||
+    formData.intent?.toLowerCase().includes('стенд') ||
+    formData.intent?.toLowerCase().includes('stand') ||
+    formData.intent?.toLowerCase().includes('展位');
+
   return (
     <div className="bm-overlay" onClick={handleOverlayClick} role="dialog" aria-modal="true">
       <button 
@@ -149,6 +160,31 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
                     </select>
                   </div>
                 </div>
+
+                {isStandBooking && (
+                  <div className="bm-field bm-area-field">
+                    <label htmlFor="bm-area" className="bm-label">
+                      {t('bookingModal.standAreaLabel')}
+                    </label>
+                    <div className="bm-area-box">
+                      <input
+                        type="number"
+                        id="bm-area"
+                        name="standArea"
+                        value={formData.standArea}
+                        onChange={handleChange}
+                        placeholder={t('bookingModal.standAreaPlaceholder')}
+                        min="1"
+                        max="10000"
+                        step="1"
+                        inputMode="numeric"
+                        className="bm-input bm-area-input"
+                      />
+                      <span className="bm-area-unit">{t('bookingModal.standAreaUnit') || 'м²'}</span>
+                    </div>
+                    <span className="bm-hint">{t('bookingModal.standAreaHint')}</span>
+                  </div>
+                )}
 
                 <div className="bm-field">
                   <input
