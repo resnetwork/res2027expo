@@ -35,8 +35,7 @@ export default async function handler(req, res) {
 
   const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
   const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-  const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytSyV1UGp-zgdPDasU6AQtbJSSy8ZKhRmmurZweUdP0pgfiXGl7ZN4VRBS0Ku0EpM3fQ/exec';
-  const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL || DEFAULT_GOOGLE_SCRIPT_URL;
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytSyV1UGp-zgdPDasU6AQtbJSSy8ZKhRmmurZweUdP0pgfiXGl7ZN4VRBS0Ku0EpM3fQ/exec';
 
   const now = new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Almaty' });
 

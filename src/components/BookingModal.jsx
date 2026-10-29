@@ -179,6 +179,7 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
                         step="1"
                         inputMode="numeric"
                         className="bm-input bm-area-input"
+                        required
                       />
                       <span className="bm-area-unit">{t('bookingModal.standAreaUnit') || 'м²'}</span>
                     </div>
