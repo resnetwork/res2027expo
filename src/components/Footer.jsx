@@ -14,7 +14,7 @@ const Footer = ({ onOpenModal }) => {
       <div className="container footer-ws-content">
         <div className="footer-ws-top">
           <div className="footer-ws-left">
-            <img src="/logo.png" alt="RES+ EXPO 2027" className="footer-ws-logo" />
+            <img src="/white-logo.png" alt="RES+ EXPO 2027" className="footer-ws-logo" />
             <p className="footer-ws-copyright">&copy; Regional Ecological Summit+ EXPO 2027</p>
           </div>
           

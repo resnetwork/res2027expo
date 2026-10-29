@@ -33,7 +33,7 @@ const Header = ({ onOpenModal }) => {
             style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
             title="RES+ EXPO 2027"
           >
-            <img src="/logo.png" alt="RES EXPO Logo" className="header-logo-img" style={{ height: '46px' }} />
+            <img src="/white-logo.png" alt="RES+ EXPO 2027" className="header-logo-img" style={{ height: '46px' }} />
           </a>
 
           <nav className={`desktop-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
