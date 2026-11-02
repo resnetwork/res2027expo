@@ -7,6 +7,7 @@ export const translations = {
     },
     header: {
       bookStand: 'ЗАБРОНИРОВАТЬ СТЕНД',
+      register: 'РЕГИСТРАЦИЯ',
     },
     hero: {
       title: 'Международная выставка<br/>зеленых технологий и устойчивых решений',
@@ -16,7 +17,8 @@ export const translations = {
       minutes: 'Минут',
       seconds: 'Секунд',
       bookStand: 'ЗАБРОНИРОВАТЬ СТЕНД',
-      visit: 'ПОСЕТИТЬ ВЫСТАВКУ',
+      visit: 'РЕГИСТРАЦИЯ ПОСЕТИТЕЛЕЙ',
+      registerVisitor: 'РЕГИСТРАЦИЯ ПОСЕТИТЕЛЕЙ',
     },
     about: {
       title: 'О ВЫСТАВКЕ',
@@ -265,6 +267,7 @@ export const translations = {
     },
     header: {
       bookStand: 'СТЕНДТІ БРОНДАУ',
+      register: 'ТІРКЕЛУ',
     },
     hero: {
       title: 'Жасыл технологиялар<br/>мен тұрақты шешімдердің<br/>халықаралық көрмесі',
@@ -274,6 +277,8 @@ export const translations = {
       minutes: 'Минут',
       seconds: 'Секунд',
       bookStand: 'СТЕНДТІ БРОНДАУ',
+      visit: 'КЕЛУШІЛЕРДІ ТІРКЕУ',
+      registerVisitor: 'КЕЛУШІЛЕРДІ ТІРКЕУ',
     },
     about: {
       title: 'КӨРМЕ ТУРАЛЫ',
@@ -522,6 +527,7 @@ export const translations = {
     },
     header: {
       bookStand: 'BOOK A STAND',
+      register: 'REGISTRATION',
     },
     hero: {
       title: 'International Exhibition of<br/>Green Technologies and Sustainable Solutions',
@@ -531,7 +537,8 @@ export const translations = {
       minutes: 'Minutes',
       seconds: 'Seconds',
       bookStand: 'BOOK A STAND',
-      visit: 'VISIT EXHIBITION',
+      visit: 'VISITOR REGISTRATION',
+      registerVisitor: 'VISITOR REGISTRATION',
     },
     about: {
       title: 'ABOUT THE EXHIBITION',
@@ -780,6 +787,7 @@ export const translations = {
     },
     header: {
       bookStand: '预订展位',
+      register: '参观注册',
     },
     hero: {
       title: '绿色技术与可持续解决方案<br/>国际展览会',
@@ -789,7 +797,8 @@ export const translations = {
       minutes: '分钟',
       seconds: '秒',
       bookStand: '预订展位',
-      visit: '参观展会',
+      visit: '观众预登记',
+      registerVisitor: '观众预登记',
     },
     about: {
       title: '关于展会',

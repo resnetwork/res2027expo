@@ -3,7 +3,7 @@ import { Menu, X, Globe } from 'lucide-react';
 import './Header.css';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const Header = ({ onOpenModal }) => {
+const Header = ({ onOpenModal, onOpenStand, onOpenVisitor }) => {
   const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,6 +17,24 @@ const Header = ({ onOpenModal }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleStandClick = () => {
+    if (onOpenStand) {
+      onOpenStand();
+    } else if (onOpenModal) {
+      onOpenModal('Забронировать стенд');
+    } else {
+      window.location.hash = '#bookstand';
+    }
+  };
+
+  const handleVisitorClick = () => {
+    if (onOpenVisitor) {
+      onOpenVisitor();
+    } else {
+      window.location.hash = '#registration';
+    }
+  };
+
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-content">
@@ -25,7 +43,7 @@ const Header = ({ onOpenModal }) => {
             href="/" 
             className="logo" 
             onClick={(e) => {
-              if (window.location.pathname === '/') {
+              if (window.location.pathname === '/' && !window.location.hash) {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
@@ -40,6 +58,30 @@ const Header = ({ onOpenModal }) => {
             <a href="/#about" onClick={() => setMobileMenuOpen(false)}>{t('nav.about')}</a>
             <a href="/#reviews" onClick={() => setMobileMenuOpen(false)}>{t('nav.partners')}</a>
             <a href="/#footer" onClick={() => setMobileMenuOpen(false)}>{t('nav.contacts')}</a>
+            {mobileMenuOpen && (
+              <div className="mobile-header-btns" style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginTop: '1rem' }}>
+                <button 
+                  className="btn btn-primary btn-sm header-btn"
+                  style={{ display: 'inline-flex', width: '100%' }}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    handleStandClick();
+                  }}
+                >
+                  {t('header.bookStand')}
+                </button>
+                <button 
+                  className="btn-register-header"
+                  style={{ width: '100%' }}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    handleVisitorClick();
+                  }}
+                >
+                  {t('header.register') || 'РЕГИСТРАЦИЯ'}
+                </button>
+              </div>
+            )}
           </nav>
         </div>
 
@@ -70,12 +112,17 @@ const Header = ({ onOpenModal }) => {
                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
               </svg>
             </a>
+            <a href="https://t.me/resnetworkorg" target="_blank" rel="noreferrer" className="social-circle" aria-label="Telegram">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.672c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.411z"/>
+              </svg>
+            </a>
           </div>
 
           <div className="header-actions">
             <button 
               className="btn btn-primary btn-sm header-btn"
-              onClick={() => onOpenModal && onOpenModal('Забронировать стенд')}
+              onClick={handleStandClick}
             >
               {t('header.bookStand')}
             </button>
@@ -113,7 +160,15 @@ const Header = ({ onOpenModal }) => {
                   ].map(l => (
                     <div 
                       key={l.code} 
-                      onClick={() => setLanguage(l.code)}
+                      onClick={() => {
+                        setLanguage(l.code);
+                        const hash = (window.location.hash || '').toLowerCase();
+                        if (hash.startsWith('#registration')) {
+                          window.location.hash = `#registration${l.code}`;
+                        } else if (hash.startsWith('#bookstand')) {
+                          window.location.hash = `#bookstand${l.code}`;
+                        }
+                      }}
                       style={{ 
                         cursor: 'pointer', fontSize: '14px', fontWeight: '500', 
                         padding: '8px 20px',
@@ -147,3 +202,4 @@ const Header = ({ onOpenModal }) => {
 };
 
 export default Header;
+

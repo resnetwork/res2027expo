@@ -136,6 +136,34 @@
   transform: translateY(-2px);
 }
 
+.btn-register-header {
+  height: 44px;
+  padding: 0 1.35rem;
+  font-size: 0.85rem;
+  border-radius: 30px;
+  background: var(--text-yellow, #fcd34d);
+  color: var(--bg-dark-green, #064e3b);
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.btn-register-header:hover {
+  background: #ffffff;
+  color: var(--bg-dark-green, #064e3b);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(252, 211, 77, 0.4);
+}
+
 .btn-network-header {
   height: 44px;
   padding: 0 1.5rem;
@@ -164,12 +192,17 @@
   transform: translateY(-2px);
 }
 
+.language-selector {
+  margin-right: 0.85rem;
+  margin-left: 0.5rem;
+}
+
 .lang-switch {
   font-weight: 800;
   font-size: 0.95rem;
   cursor: pointer;
   color: white;
-  margin-left: 1.5rem; /* Moves RUS distinctly further right */
+  margin-left: 0;
   padding: 0.4rem 0.6rem;
   border-radius: 8px;
   letter-spacing: 1.5px;
@@ -252,7 +285,8 @@
     display: flex;
   }
   
-  .header-btn {
+  .header-btn,
+  .btn-register-header {
     display: none;
   }
   

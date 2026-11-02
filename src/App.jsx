@@ -14,37 +14,57 @@ import PartnersInvite from './components/PartnersInvite';
 import LogosSection from './components/LogosSection';
 import NewsSection from './components/NewsSection';
 import Footer from './components/Footer';
-import BookingModal from './components/BookingModal';
+
+import ParticipationPage from './components/ParticipationPage';
+import VisitorRegistrationModal from './components/VisitorRegistrationModal';
 
 import PolicyPage from './components/PolicyPage';
 import OfertaPage from './components/OfertaPage';
 import LocationSection from './components/LocationSection';
+import { useLanguage } from './contexts/LanguageContext';
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalOption, setModalOption] = useState('Забронировать стенд');
-  const [modalArea, setModalArea] = useState('');
+  const { language, setLanguage } = useLanguage();
+  const [isStandPage, setIsStandPage] = useState(false);
+  const [standArea, setStandArea] = useState('');
+  const [isVisitorModalOpen, setIsVisitorModalOpen] = useState(false);
   
   const currentPath = window.location.pathname;
 
-  const handleOpenModal = (option = 'Забронировать стенд', area = '') => {
-    setModalOption(option);
-    setModalArea(area);
-    setIsModalOpen(true);
+  const handleOpenStand = (area = '') => {
+    if (area) setStandArea(area);
+    setIsStandPage(true);
+    setIsVisitorModalOpen(false);
+    const langSuffix = language === 'kk' ? 'kk' : language === 'en' ? 'en' : language === 'zh' ? 'zh' : 'ru';
+    window.location.hash = `#bookstand${langSuffix}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleCloseStand = () => {
+    setIsStandPage(false);
+    // Remove #bookstand from URL without page reload
+    const cleanUrl = window.location.pathname + window.location.search;
+    window.history.pushState(null, '', cleanUrl);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenVisitor = () => {
+    setIsVisitorModalOpen(true);
+    const langSuffix = language === 'kk' ? 'kk' : language === 'en' ? 'en' : language === 'zh' ? 'zh' : 'ru';
+    window.location.hash = `#registration${langSuffix}`;
+  };
+
+  const handleCloseVisitor = () => {
+    setIsVisitorModalOpen(false);
     const hash = (window.location.hash || '').toLowerCase();
     if (
-      hash === '#bookstand' ||
-      hash.startsWith('#bookstand') ||
-      hash === '#book-stand' ||
-      hash.startsWith('#book-stand') ||
-      hash === '#stand' ||
-      hash === '#booking'
+      hash === '#registration' ||
+      hash.startsWith('#registration') ||
+      hash === '#visitor' ||
+      hash === '#preregistration'
     ) {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      const cleanUrl = window.location.pathname + window.location.search;
+      window.history.replaceState(null, '', cleanUrl);
     }
   };
 
@@ -68,14 +88,48 @@ function App() {
         hash.startsWith('#book-stand') ||
         hash === '#stand' ||
         hash === '#booking' ||
+        currentPath === '/bookstand' ||
         params.has('bookstand') ||
         params.get('modal') === 'bookstand' ||
         params.get('modal') === 'stand';
 
+      const isVisitorHash =
+        hash === '#registration' ||
+        hash.startsWith('#registration') ||
+        hash === '#visitor' ||
+        hash === '#preregistration';
+
       if (isStandHash) {
-        setModalOption('Забронировать стенд');
-        if (areaParam) setModalArea(areaParam);
-        setIsModalOpen(true);
+        if (hash.includes('bookstandru')) {
+          setLanguage('ru');
+        } else if (hash.includes('bookstandkk') || hash.includes('bookstandkz')) {
+          setLanguage('kk');
+        } else if (hash.includes('bookstanden')) {
+          setLanguage('en');
+        } else if (hash.includes('bookstandzh') || hash.includes('bookstandcn')) {
+          setLanguage('zh');
+        }
+
+        if (areaParam) setStandArea(areaParam);
+        setIsStandPage(true);
+        setIsVisitorModalOpen(false);
+      } else {
+        setIsStandPage(false);
+      }
+
+      if (isVisitorHash) {
+        if (hash.includes('registrationru')) {
+          setLanguage('ru');
+        } else if (hash.includes('registrationkk') || hash.includes('registrationkz')) {
+          setLanguage('kk');
+        } else if (hash.includes('registrationen')) {
+          setLanguage('en');
+        } else if (hash.includes('registrationzh') || hash.includes('registrationcn')) {
+          setLanguage('zh');
+        }
+        setIsVisitorModalOpen(true);
+      } else if (!isStandHash) {
+        setIsVisitorModalOpen(false);
       }
     };
 
@@ -86,41 +140,72 @@ function App() {
       window.removeEventListener('hashchange', checkHashAndParams);
       window.removeEventListener('popstate', checkHashAndParams);
     };
-  }, []);
+  }, [currentPath]);
 
+  // Policy Page
   if (currentPath === '/policy') {
     return (
       <>
-        <PolicyPage onOpenModal={handleOpenModal} />
-        <BookingModal
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          initialOption={modalOption}
-          initialArea={modalArea}
+        <PolicyPage
+          onOpenModal={handleOpenStand}
+          onOpenStand={handleOpenStand}
+          onOpenVisitor={handleOpenVisitor}
+        />
+        <VisitorRegistrationModal
+          isOpen={isVisitorModalOpen}
+          onClose={handleCloseVisitor}
         />
       </>
     );
   }
 
+  // Oferta Page
   if (currentPath === '/oferta') {
     return (
       <>
-        <OfertaPage onOpenModal={handleOpenModal} />
-        <BookingModal
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          initialOption={modalOption}
-          initialArea={modalArea}
+        <OfertaPage
+          onOpenModal={handleOpenStand}
+          onOpenStand={handleOpenStand}
+          onOpenVisitor={handleOpenVisitor}
+        />
+        <VisitorRegistrationModal
+          isOpen={isVisitorModalOpen}
+          onClose={handleCloseVisitor}
         />
       </>
     );
   }
 
+  // Dedicated Participation / Stand Booking Full Page (#bookstand or /bookstand)
+  if (isStandPage) {
+    return (
+      <>
+        <ParticipationPage
+          onBackToHome={handleCloseStand}
+          initialArea={standArea}
+        />
+        <VisitorRegistrationModal
+          isOpen={isVisitorModalOpen}
+          onClose={handleCloseVisitor}
+        />
+      </>
+    );
+  }
+
+  // Main Landing Page
   return (
     <div className="app-container">
-      <Header onOpenModal={handleOpenModal} />
+      <Header
+        onOpenModal={handleOpenStand}
+        onOpenStand={handleOpenStand}
+        onOpenVisitor={handleOpenVisitor}
+      />
       <main>
-        <HeroSection onOpenModal={handleOpenModal} />
+        <HeroSection
+          onOpenModal={handleOpenStand}
+          onOpenStand={handleOpenStand}
+          onOpenVisitor={handleOpenVisitor}
+        />
         <QuoteSection />
         <AboutSection />
         <PastEventSection />
@@ -135,13 +220,15 @@ function App() {
         <NewsSection />
         <LocationSection />
       </main>
-      <Footer onOpenModal={handleOpenModal} />
+      <Footer
+        onOpenModal={handleOpenStand}
+        onOpenStand={handleOpenStand}
+        onOpenVisitor={handleOpenVisitor}
+      />
 
-      <BookingModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        initialOption={modalOption}
-        initialArea={modalArea}
+      <VisitorRegistrationModal
+        isOpen={isVisitorModalOpen}
+        onClose={handleCloseVisitor}
       />
     </div>
   );

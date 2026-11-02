@@ -26,33 +26,86 @@ export default async function handler(req, res) {
     }
   }
 
-  const { intent, name, email, phone, company, country, standArea } = body || {};
+  const {
+    name,
+    company,
+    jobTitle,
+    countryCity,
+    country,
+    email,
+    phone,
+    website,
+    roles,
+    intent,
+    standArea,
+    standType,
+    standDescription,
+    speakerVenue,
+    speakerTopic,
+    thematics,
+    sideEvents,
+    comment,
+    agreementNewsletter
+  } = body || {};
 
-  // Validation
-  if (!name && !phone && !email) {
-    return res.status(400).json({ error: 'Пожалуйста, заполните обязательные поля.' });
+  // Validation: at least name, email, and (company or phone)
+  if (!name || !email) {
+    return res.status(400).json({ error: 'Пожалуйста, заполните обязательные поля (ФИО, Email).' });
   }
 
   const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
   const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytSyV1UGp-zgdPDasU6AQtbJSSy8ZKhRmmurZweUdP0pgfiXGl7ZN4VRBS0Ku0EpM3fQ/exec';
+  const GOOGLE_SCRIPT_URL =
+    process.env.GOOGLE_SCRIPT_URL ||
+    'https://script.google.com/macros/s/AKfycbytSyV1UGp-zgdPDasU6AQtbJSSy8ZKhRmmurZweUdP0pgfiXGl7ZN4VRBS0Ku0EpM3fQ/exec';
 
   const now = new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Almaty' });
+
+  // Format arrays for text output
+  const rolesList = Array.isArray(roles) && roles.length > 0 ? roles.join(', ') : (roles || intent || 'Экспонент (стенд)');
+  const thematicsList = Array.isArray(thematics) && thematics.length > 0 ? thematics.join('\n• ') : (thematics || '');
+  const sideEventsList = Array.isArray(sideEvents) && sideEvents.length > 0 ? sideEvents.join('\n• ') : (sideEvents || '');
 
   // 1. Send to Telegram
   let telegramPromise = Promise.resolve(null);
   if (BOT_TOKEN && CHAT_ID) {
-    const standAreaLine = standArea ? `📐 <b>Площадь стенда:</b> ${escapeHtml(standArea)} м²\n` : '';
+    let exhibitorSection = '';
+    if (standArea || standType || standDescription) {
+      exhibitorSection =
+        `\n📐 <b>Параметры стенда (Экспонент):</b>\n` +
+        (standArea ? `• <b>Площадь:</b> ${escapeHtml(standArea)} м²\n` : '') +
+        (standType ? `• <b>Тип стенда:</b> ${escapeHtml(standType)}\n` : '') +
+        (standDescription ? `• <b>Что представят:</b> ${escapeHtml(standDescription)}\n` : '');
+    }
 
-    const messageText = 
-      `🔔 <b>Новая заявка с сайта RES+ EXPO 2027!</b>\n\n` +
-      `🎯 <b>Цель:</b> ${escapeHtml(intent || 'Забронировать стенд')}\n` +
-      standAreaLine +
-      `👤 <b>ФИО:</b> ${escapeHtml(name || '—')}\n` +
-      `✉️ <b>Email:</b> ${escapeHtml(email || '—')}\n` +
-      `📞 <b>Телефон:</b> ${escapeHtml(phone || '—')}\n` +
+    let speakerSection = '';
+    if (speakerVenue || speakerTopic) {
+      speakerSection =
+        `\n🎤 <b>Параметры выступления (Спикер):</b>\n` +
+        (speakerVenue ? `• <b>Площадка:</b> ${escapeHtml(speakerVenue)}\n` : '') +
+        (speakerTopic ? `• <b>Тема:</b> ${escapeHtml(speakerTopic)}\n` : '');
+    }
+
+    let thematicsSection = thematicsList ? `\n🌱 <b>Направления:</b>\n• ${escapeHtml(thematicsList)}\n` : '';
+    let sideEventsSection = sideEventsList ? `\n✨ <b>Side events:</b>\n• ${escapeHtml(sideEventsList)}\n` : '';
+    let commentSection = comment ? `\n💬 <b>Комментарий:</b> ${escapeHtml(comment)}\n` : '';
+
+    const messageText =
+      `🔔 <b>Новая заявка на участие в RES+ EXPO 2027!</b>\n\n` +
+      `👤 <b>ФИО:</b> ${escapeHtml(name)}\n` +
       `🏢 <b>Компания:</b> ${escapeHtml(company || '—')}\n` +
-      `🌍 <b>Страна:</b> ${escapeHtml(country || '—')}\n\n` +
+      `💼 <b>Должность:</b> ${escapeHtml(jobTitle || '—')}\n` +
+      `🌍 <b>Страна и город:</b> ${escapeHtml(countryCity || country || '—')}\n` +
+      `✉️ <b>Email:</b> ${escapeHtml(email)}\n` +
+      `📞 <b>Телефон / WhatsApp:</b> ${escapeHtml(phone || '—')}\n` +
+      (website ? `🌐 <b>Сайт:</b> ${escapeHtml(website)}\n` : '') +
+      `\n🎯 <b>Кем хочет участвовать:</b>\n<b>${escapeHtml(rolesList)}</b>\n` +
+      exhibitorSection +
+      speakerSection +
+      thematicsSection +
+      sideEventsSection +
+      commentSection +
+      `\n📬 <b>Подписка на новости:</b> ${agreementNewsletter ? 'Да' : 'Нет'}\n\n` +
       `🕒 <i>${now} (Астана)</i>`;
 
     telegramPromise = fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
@@ -84,16 +137,26 @@ export default async function handler(req, res) {
   if (GOOGLE_SCRIPT_URL) {
     googlePromise = fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
       body: JSON.stringify({
         date: now,
-        intent: intent || 'Забронировать стенд',
-        standArea: standArea || '',
         name: name || '',
+        company: company || '',
+        jobTitle: jobTitle || '',
+        countryCity: countryCity || country || '',
         email: email || '',
         phone: phone || '',
-        company: company || '',
-        country: country || ''
+        website: website || '',
+        roles: rolesList,
+        standArea: standArea || '',
+        standType: standType || '',
+        standDescription: standDescription || '',
+        speakerVenue: speakerVenue || '',
+        speakerTopic: speakerTopic || '',
+        thematics: Array.isArray(thematics) ? thematics : (thematics ? [thematics] : []),
+        sideEvents: Array.isArray(sideEvents) ? sideEvents : (sideEvents ? [sideEvents] : []),
+        comment: comment || '',
+        agreementNewsletter: !!agreementNewsletter
       }),
       redirect: 'follow'
     })

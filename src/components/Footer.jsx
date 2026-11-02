@@ -3,7 +3,7 @@ import { Globe, MessageCircle, Send, AtSign, Mail, Phone, MapPin } from 'lucide-
 import './Footer.css';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const Footer = ({ onOpenModal }) => {
+const Footer = ({ onOpenModal, onOpenStand, onOpenVisitor }) => {
   const { t } = useLanguage();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -19,12 +19,27 @@ const Footer = ({ onOpenModal }) => {
           </div>
           
           <div className="footer-ws-middle">
-            <button 
-              className="btn-ws-primary footer-ws-btn"
-              onClick={() => onOpenModal && onOpenModal('Забронировать стенд')}
-            >
-              {t('header.bookStand')}
-            </button>
+            <div className="footer-btns-row">
+              <button 
+                className="btn-ws-primary footer-btn"
+                onClick={() => {
+                  if (onOpenStand) onOpenStand();
+                  else if (onOpenModal) onOpenModal('Забронировать стенд');
+                  else window.location.hash = '#bookstand';
+                }}
+              >
+                {t('header.bookStand')}
+              </button>
+              <button 
+                className="btn-footer-register footer-btn"
+                onClick={() => {
+                  if (onOpenVisitor) onOpenVisitor();
+                  else window.location.hash = '#registration';
+                }}
+              >
+                {t('header.register') || 'РЕГИСТРАЦИЯ'}
+              </button>
+            </div>
             <div className="footer-ws-contacts">
               <p>+ 7 775 026 66 88</p>
               <p>office@res2026expo.kz</p>

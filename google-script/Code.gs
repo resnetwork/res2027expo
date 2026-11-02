@@ -1,29 +1,40 @@
 /**
  * =========================================================================
- * RES+ EXPO 2027 — Webhook для приёма заявок в Google Таблицу (Code.gs)
+ * RES+ EXPO 2027 — Webhook для приёма заявок на участие (Стенды, Спикеры, Партнёры)
+ * Файл: google-script/Code.gs
  * =========================================================================
  * 
  * Особенности скрипта:
- * 1. Автоматическое восстановление заголовков и стилей, если таблица очищена.
- * 2. Исправление ошибки #ERROR! при добавлении номера телефона с плюсом (+).
- * 3. Поиск ближайшей пустой строки (не пропускает строки даже при форматировании).
- * 4. Поддержка нового поля «Площадь стенда (м²)».
- * 5. Блокировка LockService для защиты от одновременных заявок.
+ * 1. Автоматическое восстановление заголовков и брендовых стилей RES+ EXPO при пустой таблице.
+ * 2. Исправление ошибки #ERROR! при добавлении номеров телефонов с плюсом (+).
+ * 3. Поиск ближайшей свободной строки (не пропускает строки даже при наличии форматирования ниже).
+ * 4. Полная поддержка новых полей: Роли, Стенды (площадь, тип, описание), Спикеры (площадка, тема), Направления, Side events.
+ * 5. Блокировка LockService для защиты от одновременных запросов.
  */
 
-// Название листа (если хотите записывать в конкретный лист, например "Заявки")
-var SHEET_NAME = 'Заявки';
+// Название листа для заявок на участие
+var SHEET_NAME = 'Заявки на участие';
 
-// Заголовки таблицы
+// Заголовки таблицы (18 колонок)
 var HEADERS = [
   'Дата и время',
-  'Цель заявки',
-  'Площадь стенда (м²)',
   'ФИО',
-  'Email',
-  'Телефон',
   'Компания',
-  'Страна'
+  'Должность',
+  'Страна и город',
+  'Email',
+  'Телефон / WhatsApp',
+  'Сайт',
+  'Кем хотите участвовать',
+  'Площадь стенда (м²)',
+  'Тип стенда',
+  'Что планируют представить',
+  'Площадка спикера',
+  'Тема выступления',
+  'Направления',
+  'Side events',
+  'Комментарий',
+  'Согласие на рассылку'
 ];
 
 /**
@@ -31,7 +42,6 @@ var HEADERS = [
  */
 function doPost(e) {
   var lock = LockService.getScriptLock();
-  // Ждём до 10 секунд освобождения блокировки при одновременных запросах
   try {
     lock.waitLock(10000);
   } catch (err) {
@@ -64,7 +74,6 @@ function doPost(e) {
     var rawPhone = data.phone ? String(data.phone).trim() : '';
     var safePhone = rawPhone;
     if (safePhone) {
-      // Одиночная кавычка ' в начале ячейки говорит Google Таблице хранить значение строго как текст
       if (safePhone.charAt(0) === '+' || safePhone.charAt(0) === '=' || safePhone.charAt(0) === '-') {
         safePhone = "'" + safePhone;
       }
@@ -76,20 +85,35 @@ function doPost(e) {
       standArea = standArea + ' м²';
     }
 
-    // 5. Текущая дата и время (без суффикса «Астана»)
+    // 5. Текущая дата и время
     var rawDate = data.date ? String(data.date).trim() : Utilities.formatDate(new Date(), 'Asia/Almaty', 'dd.MM.yyyy, HH:mm:ss');
     var dateStr = rawDate.replace(/\s*\(?Астана\)?/gi, '').trim();
+
+    // Преобразуем массивы в строки
+    var rolesStr = Array.isArray(data.roles) ? data.roles.join(', ') : (data.roles || data.intent || '—');
+    var thematicsStr = Array.isArray(data.thematics) ? data.thematics.join('\n') : (data.thematics || '—');
+    var sideEventsStr = Array.isArray(data.sideEvents) ? data.sideEvents.join('\n') : (data.sideEvents || '—');
 
     // 6. Формируем строку для записи
     var newRow = [
       dateStr,
-      data.intent || 'Забронировать стенд',
-      standArea || '—',
       data.name || '—',
+      data.company || '—',
+      data.jobTitle || '—',
+      data.countryCity || data.country || '—',
       data.email || '—',
       safePhone || '—',
-      data.company || '—',
-      data.country || '—'
+      data.website || '—',
+      rolesStr,
+      standArea || '—',
+      data.standType || '—',
+      data.standDescription || '—',
+      data.speakerVenue || '—',
+      data.speakerTopic || '—',
+      thematicsStr,
+      sideEventsStr,
+      data.comment || '—',
+      data.agreementNewsletter ? 'Да' : 'Нет'
     ];
 
     // 7. Находим ближайшую свободную строку
@@ -99,13 +123,13 @@ function doPost(e) {
     var range = sheet.getRange(targetRow, 1, 1, newRow.length);
     range.setValues([newRow]);
 
-    // Для столбца телефона дополнительно задаем текстовый формат отображения
-    sheet.getRange(targetRow, 6).setNumberFormat('@');
+    // Задаем текстовый формат отображения для телефона
+    sheet.getRange(targetRow, 7).setNumberFormat('@');
 
-    // Центрируем дату, площадь и телефон
+    // Центрируем дату и площадь
     sheet.getRange(targetRow, 1).setHorizontalAlignment('center');
-    sheet.getRange(targetRow, 3).setHorizontalAlignment('center');
-    sheet.getRange(targetRow, 6).setHorizontalAlignment('left');
+    sheet.getRange(targetRow, 10).setHorizontalAlignment('center');
+    sheet.getRange(targetRow, 18).setHorizontalAlignment('center');
 
     return ContentService.createTextOutput(JSON.stringify({
       status: 'success',
@@ -131,22 +155,25 @@ function doPost(e) {
 function doGet(e) {
   return ContentService.createTextOutput(JSON.stringify({
     status: 'ok',
-    message: 'RES+ EXPO 2027 Google Apps Script webhook is active and ready!'
+    message: 'RES+ EXPO 2027 Application Webhook is active and ready!'
   })).setMimeType(ContentService.MimeType.JSON);
 }
 
 /**
- * Получает лист 'Заявки' или использует текущий активный лист таблицы
+ * Получает лист 'Заявки на участие' или использует текущий активный лист
  */
 function getTargetSheet(ss) {
   var sheet = ss.getSheetByName(SHEET_NAME);
   if (sheet) return sheet;
-  return ss.getActiveSheet() || ss.getSheets()[0];
+  var firstSheet = ss.getActiveSheet() || ss.getSheets()[0];
+  try {
+    firstSheet.setName(SHEET_NAME);
+  } catch (e) {}
+  return firstSheet;
 }
 
 /**
- * Проверяет наличие строки заголовков.
- * Если таблица стёрта или пуста — заново строит шапку с оформлением.
+ * Проверяет наличие строки заголовков. Если пусто — строит стилизованную шапку
  */
 function ensureHeaders(sheet) {
   var lastRow = sheet.getLastRow();
@@ -162,7 +189,6 @@ function ensureHeaders(sheet) {
   }
 
   if (needsHeader) {
-    // Устанавливаем заголовки
     var headerRange = sheet.getRange(1, 1, 1, HEADERS.length);
     headerRange.setValues([HEADERS]);
 
@@ -176,38 +202,45 @@ function ensureHeaders(sheet) {
       .setVerticalAlignment('middle')
       .setWrap(true);
 
-    // Закрепляем верхнюю строку, чтобы она оставалась при прокрутке
     sheet.setFrozenRows(1);
-    sheet.setRowHeight(1, 38);
+    sheet.setRowHeight(1, 42);
 
     // Устанавливаем удобную ширину колонок
-    sheet.setColumnWidth(1, 180); // Дата и время
-    sheet.setColumnWidth(2, 170); // Цель
-    sheet.setColumnWidth(3, 140); // Площадь стенда
-    sheet.setColumnWidth(4, 200); // ФИО
-    sheet.setColumnWidth(5, 200); // Email
-    sheet.setColumnWidth(6, 170); // Телефон
-    sheet.setColumnWidth(7, 200); // Компания
-    sheet.setColumnWidth(8, 140); // Страна
+    sheet.setColumnWidth(1, 160);  // Дата и время
+    sheet.setColumnWidth(2, 200);  // ФИО
+    sheet.setColumnWidth(3, 200);  // Компания
+    sheet.setColumnWidth(4, 170);  // Должность
+    sheet.setColumnWidth(5, 170);  // Страна и город
+    sheet.setColumnWidth(6, 200);  // Email
+    sheet.setColumnWidth(7, 170);  // Телефон / WhatsApp
+    sheet.setColumnWidth(8, 160);  // Сайт
+    sheet.setColumnWidth(9, 220);  // Роли
+    sheet.setColumnWidth(10, 140); // Площадь стенда
+    sheet.setColumnWidth(11, 180); // Тип стенда
+    sheet.setColumnWidth(12, 240); // Что планируют представить
+    sheet.setColumnWidth(13, 180); // Площадка спикера
+    sheet.setColumnWidth(14, 240); // Тема выступления
+    sheet.setColumnWidth(15, 260); // Направления
+    sheet.setColumnWidth(16, 240); // Side events
+    sheet.setColumnWidth(17, 240); // Комментарий
+    sheet.setColumnWidth(18, 140); // Рассылка
   }
 }
 
 /**
- * Ищет ближайшую пустую строку в таблице.
- * Не пропускает строки, даже если внизу таблицы есть пустое форматирование.
+ * Ищет ближайшую пустую строку в таблице
  */
 function findNextEmptyRow(sheet) {
   var lastRow = sheet.getLastRow();
   if (lastRow <= 1) {
-    return 2; // Если только шапка или пусто — пишем во вторую строку
+    return 2;
   }
 
-  // Считываем первый столбец (Дата) для поиска первой пустой ячейки
   var dateColValues = sheet.getRange(2, 1, lastRow - 1, 1).getValues();
   for (var i = 0; i < dateColValues.length; i++) {
     var val = dateColValues[i][0];
     if (!val || val.toString().trim() === '') {
-      return i + 2; // Возвращаем индекс строки (с учетом смещения на 2)
+      return i + 2;
     }
   }
 

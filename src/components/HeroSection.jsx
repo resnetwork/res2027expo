@@ -3,7 +3,7 @@ import { Play, Pause, Volume2, VolumeX, Globe } from 'lucide-react';
 import './HeroSection.css';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const HeroSection = ({ onOpenModal }) => {
+const HeroSection = ({ onOpenModal, onOpenStand, onOpenVisitor }) => {
   const { t } = useLanguage();
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
@@ -163,20 +163,11 @@ const HeroSection = ({ onOpenModal }) => {
         
         <div className="video-blocker" onClick={togglePlay}></div>
 
-        <div className="video-controls-overlay">
-          <button className="control-btn" onClick={togglePlay} aria-label="Воспроизвести / Пауза">
-            {playing ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" />}
-          </button>
-          <button className="control-btn" onClick={toggleMute} aria-label="Звук">
-            {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-          </button>
-        </div>
-        
         {/* Dark overlay for readability */}
         <div className="hero-overlay"></div>
 
         {/* Foreground Content */}
-        <div className="hero-content-slush container">
+        <div className="hero-content-slush">
           <div className="hero-text-wrapper">
             <h1 className="hero-title-slush">
               <span className="hero-highlight" style={{ display: 'block', marginBottom: '0.2em' }}>«RES+&nbsp;EXPO&nbsp;2027»</span>
@@ -208,13 +199,38 @@ const HeroSection = ({ onOpenModal }) => {
               </div>
             </div>
 
-            <div className="hero-actions-slush">
-              <button 
-                className="btn-ws-primary"
-                onClick={() => onOpenModal && onOpenModal('Забронировать стенд')}
-              >
-                {t('hero.bookStand')}
-              </button>
+            <div className="hero-bottom-right-group">
+              <div className="hero-actions-slush">
+                <button 
+                  className="btn-ws-primary"
+                  onClick={() => {
+                    if (onOpenStand) onOpenStand();
+                    else if (onOpenModal) onOpenModal('Забронировать стенд');
+                    else window.location.hash = '#bookstand';
+                  }}
+                >
+                  {t('hero.bookStand')}
+                </button>
+
+                <button 
+                  className="btn-ws-secondary"
+                  onClick={() => {
+                    if (onOpenVisitor) onOpenVisitor();
+                    else window.location.hash = '#registration';
+                  }}
+                >
+                  {t('hero.registerVisitor') || 'РЕГИСТРАЦИЯ ПОСЕТИТЕЛЕЙ'}
+                </button>
+              </div>
+
+              <div className="video-controls-overlay">
+                <button className="control-btn" onClick={togglePlay} aria-label="Воспроизвести / Пауза">
+                  {playing ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" />}
+                </button>
+                <button className="control-btn" onClick={toggleMute} aria-label="Звук">
+                  {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                </button>
+              </div>
             </div>
           </div>
         </div>

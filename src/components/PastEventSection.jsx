@@ -109,14 +109,7 @@ const PastEventSection = () => {
     };
   }, []);
 
-  const REPORT_URLS = {
-    ru: 'https://drive.google.com/file/d/1cSL_guBSJJpKAt_eW3NBL7GMe8QOVUtG/view?usp=sharing',
-    kk: 'https://drive.google.com/file/d/1xn5IDlJt_Z2sIa7AbFQc3a9zIn2zAYc9/view?usp=sharing',
-    en: 'https://drive.google.com/file/d/1okBMR38Mo_HC4-bigZGFO5IZ32fB0t7z/view?usp=sharing',
-    zh: 'https://drive.google.com/file/d/15KBYzYgtfIZunlRljm25LkORl73hGJCN/view?usp=sharing'
-  };
-
-  const reportUrl = REPORT_URLS[language] || REPORT_URLS.ru;
+  const reportUrl = 'https://drive.google.com/drive/folders/1VCIN5dLyig12NlLoKUpv2EEnM4VWZ8C_?usp=sharing';
 
   return (
     <section className="past-event-section" id="past-event">
