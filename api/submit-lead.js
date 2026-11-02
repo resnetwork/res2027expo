@@ -57,7 +57,7 @@ export default async function handler(req, res) {
   const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
   const GOOGLE_SCRIPT_URL =
     process.env.GOOGLE_SCRIPT_URL ||
-    'https://script.google.com/macros/s/AKfycbytSyV1UGp-zgdPDasU6AQtbJSSy8ZKhRmmurZweUdP0pgfiXGl7ZN4VRBS0Ku0EpM3fQ/exec';
+    'https://script.google.com/macros/s/AKfycbyq-n8GuRa-4_YhrWbBzATDnIwOWdztcL-Lghvt8qveBfgMOIoilvQ8jq2sXH-fLY9xXA/exec';
 
   const now = new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Almaty' });
 
