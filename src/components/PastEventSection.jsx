@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Pause, Volume2, VolumeX, FileText, ExternalLink } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, FileText, ExternalLink, Images } from 'lucide-react';
 import './PastEventSection.css';
 import { useLanguage } from '../contexts/LanguageContext';
+import allPhotos from '../data/galleryData.json';
 
-const PastEventSection = () => {
-  const { t, language } = useLanguage();
+const PastEventSection = ({ onOpenGallery }) => {
+  const { t } = useLanguage();
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -12,6 +13,50 @@ const PastEventSection = () => {
   const iframeRef = useRef(null);
   const cardRef = useRef(null);
   const hasStartedPlaying = useRef(false);
+
+  // Gallery Showcase Slider State (12 photos total)
+  const showcasePhotos = allPhotos.slice(0, 12);
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Responsive items per slide: 6 on desktop, 2 on mobile
+  const itemsPerSlide = isMobile ? 2 : 6;
+  const totalSlides = Math.ceil(showcasePhotos.length / itemsPerSlide);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Reset slide if itemsPerSlide changes
+  useEffect(() => {
+    if (currentSlide >= totalSlides) {
+      setCurrentSlide(0);
+    }
+  }, [totalSlides, currentSlide]);
+
+  // Auto-slide every 5 seconds
+  useEffect(() => {
+    if (isPaused || totalSlides <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % totalSlides);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isPaused, totalSlides]);
+
+  const handleGalleryClick = () => {
+    if (onOpenGallery) {
+      onOpenGallery();
+    } else {
+      window.location.hash = '#gallery';
+    }
+  };
 
   const sendCommand = (func, args = []) => {
     if (iframeRef.current && iframeRef.current.contentWindow) {
@@ -111,16 +156,86 @@ const PastEventSection = () => {
 
   const reportUrl = 'https://drive.google.com/drive/folders/1VCIN5dLyig12NlLoKUpv2EEnM4VWZ8C_?usp=sharing';
 
+  // Group photos into slides
+  const slides = [];
+  for (let i = 0; i < showcasePhotos.length; i += itemsPerSlide) {
+    slides.push(showcasePhotos.slice(i, i + itemsPerSlide));
+  }
+
   return (
     <section className="past-event-section" id="past-event">
-      <div className="container">
+      <div className="container past-event-container">
         
         {/* Title */}
         <h2 className="section-title past-event-heading">
           {t('pastEvent.title')}
         </h2>
 
-        {/* Video Player Card (Clean video player, zero YouTube UI, 1080p) */}
+        {/* 1. Gallery Grid Showcase with Auto-sliding */}
+        <div 
+          className="past-event-showcase-container"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div className="showcase-slider-track-window">
+            <div 
+              className="showcase-slider-track"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {slides.map((group, slideIdx) => (
+                <div 
+                  key={slideIdx} 
+                  className={`showcase-slide-page ${isMobile ? 'mobile-slide' : 'desktop-slide'}`}
+                >
+                  <div className={`showcase-photo-grid ${isMobile ? 'grid-2' : 'grid-6'}`}>
+                    {group.map((item, idx) => (
+                      <div 
+                        key={item.id || idx} 
+                        className="showcase-photo-card"
+                        onClick={handleGalleryClick}
+                        title="Нажмите, чтобы открыть всю галерею"
+                      >
+                        <img 
+                          src={item.src} 
+                          alt={`RES EXPO Photo ${item.id}`} 
+                          className="showcase-photo-img"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* 2. Action Buttons Under Gallery */}
+        <div className="past-event-buttons-row">
+          {/* Left: View All Photos Button */}
+          <button 
+            type="button"
+            onClick={handleGalleryClick}
+            className="past-event-btn past-event-btn-gallery"
+          >
+            <Images size={22} />
+            <span>{t('pastEvent.seeAll')}</span>
+          </button>
+
+          {/* Right: Open Report Button */}
+          <a 
+            href={reportUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="past-event-btn past-event-btn-report"
+          >
+            <FileText size={22} />
+            <span>{t('pastEvent.button')}</span>
+            <ExternalLink size={18} className="btn-external-icon" />
+          </a>
+        </div>
+
+        {/* 3. Video Player Card (Clean video player, zero YouTube UI, 1080p) */}
         <div className="past-event-player-wrapper">
           <div className="past-event-video-card" ref={cardRef}>
             
@@ -158,31 +273,6 @@ const PastEventSection = () => {
                 {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
               </button>
             </div>
-          </div>
-        </div>
-
-        {/* Framed Report Card */}
-        <div className="past-event-report-card">
-          <div className="report-card-left">
-            <div className="report-icon-wrapper">
-              <FileText size={28} className="report-icon" />
-            </div>
-            <div className="report-text-block">
-              <h3 className="report-card-heading">{t('pastEvent.reportHeading')}</h3>
-              <p className="report-card-subtitle">{t('pastEvent.subtitle')}</p>
-            </div>
-          </div>
-
-          <div className="report-card-right">
-            <a 
-              href={reportUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="btn-ws-primary past-event-action-btn"
-            >
-              <span>{t('pastEvent.button')}</span>
-              <ExternalLink size={18} />
-            </a>
           </div>
         </div>
 

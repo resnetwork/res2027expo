@@ -55,7 +55,12 @@ export const translations = {
       title: 'Как это было',
       reportHeading: 'Официальный итоговый отчёт',
       subtitle: 'Посмотрите итоги мероприятия, ключевые моменты и фотоматериалы в нашем отчёте',
-      button: 'Открыть отчёт'
+      button: 'Открыть отчёт',
+      seeAll: 'Смотреть все',
+      galleryTitle: 'ГАЛЕРЕЯ',
+      gallerySubtitle: 'Фотоотчет с прошедшей выставки RES+ EXPO',
+      backToHome: 'Назад на главную',
+      photosCount: 'фотографий'
     },
     speakers: {
       title: 'Спикеры 2026 года',
@@ -257,6 +262,22 @@ export const translations = {
           desc: 'В Астане прошла международная выставка зеленых технологий и устойчивых решений «RES 2026 EXPO» с участием глав государств Центральной Азии, посвященная переходу к экологически ответственному развитию и зеленой экономике.'
         }
       ]
+    },
+    startupCompetition: {
+      dates: '5-7 МАЯ 2027',
+      venue: 'Астана · МВЦ «ЭКСПО»',
+      title: 'Eco Startup Competition',
+      subtitle: 'Презентуйте свои зеленые инновации ведущим инвесторам, фондам и корпоративным партнерам',
+      cta: 'Подать заявку',
+      limitedSlots: 'Количество мест ограничено',
+      focusAreas: [
+        'Солнечная и ветровая энергетика',
+        'Био- и гидроэнергетика',
+        'Накопители энергии и батареи',
+        'Зеленый водород и CleanTech',
+        'Управление отходами и водой',
+        'Эко-транспорт и умные города'
+      ]
     }
   },
   kk: {
@@ -315,7 +336,12 @@ export const translations = {
       title: 'Бұл қалай өтті',
       reportHeading: 'Ресми қорытынды есеп',
       subtitle: 'Іс-шараның қорытындыларын, негізгі сәттері мен фотоматериалдарын біздің есебімізден қараңыз',
-      button: 'Есепті ашу'
+      button: 'Есепті ашу',
+      seeAll: 'Барлығын көру',
+      galleryTitle: 'ГАЛЕРЕЯ',
+      gallerySubtitle: 'Өткен RES+ EXPO көрмесінің фоторепортажы',
+      backToHome: 'Басты бетке оралу',
+      photosCount: 'фотосурет'
     },
     speakers: {
       title: '2026 жылдың спикерлері',
@@ -517,6 +543,22 @@ export const translations = {
           desc: 'Астанада Орталық Азия мемлекеттері басшыларының қатысуымен экологиялық жауапты дамуға және жасыл экономикаға көшуге арналған «RES 2026 EXPO» халықаралық жасыл технологиялар мен тұрақты шешімдер көрмесі өтті.'
         }
       ]
+    },
+    startupCompetition: {
+      dates: '5-7 МАМЫР 2027',
+      venue: 'Астана · «ЭКСПО» ХКО',
+      title: 'Eco Startup Competition',
+      subtitle: 'Жасыл инновацияларыңызды жетекші инвесторларға, қорларға және серіктестерге таныстырыңыз',
+      cta: 'Өтінім беру',
+      limitedSlots: 'Орындар саны шектеулі',
+      focusAreas: [
+        'Күн және жел энергетикасы',
+        'Био- және гидроэнергетика',
+        'Энергия сақтау және батареялар',
+        'Жасыл сутегі және CleanTech',
+        'Қалдықтар мен суды басқару',
+        'Эко-көлік және ақылды қалалар'
+      ]
     }
   },
   en: {
@@ -575,7 +617,12 @@ export const translations = {
       title: 'How It Was',
       reportHeading: 'Official Post-Show Report',
       subtitle: 'Take a look at the event outcomes, key moments, and photo highlights in our report',
-      button: 'Open Report'
+      button: 'Open Report',
+      seeAll: 'View All',
+      galleryTitle: 'GALLERY',
+      gallerySubtitle: 'Photo highlights from the past RES+ EXPO exhibition',
+      backToHome: 'Back to Home',
+      photosCount: 'photos'
     },
     speakers: {
       title: 'Speakers 2026',
@@ -777,6 +824,22 @@ export const translations = {
           desc: 'The international exhibition of green technologies and sustainable solutions "RES 2026 EXPO" was held in Astana with the participation of Central Asian heads of state, dedicated to the transition to environmentally responsible development and a green economy.'
         }
       ]
+    },
+    startupCompetition: {
+      dates: '5-7 MAY 2027',
+      venue: 'Astana · IEC "EXPO"',
+      title: 'Eco Startup Competition',
+      subtitle: 'Pitch your green technologies to leading venture capital funds, corporate partners, and global investors',
+      cta: 'Apply Now',
+      limitedSlots: 'Limited slots available',
+      focusAreas: [
+        'Solar & Wind Energy',
+        'Bio & Hydro Energy',
+        'Energy Storage & Batteries',
+        'Green Hydrogen & CleanTech',
+        'Water & Waste Management',
+        'E-Mobility & Smart Cities'
+      ]
     }
   },
   zh: {
@@ -835,7 +898,12 @@ export const translations = {
       title: '往届回顾',
       reportHeading: '官方总结报告',
       subtitle: '在我们的官方报告中查看活动成果、精彩亮点与现场影像',
-      button: '查阅报告'
+      button: '查阅报告',
+      seeAll: '查看全部',
+      galleryTitle: '展会图集',
+      gallerySubtitle: '往届 RES+ EXPO 展会现场精彩回顾',
+      backToHome: '返回首页',
+      photosCount: '张照片'
     },
     speakers: {
       title: '2026年演讲嘉宾',
@@ -1036,6 +1104,22 @@ export const translations = {
           title: '田吉兹雪佛龙参加 2026 区域生态峰会暨博览会',
           desc: '在阿斯塔纳举行的 “RES 2026 EXPO” 国际绿色技术与可持续解决方案展览会汇聚了中亚各国元首，共同探讨绿色经济与生态转型之路。'
         }
+      ]
+    },
+    startupCompetition: {
+      dates: '2027年5月5-7日',
+      venue: '阿斯塔纳 · EXPO世博中心',
+      title: 'Eco Startup Competition',
+      subtitle: '向顶尖风险投资基金、行业领军企业及绿色发展金融机构展示您的突破性技术',
+      cta: '立即申请',
+      limitedSlots: '席位有限',
+      focusAreas: [
+        '太阳能与风力发电',
+        '生物质能与水力发电',
+        '储能系统与新型电池',
+        '绿色制氢与清洁科技',
+        '固废综合利用与水务',
+        '绿色出行与智慧城市'
       ]
     }
   }

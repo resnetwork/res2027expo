@@ -200,6 +200,15 @@ const HeroSection = ({ onOpenModal, onOpenStand, onOpenVisitor }) => {
             </div>
 
             <div className="hero-bottom-right-group">
+              <div className="hero-video-controls">
+                <button className="control-btn" onClick={togglePlay} aria-label="Воспроизвести / Пауза">
+                  {playing ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" />}
+                </button>
+                <button className="control-btn" onClick={toggleMute} aria-label="Звук">
+                  {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                </button>
+              </div>
+
               <div className="hero-actions-slush">
                 <button 
                   className="btn-ws-primary"
@@ -220,15 +229,6 @@ const HeroSection = ({ onOpenModal, onOpenStand, onOpenVisitor }) => {
                   }}
                 >
                   {t('hero.registerVisitor') || 'РЕГИСТРАЦИЯ ПОСЕТИТЕЛЕЙ'}
-                </button>
-              </div>
-
-              <div className="video-controls-overlay">
-                <button className="control-btn" onClick={togglePlay} aria-label="Воспроизвести / Пауза">
-                  {playing ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" />}
-                </button>
-                <button className="control-btn" onClick={toggleMute} aria-label="Звук">
-                  {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
                 </button>
               </div>
             </div>

@@ -11,6 +11,7 @@ import WhyParticipate from './components/WhyParticipate';
 import WaysToParticipate from './components/WaysToParticipate';
 import ReviewsSection from './components/ReviewsSection';
 import PartnersInvite from './components/PartnersInvite';
+import StartupCompetitionSection from './components/StartupCompetitionSection';
 import LogosSection from './components/LogosSection';
 import NewsSection from './components/NewsSection';
 import Footer from './components/Footer';
@@ -21,19 +22,38 @@ import VisitorRegistrationModal from './components/VisitorRegistrationModal';
 import PolicyPage from './components/PolicyPage';
 import OfertaPage from './components/OfertaPage';
 import LocationSection from './components/LocationSection';
+import GalleryPage from './components/GalleryPage';
 import { useLanguage } from './contexts/LanguageContext';
 
 function App() {
   const { language, setLanguage } = useLanguage();
   const [isStandPage, setIsStandPage] = useState(false);
+  const [isGalleryPage, setIsGalleryPage] = useState(false);
   const [standArea, setStandArea] = useState('');
   const [isVisitorModalOpen, setIsVisitorModalOpen] = useState(false);
   
   const currentPath = window.location.pathname;
 
+  const handleOpenGallery = () => {
+    setIsGalleryPage(true);
+    setIsStandPage(false);
+    setIsVisitorModalOpen(false);
+    const langSuffix = language === 'kk' ? 'kk' : language === 'en' ? 'en' : language === 'zh' ? 'zh' : 'ru';
+    window.location.hash = `#gallery${langSuffix}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCloseGallery = () => {
+    setIsGalleryPage(false);
+    const cleanUrl = window.location.pathname === '/gallery' ? '/' : window.location.pathname + window.location.search;
+    window.history.pushState(null, '', cleanUrl);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleOpenStand = (area = '') => {
     if (area) setStandArea(area);
     setIsStandPage(true);
+    setIsGalleryPage(false);
     setIsVisitorModalOpen(false);
     const langSuffix = language === 'kk' ? 'kk' : language === 'en' ? 'en' : language === 'zh' ? 'zh' : 'ru';
     window.location.hash = `#bookstand${langSuffix}`;
@@ -93,6 +113,12 @@ function App() {
         params.get('modal') === 'bookstand' ||
         params.get('modal') === 'stand';
 
+      const isGalleryHash =
+        hash === '#gallery' ||
+        hash.startsWith('#gallery') ||
+        currentPath === '/gallery' ||
+        params.has('gallery');
+
       const isVisitorHash =
         hash === '#registration' ||
         hash.startsWith('#registration') ||
@@ -112,9 +138,27 @@ function App() {
 
         if (areaParam) setStandArea(areaParam);
         setIsStandPage(true);
+        setIsGalleryPage(false);
         setIsVisitorModalOpen(false);
       } else {
         setIsStandPage(false);
+      }
+
+      if (isGalleryHash) {
+        if (hash.includes('galleryru')) {
+          setLanguage('ru');
+        } else if (hash.includes('gallerykk') || hash.includes('gallerykz')) {
+          setLanguage('kk');
+        } else if (hash.includes('galleryen')) {
+          setLanguage('en');
+        } else if (hash.includes('galleryzh') || hash.includes('gallerycn')) {
+          setLanguage('zh');
+        }
+        setIsGalleryPage(true);
+        setIsStandPage(false);
+        setIsVisitorModalOpen(false);
+      } else {
+        setIsGalleryPage(false);
       }
 
       if (isVisitorHash) {
@@ -128,7 +172,7 @@ function App() {
           setLanguage('zh');
         }
         setIsVisitorModalOpen(true);
-      } else if (!isStandHash) {
+      } else if (!isStandHash && !isGalleryHash) {
         setIsVisitorModalOpen(false);
       }
     };
@@ -176,6 +220,24 @@ function App() {
     );
   }
 
+  // Dedicated Gallery Full Page (#gallery or /gallery)
+  if (isGalleryPage) {
+    return (
+      <>
+        <GalleryPage
+          onBackToHome={handleCloseGallery}
+          onOpenModal={handleOpenStand}
+          onOpenStand={handleOpenStand}
+          onOpenVisitor={handleOpenVisitor}
+        />
+        <VisitorRegistrationModal
+          isOpen={isVisitorModalOpen}
+          onClose={handleCloseVisitor}
+        />
+      </>
+    );
+  }
+
   // Dedicated Participation / Stand Booking Full Page (#bookstand or /bookstand)
   if (isStandPage) {
     return (
@@ -208,7 +270,7 @@ function App() {
         />
         <QuoteSection />
         <AboutSection />
-        <PastEventSection />
+        <PastEventSection onOpenGallery={handleOpenGallery} />
         <ThematicZones />
         <SpeakersSection />
         <WhyParticipate />
@@ -216,6 +278,7 @@ function App() {
         <WaysToParticipate />
         <BadgeSection />
         <PartnersInvite />
+        <StartupCompetitionSection onOpenStand={handleOpenStand} />
         <LogosSection />
         <NewsSection />
         <LocationSection />

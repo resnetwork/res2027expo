@@ -1,0 +1,327 @@
+/* =============================================
+   ECO STARTUP COMPETITION BANNER SECTION
+   Perfect 3-column symmetrical grid with centered core
+   ============================================= */
+.startup-competition-section {
+  padding: 4.5rem 0 3.5rem 0;
+  background-color: #ffffff;
+  position: relative;
+  font-family: var(--font-sans);
+}
+
+.startup-competition-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Main Card with strict Symmetrical 3-Column Grid */
+.startup-banner-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem;
+  background: linear-gradient(108deg, #fbf7ee 0%, #f4fbf6 28%, #edf9f2 65%, #e1f5e8 100%);
+  border: 1.5px solid rgba(24, 88, 75, 0.2);
+  border-radius: 28px;
+  padding: 2.75rem 3rem;
+  box-shadow: 0 14px 40px rgba(24, 88, 75, 0.08), 0 3px 10px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.startup-banner-card:hover {
+  border-color: rgba(24, 88, 75, 0.38);
+  box-shadow: 0 18px 50px rgba(24, 88, 75, 0.12), 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================
+   1. Left Column: Eco Illustration (Symmetrical 1fr)
+   ========================================= */
+.startup-banner-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.startup-left-illustration {
+  width: 175px;
+  height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+}
+
+.startup-banner-card:hover .startup-left-illustration {
+  transform: scale(1.04);
+}
+
+.startup-eco-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 8px rgba(24, 88, 75, 0.12));
+}
+
+/* =========================================
+   2. Center Column: 100% Center-Aligned Pitch
+   ========================================= */
+.startup-banner-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* Official Brand Logo */
+.startup-brand-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 0.85rem;
+}
+
+/* Date Pill Banner */
+.startup-date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #ffffff;
+  border: 1.5px solid rgba(24, 88, 75, 0.22);
+  color: var(--bg-dark-green, #18584b);
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  font-size: 0.84rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  margin-bottom: 0.85rem;
+}
+
+.date-highlight {
+  background: var(--bg-dark-green, #18584b);
+  color: #ffffff;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.venue-highlight {
+  color: var(--bg-dark-green, #18584b);
+  font-weight: 700;
+}
+
+/* Main Headline */
+.startup-main-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+  font-weight: 900;
+  color: var(--bg-dark-green, #18584b);
+  line-height: 1.15;
+  margin: 0 0 0.65rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+/* Subtitle */
+.startup-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  color: #4b5563;
+  max-width: 540px;
+  line-height: 1.5;
+  margin: 0 auto 1.5rem auto;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* CTA Group */
+.startup-cta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 auto;
+}
+
+.startup-apply-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #18584b 0%, #0d3830 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 1.05rem 2.85rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(24, 88, 75, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--font-sans);
+}
+
+.startup-apply-btn:hover {
+  background: linear-gradient(135deg, #1f6e5e 0%, #114c41 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(24, 88, 75, 0.45);
+}
+
+.apply-btn-arrow {
+  transition: transform 0.25s ease;
+}
+
+.startup-apply-btn:hover .apply-btn-arrow {
+  transform: translateX(4px);
+}
+
+.startup-slots-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--bg-dark-green, #18584b);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-family: var(--font-sans);
+}
+
+.slots-icon {
+  color: #eab308;
+}
+
+/* =========================================
+   3. Right Column: Clean Focus Areas (Symmetrical 1fr)
+   ========================================= */
+.startup-banner-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.focus-areas-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-width: 330px;
+  width: 100%;
+}
+
+.focus-area-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.35;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.focus-area-item:hover {
+  transform: translateX(3px);
+  color: var(--bg-dark-green, #18584b);
+}
+
+.focus-item-icon {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   Responsive Breakpoints
+   ========================================= */
+@media (max-width: 1100px) {
+  .startup-banner-card {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 1.75rem;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .startup-banner-left {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .startup-left-illustration {
+    width: 150px;
+    height: 150px;
+  }
+
+  .startup-banner-center {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .startup-banner-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .focus-areas-list {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .startup-competition-section {
+    padding: 3rem 0 2rem 0;
+  }
+
+  .startup-banner-card {
+    border-radius: 20px;
+    padding: 2rem 1.25rem;
+  }
+
+  .startup-brand-logo {
+    height: 40px;
+  }
+
+  .startup-main-title {
+    font-size: 1.55rem;
+  }
+
+  .startup-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .startup-apply-btn {
+    width: 100%;
+    padding: 0.95rem 1.5rem;
+    font-size: 0.98rem;
+  }
+
+  .focus-areas-list {
+    width: 100%;
+    gap: 0.65rem;
+  }
+
+  .focus-area-item {
+    font-size: 0.88rem;
+  }
+}
