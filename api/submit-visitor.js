@@ -46,9 +46,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Пожалуйста, заполните обязательные поля (ФИО, Компания, Email).' });
   }
 
-  const VISITOR_GOOGLE_SCRIPT_URL =
-    process.env.VISITOR_GOOGLE_SCRIPT_URL ||
-    'https://script.google.com/macros/s/AKfycbzpIZPIHWEzQd46lLBEVoQxFiTaFgBKrf54glLtpf9hI2z1ltyhxtpbYGRKwXEEWo5F/exec';
+  const VISITOR_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzpIZPIHWEzQd46lLBEVoQxFiTaFgBKrf54glLtpf9hI2z1ltyhxtpbYGRKwXEEWo5F/exec';
   const now = new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Almaty' });
 
   // Send to Visitor Google Sheets Webhook if configured
