@@ -89,6 +89,27 @@
   font-weight: 500;
 }
 
+.partners-invite-title {
+  font-size: clamp(1.4rem, 4vw, 2.5rem);
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .partners-invite-title {
+    font-size: 1.35rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.28;
+  }
+}
+
+@media (max-width: 480px) {
+  .partners-invite-title {
+    font-size: 1.2rem;
+  }
+}
 
 .carousel-wrapper {
   position: relative;
@@ -323,5 +344,125 @@
 @media (max-width: 768px) {
   .review-card-carousel {
     flex: 0 0 85%;
+  }
+}
+
+/* =========================================
+   Ways To Participate Component Styles
+   ========================================= */
+.ways-grid-desktop {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: nowrap;
+  margin-top: 3.5rem;
+}
+
+.way-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 170px;
+}
+
+.way-icon-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: var(--bg-dark-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 8px 24px rgba(4, 120, 87, 0.22);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.way-card:hover .way-icon-circle {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(4, 120, 87, 0.32);
+}
+
+.way-title {
+  color: var(--bg-dark-green);
+  font-size: 0.85rem;
+  font-weight: 800;
+  white-space: pre-line;
+  text-transform: uppercase;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.ways-carousel-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .ways-grid-desktop {
+    display: none;
+  }
+
+  .ways-carousel-mobile {
+    display: block;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  .ways-scroll-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding: 0.5rem 1rem 1.25rem 1rem;
+    scrollbar-width: none;
+    box-sizing: border-box;
+  }
+
+  .ways-scroll-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ways-scroll-track .way-carousel-card {
+    flex: 0 0 210px;
+    scroll-snap-align: center;
+    background: #ffffff;
+    border: 1px solid rgba(24, 88, 75, 0.14);
+    border-radius: 20px;
+    padding: 1.4rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 6px 18px rgba(24, 88, 75, 0.08);
+  }
+
+  .ways-scroll-track .way-icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--bg-dark-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 0.85rem;
+    box-shadow: 0 6px 18px rgba(4, 120, 87, 0.22);
+  }
+
+  .ways-scroll-track .way-title {
+    color: var(--bg-dark-green);
+    font-size: 0.84rem;
+    font-weight: 800;
+    white-space: pre-line;
+    text-transform: uppercase;
+    line-height: 1.35;
+    min-height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 }

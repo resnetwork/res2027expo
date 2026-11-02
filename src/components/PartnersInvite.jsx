@@ -42,7 +42,7 @@ const PartnersInvite = () => {
   return (
     <section className="partners-invite bg-green" style={{ padding: '3rem 0' }}>
       <div className="container text-center" style={{position: 'relative'}}>
-        <h2 className="section-title text-inverse" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{t('partnersInvite.title')}</h2>
+        <h2 className="section-title text-inverse partners-invite-title">{t('partnersInvite.title')}</h2>
         <p className="section-subtitle" style={{marginBottom: '2.5rem', fontWeight: 400, color: 'rgba(255,255,255,0.8)'}}>
           {t('partnersInvite.subtitle')}
         </p>

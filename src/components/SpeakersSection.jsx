@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SpeakersSection.css';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -92,9 +92,18 @@ const speakers = [
 
 const SpeakersSection = () => {
   const [showAll, setShowAll] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { t } = useLanguage();
   
-  const displayedSpeakers = showAll ? speakers : speakers.slice(0, 10);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const initialCount = isMobile ? 4 : 10;
+  const displayedSpeakers = showAll ? speakers : speakers.slice(0, initialCount);
 
   return (
     <section className="speakers-section bg-white section-padding" id="speakers">

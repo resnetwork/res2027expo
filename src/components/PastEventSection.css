@@ -58,11 +58,19 @@
   gap: 22px;
 }
 
-/* Mobile Grid: 2 columns x 1 row (2 photos) */
+/* Mobile Grid: 1 column x 2 rows (2 photos stacked vertically for maximum size & clarity) */
 .showcase-photo-grid.grid-2 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, auto);
+  gap: 16px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.showcase-photo-grid.grid-2 .showcase-photo-card {
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
 }
 
 .showcase-photo-card {
