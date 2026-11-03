@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './BookingModal.css';
 import { useLanguage } from '../contexts/LanguageContext';
+import TelegramCommunityInvite from './TelegramCommunityInvite';
 
 const BookingModal = ({ isOpen, onClose, initialOption = 'Забронировать стенд', initialArea = '' }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
     intent: initialOption,
     standArea: initialArea || '',
@@ -81,11 +82,17 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
       }
 
       setSubmitted(true);
+      if (typeof window !== 'undefined' && typeof window.lintrk === 'function') {
+        window.lintrk('track', { conversion_id: 32660553 });
+      }
     } catch (err) {
       console.error('Submit lead error:', err);
       if (window.location.hostname === 'localhost') {
         // Helpful fallback in local Vite without Vercel backend
         setSubmitted(true);
+        if (typeof window !== 'undefined' && typeof window.lintrk === 'function') {
+          window.lintrk('track', { conversion_id: 32660553 });
+        }
       } else {
         setSubmitError(err.message || 'Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
       }
@@ -129,6 +136,9 @@ const BookingModal = ({ isOpen, onClose, initialOption = 'Забронирова
               <div className="bm-success-icon">✓</div>
               <h3 className="bm-title">{t('bookingModal.successTitle')}</h3>
               <p className="bm-subtitle">{t('bookingModal.successSubtitle')}</p>
+              
+              <TelegramCommunityInvite lang={language} />
+
               <button 
                 type="button" 
                 className="bm-submit-btn" 

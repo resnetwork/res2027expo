@@ -3,6 +3,7 @@ import { ArrowLeft, Globe, ChevronDown, Send } from 'lucide-react';
 import './ParticipationPage.css';
 import { useLanguage } from '../contexts/LanguageContext';
 import Footer from './Footer';
+import TelegramCommunityInvite from './TelegramCommunityInvite';
 
 const PAGE_TRANSLATIONS = {
   ru: {
@@ -519,12 +520,18 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
       }
 
       setSubmitted(true);
+      if (typeof window !== 'undefined' && typeof window.lintrk === 'function') {
+        window.lintrk('track', { conversion_id: 32660553 });
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
       console.error('Submit lead error:', err);
       // In local dev without Vercel Serverless runtime, provide friendly simulation
       if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         setSubmitted(true);
+        if (typeof window !== 'undefined' && typeof window.lintrk === 'function') {
+          window.lintrk('track', { conversion_id: 32660553 });
+        }
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setSubmitError(err.message || 'Произошла ошибка при отправке заявки. Пожалуйста, попробуйте снова.');
@@ -671,6 +678,10 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                   <span className="part-summary-val">{formData.standArea} м²</span>
                 </div>
               )}
+            </div>
+
+            <div style={{ maxWidth: '600px', margin: '0 auto 2.5rem' }}>
+              <TelegramCommunityInvite lang={currentLang} />
             </div>
 
             <button 

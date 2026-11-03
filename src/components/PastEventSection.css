@@ -103,6 +103,35 @@
   transform: scale(1.06);
 }
 
+.showcase-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.showcase-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.showcase-dot:hover {
+  background: #94a3b8;
+}
+
+.showcase-dot.active {
+  width: 28px;
+  border-radius: 12px;
+  background: #18584b;
+}
+
 /* =========================================
    2. Action Buttons Under Gallery Grid
    ========================================= */

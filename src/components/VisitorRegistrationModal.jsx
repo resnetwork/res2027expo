@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Check, Send } from 'lucide-react';
 import './VisitorRegistrationModal.css';
 import { useLanguage } from '../contexts/LanguageContext';
+import TelegramCommunityInvite from './TelegramCommunityInvite';
 
 const VISITOR_TRANSLATIONS = {
   ru: {
@@ -583,10 +584,13 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
               <div className="vrm-success-icon">✓</div>
               <h3 className="vrm-title">{t.successTitle}</h3>
               <p className="vrm-subtitle">{t.successDesc}</p>
+              
+              <TelegramCommunityInvite lang={currentLang} />
+
               <button 
                 type="button" 
                 className="vrm-submit-btn" 
-                style={{ maxWidth: '240px', margin: '20px auto 0' }}
+                style={{ maxWidth: '240px', margin: '24px auto 0' }}
                 onClick={onClose}
               >
                 {t.closeBtn}
@@ -738,12 +742,11 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
                         <label
                           key={item}
                           className={`vrm-chip ${isChecked ? 'selected' : ''}`}
-                          onClick={() => toggleInterest(item)}
                         >
                           <input
                             type="checkbox"
                             checked={isChecked}
-                            onChange={() => {}}
+                            onChange={() => toggleInterest(item)}
                             className="vrm-chip-radio"
                           />
                           <span>{item}</span>
@@ -790,12 +793,11 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
                         <label
                           key={event}
                           className={`vrm-chip ${isChecked ? 'selected' : ''}`}
-                          onClick={() => toggleSideEvent(event)}
                         >
                           <input
                             type="checkbox"
                             checked={isChecked}
-                            onChange={() => {}}
+                            onChange={() => toggleSideEvent(event)}
                             className="vrm-chip-radio"
                           />
                           <span>{event}</span>

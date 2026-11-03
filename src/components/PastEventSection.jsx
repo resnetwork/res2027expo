@@ -14,8 +14,37 @@ const PastEventSection = ({ onOpenGallery }) => {
   const cardRef = useRef(null);
   const hasStartedPlaying = useRef(false);
 
-  // Gallery Showcase Slider State (12 photos total)
-  const showcasePhotos = allPhotos.slice(0, 12);
+  // Curated 18 photos for "Как это было" showcase grid (balanced mix of stands, summit, and heads of state)
+  // First 6 photos: exactly 3 presidents + 3 stands/pavilions as requested
+  const SHOWCASE_PHOTO_IDS = [
+    // --- Slide 1 (First 6 photos: 3 presidents, 3 stands) ---
+    1,   // Официальное общее фото глав государств (Президенты)
+    76,  // Высокотехнологичный стенд КазМунайГаз с сотрудниками (Стенд)
+    6,   // Президент Токаев и лидеры государств на аллее выставки (Президенты)
+    90,  // Павильон Швейцарии и Leica Geosystems с посетителями (Стенд)
+    2,   // Президенты осматривают зелёные технологии на стенде (Президенты)
+    75,  // Оживлённая аллея выставки с павильонами Meros и Узбекистан (Стенд)
+
+    // --- Slide 2 (Photos 7 - 12: стенды, площадки и атмосфера) ---
+    18,  // Национальный павильон Узбекистана с макетом ракеты и экранами (Стенд)
+    11,  // Главы государств на стенде NCOC / ERG с презентацией (Президенты + стенд)
+    88,  // Стенд Пермского края с представителями и экспозицией (Стенд)
+    16,  // Центральный павильон с каскадными водопадами и посетителями (Атмосфера/стенды)
+    4,   // Президенты Токаев и Мирзиёев у павильона (Президенты)
+    72,  // Интерактивный стенд UNICEF «School of the Future» (Стенд)
+
+    // --- Slide 3 (Photos 13 - 18: пленарная сессия, павильоны и сцена) ---
+    85,  // Панорама пленарного саммита с водным зеркалом и павильонами (Саммит/Экспо)
+    15,  // Павильоны-деревья Казахстана и Кыргызстана (Стенды)
+    10,  // Президенты изучают зелёный макет (Президенты + стенд)
+    74,  // Входной портал в выставочный зал RES+ EXPO (Атмосфера)
+    21,  // Торжественное награждение на главной зелёной сцене (Сцена/награды)
+    3    // Зелёный оазис у павильона Азербайджана (Зелёная экспозиция)
+  ];
+
+  const showcasePhotos = SHOWCASE_PHOTO_IDS
+    .map(id => allPhotos.find(p => p.id === id) || allPhotos[id - 1])
+    .filter(Boolean);
   const [isMobile, setIsMobile] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -208,6 +237,21 @@ const PastEventSection = ({ onOpenGallery }) => {
               ))}
             </div>
           </div>
+
+          {/* Slider Pagination Dots */}
+          {totalSlides > 1 && (
+            <div className="showcase-dots">
+              {Array.from({ length: totalSlides }).map((_, dotIdx) => (
+                <button
+                  key={dotIdx}
+                  type="button"
+                  className={`showcase-dot ${currentSlide === dotIdx ? 'active' : ''}`}
+                  onClick={() => setCurrentSlide(dotIdx)}
+                  aria-label={`Слайд ${dotIdx + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* 2. Action Buttons Under Gallery */}
