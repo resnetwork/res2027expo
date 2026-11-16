@@ -14,7 +14,7 @@ const PolicyPageEN = ({ onOpenModal }) => {
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', lineHeight: '1.6', fontSize: '0.95rem', color: 'var(--text-muted)' }}>
             <p>
-              This privacy policy and personal data processing policy governs the procedure for collecting and using personal and other data of the site "BusinessFirst" LLP (hereinafter - Operator). The current version of this Privacy Policy is constantly available for review, and is located on the Internet at: <a href="https://res2027expo.kz/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res2027expo.kz/</a>
+              This privacy policy and personal data processing policy governs the procedure for collecting and using personal and other data of the site "BusinessFirst" LLP (hereinafter - Operator). The current version of this Privacy Policy is constantly available for review, and is located on the Internet at: <a href="https://res-expo.com/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res-expo.com/</a>
             </p>
             <p>
               By transmitting personal and other data to the Operator through the Site, the User confirms their consent to the use of such data on the terms set out in this Privacy Policy.
@@ -27,7 +27,7 @@ const PolicyPageEN = ({ onOpenModal }) => {
             </p>
 
             <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginTop: '1rem', color: 'var(--text-main)' }}>1. TERMS</h3>
-            <p>1.1. Site - the website located on the Internet at <a href="https://res2027expo.kz/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res2027expo.kz/</a><br/>
+            <p>1.1. Site - the website located on the Internet at <a href="https://res-expo.com/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res-expo.com/</a><br/>
               All exclusive rights to the Site and its individual elements (including software, design) belong to the Operator in full. The transfer of exclusive rights to the User is not a subject of this Privacy Policy.<br/>
               1.2. User — a person using the Site.<br/>
               1.3. Legislation — the current legislation of the Republic of Kazakhstan.<br/>
@@ -77,7 +77,7 @@ const PolicyPageEN = ({ onOpenModal }) => {
               5.3. If for one reason or another, one or more provisions of the Privacy Policy are recognized as invalid or unenforceable, this does not affect the validity or applicability of the remaining provisions of the Privacy Policy.<br/>
               5.4. The Operator has the right to unilaterally change the Privacy Policy (in whole or in part) at any time without prior agreement with the User. All changes become effective from the moment of their posting on the Site.<br/>
               5.5. The User is obliged to independently monitor changes to the Privacy Policy by reviewing the current version.<br/>
-              5.6. All suggestions or questions regarding this Privacy Policy should be reported by e-mail <a href="mailto:office@res2026expo.kz" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>office@res2026expo.kz</a> or by phone: +7 775 026 66 88.
+              5.6. All suggestions or questions regarding this Privacy Policy should be reported by e-mail <a href="mailto:office@res-expo.com" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>office@res-expo.com</a> or by phone: +7 775 026 66 88.
             </p>
           </div>
         </div>

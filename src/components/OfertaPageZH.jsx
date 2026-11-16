@@ -22,7 +22,7 @@ const OfertaPageZH = ({ onOpenModal }) => {
             <p>1.3.1.2. 主办方 – “BusinessFirst” LLP（BIN: 250740000431），提供展会活动的组织与举办服务。凭票入场需遵守本要约、展会规则及官方网站上公布的日程安排。主办方运营门票销售系统，并依照哈萨克斯坦共和国2013年5月21日第94-V号《关于个人信息及其保护法》处理相关数据库中的数据。</p>
             <p>1.3.1.3. 参会者 – 具备完全民事行为能力的自然人或法人代表，已阅读并接受本要约，通过主办方官方网站门票系统购买门票。</p>
             <p>1.3.1.4. 双方 – 主办方与参会者的统称。</p>
-            <p>1.3.1.5. 主办方网站 – 位于互联网域名 <a href="https://res2027expo.kz/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res2027expo.kz/</a> 的官方网站，用于发布展会资讯并提供在线门票购买服务。</p>
+            <p>1.3.1.5. 主办方网站 – 位于互联网域名 <a href="https://res-expo.com/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res-expo.com/</a> 的官方网站，用于发布展会资讯并提供在线门票购买服务。</p>
             <p>1.3.1.6. 用户 – 访问主办方官方网站的任何人士。</p>
             <p>1.3.1.7. 承诺（接受要约） – 参会者通过执行本要约中规定的特定操作，对本要约予以完全且无条件的接受。</p>
             <p>1.3.1.8. 门票销售系统 – 主办方网站上运行的自动化电子门票预订与结算系统。</p>
@@ -35,7 +35,7 @@ const OfertaPageZH = ({ onOpenModal }) => {
             <p>1.3.1.15. 民法典 – 哈萨克斯坦共和国民法典。</p>
             <p>1.4. 本要约的标的是：主办方通过网站门票销售系统向参会者提供门票订购与销售服务，并依据所购门票条款提供出席展会活动的相关会展服务。</p>
             <p>1.5. 参会者通过系统购买门票仅供个人或企业代表参会使用，严禁出于商业营利目的加价转售或倒卖。</p>
-            <p>1.6. 本要约自发布在主办方官方网站（<a href="https://res2027expo.kz/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res2027expo.kz/</a>）之日起正式生效，并在其刊载期间持续具有法律效力。</p>
+            <p>1.6. 本要约自发布在主办方官方网站（<a href="https://res-expo.com/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res-expo.com/</a>）之日起正式生效，并在其刊载期间持续具有法律效力。</p>
             <p>1.7. 根据哈萨克斯坦共和国民法典第395条第5款和第396条第3款，一旦个人或企业完成对要约条件的接受，即成为合同当事人（参会者），等同于签订了书面合同。</p>
             <p>1.8. 参会者通过依次完成以下步骤即构成对本要约的完全承诺：<br/>
               1.8.1. 按照网站指示完成信息注册；<br/>
@@ -56,7 +56,7 @@ const OfertaPageZH = ({ onOpenModal }) => {
               1.11.1. 参会者自愿同意主办方处理其在注册和购票时提供的个人数据；<br/>
               1.11.2. 依据哈萨克斯坦共和国《个人信息及其保护法》，同意主办方记录、系统化、存储、更新、提取、合法使用及按规定进行跨境数据传输；<br/>
               1.11.3. 处理个人信息的目的为履行展会组织义务、提供客户服务以及开展必要的展会宣传和商务对接；<br/>
-              1.11.4. 参会者有权随时通过书面邮件向 <a href="mailto:office@res2026expo.kz" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>office@res2026expo.kz</a> 撤回个人信息处理授权。
+              1.11.4. 参会者有权随时通过书面邮件向 <a href="mailto:office@res-expo.com" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>office@res-expo.com</a> 撤回个人信息处理授权。
             </p>
 
             <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginTop: '1rem', color: 'var(--text-main)' }}>2. 展会门票购买程序</h3>
@@ -73,9 +73,9 @@ const OfertaPageZH = ({ onOpenModal }) => {
 
             <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginTop: '1rem', color: 'var(--text-main)' }}>3. 展会门票的退换规定</h3>
             <p>3.1. 如主办方网站明确标明“门票一经售出概不退换”，已购门票原则上不予退款。<br/>
-              3.2. 参会者若因故确需解除合同，须在展会开幕前至少10（十）个日历日通过电子邮件（<a href="mailto:office@res2026expo.kz" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>office@res2026expo.kz</a>）向主办方提交正式书面申请，附上订单号及购票凭证。<br/>
+              3.2. 参会者若因故确需解除合同，须在展会开幕前至少10（十）个日历日通过电子邮件（<a href="mailto:office@res-expo.com" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>office@res-expo.com</a>）向主办方提交正式书面申请，附上订单号及购票凭证。<br/>
               3.3. 申诉受理日以主办方系统收到申请邮件之日为准。<br/>
-              3.4. 因展会取消或主办方原因延期举行的，主办方依据官方通告办理退款手续。退款仅适用于通过官方网站 <a href="https://res2027expo.kz/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res2027expo.kz/</a> 购买的有效门票。<br/>
+              3.4. 因展会取消或主办方原因延期举行的，主办方依据官方通告办理退款手续。退款仅适用于通过官方网站 <a href="https://res-expo.com/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res-expo.com/</a> 购买的有效门票。<br/>
               3.5. 逾期提交的退票申请不予受理。<br/>
               3.6. 参与特惠促销、折扣券或赞助商特权领取的优惠门票，概不接受退款。<br/>
               3.7. 经审核符合退款条件的，主办方将在作废电子票之日起15（十五）个工作日内原路退还款项。<br/>
@@ -106,7 +106,7 @@ const OfertaPageZH = ({ onOpenModal }) => {
               <strong>银行账号 (IBAN)：</strong> KZ288562203150233653<br/>
               <strong>银行识别码 (BIC)：</strong> KCJBKZKX<br/>
               <strong>开户银行：</strong> "Bank CenterCredit" 股份公司 (JSC "Bank CenterCredit")<br/>
-              <strong>联系邮箱：</strong> office@res2026expo.kz | <strong>联系电话：</strong> +7 775 026 66 88
+              <strong>联系邮箱：</strong> office@res-expo.com | <strong>联系电话：</strong> +7 775 026 66 88
             </div>
           </div>
         </div>

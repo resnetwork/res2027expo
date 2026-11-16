@@ -42,8 +42,8 @@ const Footer = ({ onOpenModal, onOpenStand, onOpenVisitor }) => {
             </div>
             <div className="footer-ws-contacts">
               <p>+ 7 775 026 66 88</p>
-              <p>office@res2026expo.kz</p>
-              <p>pr@res2026expo.kz</p>
+              <p>office@res-expo.com</p>
+              <p>media@res-expo.com</p>
             </div>
           </div>
 

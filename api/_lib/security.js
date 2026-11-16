@@ -2,6 +2,9 @@
 // Files under api/_lib are not exposed as routes by Vercel (underscore prefix).
 
 const ALLOWED_ORIGINS = new Set([
+  'https://res-expo.com',
+  'https://www.res-expo.com',
+  // Old domain redirects to res-expo.com; keep it for pages still open in browsers.
   'https://res2027expo.kz',
   'https://www.res2027expo.kz',
 ]);

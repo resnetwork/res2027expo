@@ -14,7 +14,7 @@ const PolicyPageZH = ({ onOpenModal }) => {
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', lineHeight: '1.6', fontSize: '0.95rem', color: 'var(--text-muted)' }}>
             <p>
-              本隐私政策与个人信息处理规则规范“BusinessFirst”有限责任合伙（以下简称“运营方”）网站收集和使用用户个人信息及其他数据的程序。本隐私政策的最新有效版本始终公开可查，网址为：<a href="https://res2027expo.kz/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res2027expo.kz/</a>。
+              本隐私政策与个人信息处理规则规范“BusinessFirst”有限责任合伙（以下简称“运营方”）网站收集和使用用户个人信息及其他数据的程序。本隐私政策的最新有效版本始终公开可查，网址为：<a href="https://res-expo.com/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res-expo.com/</a>。
             </p>
             <p>
               用户通过本网站向运营方提交个人信息及其他数据，即确认同意按照本隐私政策所列明的条款和条件使用此类数据。
@@ -28,7 +28,7 @@ const PolicyPageZH = ({ onOpenModal }) => {
 
             <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginTop: '1rem', color: 'var(--text-main)' }}>1. 术语与定义</h3>
             <p>
-              1.1. 网站 — 位于互联网域名 <a href="https://res2027expo.kz/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res2027expo.kz/</a> 的官方网站。<br/>
+              1.1. 网站 — 位于互联网域名 <a href="https://res-expo.com/" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>https://res-expo.com/</a> 的官方网站。<br/>
               网站及其所有构成要素（包括软件程序、版面设计、数据库等）的全部专有权利均完全归运营方所有。向用户转让专有权利不属于本隐私政策的范畴。<br/>
               1.2. 用户 — 使用本网站的自然人或法人代表。<br/>
               1.3. 法律法规 — 哈萨克斯坦共和国现行法律法规。<br/>
@@ -83,7 +83,7 @@ const PolicyPageZH = ({ onOpenModal }) => {
               5.3. 若本隐私政策的任何条款被依法认定为无效或不可执行，不影响其他条款的合法性、有效性与拘束力。<br/>
               5.4. 运营方有权在无需征得用户事先同意的情况下随时单方修订本隐私政策。所有修改一经在网站上公布立即生效。<br/>
               5.5. 用户有责任定期访问本页面查阅最新有效的隐私政策文本。<br/>
-              5.6. 关于本隐私政策的任何建议、垂询或申诉，请通过官方电子邮箱联络：<a href="mailto:office@res2026expo.kz" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>office@res2026expo.kz</a>，或致电联系电话：+7 775 026 66 88。
+              5.6. 关于本隐私政策的任何建议、垂询或申诉，请通过官方电子邮箱联络：<a href="mailto:office@res-expo.com" style={{color: 'var(--bg-dark-green)', textDecoration: 'underline'}}>office@res-expo.com</a>，或致电联系电话：+7 775 026 66 88。
             </p>
           </div>
         </div>
