@@ -1,184 +1,174 @@
+import {
+  guardRequest,
+  parseBody,
+  str,
+  strList,
+  isValidEmail,
+  isValidPhone,
+  isBot,
+  escapeHtml,
+  postToSheet,
+} from './_lib/security.js';
+
+const TELEGRAM_MAX_CHARS = 4096;
+
 export default async function handler(req, res) {
-  // Set CORS headers so that client calls from any preview/prod work seamlessly
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
+  if (guardRequest(req, res)) return;
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+  const body = parseBody(req);
+  if (!body) {
+    return res.status(400).json({ error: 'Некорректный запрос.' });
   }
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  // Honeypot filled => pretend success, drop silently.
+  if (isBot(body)) {
+    return res.status(200).json({ success: true, message: 'Заявка успешно отправлена!' });
   }
 
-  // Parse body (in case it comes as string or object)
-  let body = req.body;
-  if (typeof body === 'string') {
-    try {
-      body = JSON.parse(body);
-    } catch (e) {
-      // keep as is
-    }
-  }
+  const lead = {
+    name: str(body.name, 200),
+    company: str(body.company, 200),
+    jobTitle: str(body.jobTitle, 200),
+    countryCity: str(body.countryCity || body.country, 200),
+    email: str(body.email, 254),
+    phone: str(body.phone, 50),
+    website: str(body.website, 300),
+    roles: strList(body.roles || body.intent, 10, 300),
+    standArea: str(body.standArea, 20),
+    standType: str(body.standType, 200),
+    standDescription: str(body.standDescription, 1000),
+    speakerVenue: str(body.speakerVenue, 200),
+    speakerTopic: str(body.speakerTopic, 500),
+    thematics: strList(body.thematics, 20, 200),
+    sideEvents: strList(body.sideEvents, 20, 200),
+    comment: str(body.comment, 1500),
+    agreementNewsletter: body.agreementNewsletter === true,
+  };
 
-  const {
-    name,
-    company,
-    jobTitle,
-    countryCity,
-    country,
-    email,
-    phone,
-    website,
-    roles,
-    intent,
-    standArea,
-    standType,
-    standDescription,
-    speakerVenue,
-    speakerTopic,
-    thematics,
-    sideEvents,
-    comment,
-    agreementNewsletter
-  } = body || {};
-
-  // Validation: at least name, email, and (company or phone)
-  if (!name || !email) {
+  if (!lead.name || !lead.email) {
     return res.status(400).json({ error: 'Пожалуйста, заполните обязательные поля (ФИО, Email).' });
   }
-
-  const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-  const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbybNPcZtEDiZHcTecJik8DdAnQlil-_mRfImirLav7cCAQwCks461GtI_zDifs3FNjkOA/exec';
+  if (!isValidEmail(lead.email)) {
+    return res.status(400).json({ error: 'Пожалуйста, укажите корректный Email.' });
+  }
+  if (lead.phone && !isValidPhone(lead.phone)) {
+    return res.status(400).json({ error: 'Пожалуйста, укажите корректный номер телефона.' });
+  }
 
   const now = new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Almaty' });
+  const rolesText = lead.roles.length > 0 ? lead.roles.join(', ') : 'Экспонент (стенд)';
 
-  // Format arrays for text output
-  const rolesList = Array.isArray(roles) && roles.length > 0 ? roles.join(', ') : (roles || intent || 'Экспонент (стенд)');
-  const thematicsList = Array.isArray(thematics) && thematics.length > 0 ? thematics.join('\n• ') : (thematics || '');
-  const sideEventsList = Array.isArray(sideEvents) && sideEvents.length > 0 ? sideEvents.join('\n• ') : (sideEvents || '');
+  const [telegramOk, sheetOk] = await Promise.all([
+    sendTelegram(lead, rolesText, now),
+    postToSheet(process.env.GOOGLE_SCRIPT_URL, {
+      date: now,
+      ...lead,
+      roles: rolesText,
+    }),
+  ]);
 
-  // 1. Send to Telegram
-  let telegramPromise = Promise.resolve(null);
-  if (BOT_TOKEN && CHAT_ID) {
-    let exhibitorSection = '';
-    if (standArea || standType || standDescription) {
-      exhibitorSection =
-        `\n📐 <b>Параметры стенда (Экспонент):</b>\n` +
-        (standArea ? `• <b>Площадь:</b> ${escapeHtml(standArea)} м²\n` : '') +
-        (standType ? `• <b>Тип стенда:</b> ${escapeHtml(standType)}\n` : '') +
-        (standDescription ? `• <b>Что представят:</b> ${escapeHtml(standDescription)}\n` : '');
+  // The lead is safe as long as at least one destination received it.
+  if (telegramOk || sheetOk) {
+    if (!telegramOk || !sheetOk) {
+      console.error('Lead delivered partially:', { telegramOk, sheetOk });
     }
+    return res.status(200).json({ success: true, message: 'Заявка успешно отправлена!' });
+  }
+  return res.status(502).json({
+    error: 'Не удалось отправить заявку. Пожалуйста, попробуйте позже или свяжитесь с нами по WhatsApp.',
+  });
+}
 
-    let speakerSection = '';
-    if (speakerVenue || speakerTopic) {
-      speakerSection =
-        `\n🎤 <b>Параметры выступления (Спикер):</b>\n` +
-        (speakerVenue ? `• <b>Площадка:</b> ${escapeHtml(speakerVenue)}\n` : '') +
-        (speakerTopic ? `• <b>Тема:</b> ${escapeHtml(speakerTopic)}\n` : '');
-    }
+async function sendTelegram(lead, rolesText, now) {
+  const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+  const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+  if (!BOT_TOKEN || !CHAT_ID) {
+    console.warn('Telegram env vars missing: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID');
+    return false;
+  }
 
-    let thematicsSection = thematicsList ? `\n🌱 <b>Направления:</b>\n• ${escapeHtml(thematicsList)}\n` : '';
-    let sideEventsSection = sideEventsList ? `\n✨ <b>Side events:</b>\n• ${escapeHtml(sideEventsList)}\n` : '';
-    let commentSection = comment ? `\n💬 <b>Комментарий:</b> ${escapeHtml(comment)}\n` : '';
+  let text = buildTelegramMessage(lead, rolesText, now);
+  let parseMode = 'HTML';
+  if (text.length > TELEGRAM_MAX_CHARS) {
+    // Fallback: plain text (cutting HTML could break tags and make Telegram reject it).
+    text = htmlToPlain(text).slice(0, TELEGRAM_MAX_CHARS - 1) + '…';
+    parseMode = undefined;
+  }
 
-    const messageText =
-      `🔔 <b>Новая заявка на участие в RES+ EXPO 2027!</b>\n\n` +
-      `👤 <b>ФИО:</b> ${escapeHtml(name)}\n` +
-      `🏢 <b>Компания:</b> ${escapeHtml(company || '—')}\n` +
-      `💼 <b>Должность:</b> ${escapeHtml(jobTitle || '—')}\n` +
-      `🌍 <b>Страна и город:</b> ${escapeHtml(countryCity || country || '—')}\n` +
-      `✉️ <b>Email:</b> ${escapeHtml(email)}\n` +
-      `📞 <b>Телефон / WhatsApp:</b> ${escapeHtml(phone || '—')}\n` +
-      (website ? `🌐 <b>Сайт:</b> ${escapeHtml(website)}\n` : '') +
-      `\n🎯 <b>Кем хочет участвовать:</b>\n<b>${escapeHtml(rolesList)}</b>\n` +
-      exhibitorSection +
-      speakerSection +
-      thematicsSection +
-      sideEventsSection +
-      commentSection +
-      `\n📬 <b>Подписка на новости:</b> ${agreementNewsletter ? 'Да' : 'Нет'}\n\n` +
-      `🕒 <i>${now} (Астана)</i>`;
-
-    telegramPromise = fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+  try {
+    const r = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: CHAT_ID,
-        text: messageText,
-        parse_mode: 'HTML'
-      })
-    })
-      .then(async (r) => {
-        const data = await r.json().catch(() => ({}));
-        if (!r.ok) {
-          console.error('Telegram error:', data);
-          throw new Error(data.description || 'Failed to send to Telegram');
-        }
-        return data;
-      })
-      .catch((err) => {
-        console.error('Telegram notification error:', err);
-      });
-  } else {
-    console.warn('Telegram env vars missing: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID');
-  }
-
-  // 2. Send to Google Sheets (Google Apps Script Webhook)
-  let googlePromise = Promise.resolve(null);
-  if (GOOGLE_SCRIPT_URL) {
-    googlePromise = fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      body: JSON.stringify({
-        date: now,
-        name: name || '',
-        company: company || '',
-        jobTitle: jobTitle || '',
-        countryCity: countryCity || country || '',
-        email: email || '',
-        phone: phone || '',
-        website: website || '',
-        roles: rolesList,
-        standArea: standArea || '',
-        standType: standType || '',
-        standDescription: standDescription || '',
-        speakerVenue: speakerVenue || '',
-        speakerTopic: speakerTopic || '',
-        thematics: Array.isArray(thematics) ? thematics : (thematics ? [thematics] : []),
-        sideEvents: Array.isArray(sideEvents) ? sideEvents : (sideEvents ? [sideEvents] : []),
-        comment: comment || '',
-        agreementNewsletter: !!agreementNewsletter
+        text,
+        ...(parseMode ? { parse_mode: parseMode } : {}),
+        disable_web_page_preview: true,
       }),
-      redirect: 'follow'
-    })
-      .then((r) => r.text().catch(() => 'ok'))
-      .catch((err) => {
-        console.error('Google Sheet error:', err);
-      });
-  } else {
-    console.warn('Google Sheets env var missing: GOOGLE_SCRIPT_URL');
-  }
-
-  try {
-    await Promise.allSettled([telegramPromise, googlePromise]);
-    return res.status(200).json({ success: true, message: 'Заявка успешно отправлена!' });
-  } catch (error) {
-    console.error('General error:', error);
-    return res.status(500).json({ error: 'Ошибка сервера при отправке' });
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!r.ok) {
+      const data = await r.json().catch(() => ({}));
+      console.error('Telegram error:', r.status, data.description);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error('Telegram notification error:', err);
+    return false;
   }
 }
 
-function escapeHtml(str) {
-  if (!str) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+function buildTelegramMessage(lead, rolesText, now) {
+  let exhibitorSection = '';
+  if (lead.standArea || lead.standType || lead.standDescription) {
+    exhibitorSection =
+      `\n📐 <b>Параметры стенда (Экспонент):</b>\n` +
+      (lead.standArea ? `• <b>Площадь:</b> ${escapeHtml(lead.standArea)} м²\n` : '') +
+      (lead.standType ? `• <b>Тип стенда:</b> ${escapeHtml(lead.standType)}\n` : '') +
+      (lead.standDescription ? `• <b>Что представят:</b> ${escapeHtml(lead.standDescription)}\n` : '');
+  }
+
+  let speakerSection = '';
+  if (lead.speakerVenue || lead.speakerTopic) {
+    speakerSection =
+      `\n🎤 <b>Параметры выступления (Спикер):</b>\n` +
+      (lead.speakerVenue ? `• <b>Площадка:</b> ${escapeHtml(lead.speakerVenue)}\n` : '') +
+      (lead.speakerTopic ? `• <b>Тема:</b> ${escapeHtml(lead.speakerTopic)}\n` : '');
+  }
+
+  const thematicsSection = lead.thematics.length
+    ? `\n🌱 <b>Направления:</b>\n• ${escapeHtml(lead.thematics.join('\n• '))}\n`
+    : '';
+  const sideEventsSection = lead.sideEvents.length
+    ? `\n✨ <b>Side events:</b>\n• ${escapeHtml(lead.sideEvents.join('\n• '))}\n`
+    : '';
+  const commentSection = lead.comment ? `\n💬 <b>Комментарий:</b> ${escapeHtml(lead.comment)}\n` : '';
+
+  return (
+    `🔔 <b>Новая заявка на участие в RES+ EXPO 2027!</b>\n\n` +
+    `👤 <b>ФИО:</b> ${escapeHtml(lead.name)}\n` +
+    `🏢 <b>Компания:</b> ${escapeHtml(lead.company || '—')}\n` +
+    `💼 <b>Должность:</b> ${escapeHtml(lead.jobTitle || '—')}\n` +
+    `🌍 <b>Страна и город:</b> ${escapeHtml(lead.countryCity || '—')}\n` +
+    `✉️ <b>Email:</b> ${escapeHtml(lead.email)}\n` +
+    `📞 <b>Телефон / WhatsApp:</b> ${escapeHtml(lead.phone || '—')}\n` +
+    (lead.website ? `🌐 <b>Сайт:</b> ${escapeHtml(lead.website)}\n` : '') +
+    `\n🎯 <b>Кем хочет участвовать:</b>\n<b>${escapeHtml(rolesText)}</b>\n` +
+    exhibitorSection +
+    speakerSection +
+    thematicsSection +
+    sideEventsSection +
+    commentSection +
+    `\n📬 <b>Подписка на новости:</b> ${lead.agreementNewsletter ? 'Да' : 'Нет'}\n\n` +
+    `🕒 <i>${now} (Астана)</i>`
+  );
+}
+
+function htmlToPlain(html) {
+  return html
+    .replace(/<[^>]+>/g, '')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&');
 }

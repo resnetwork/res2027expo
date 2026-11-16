@@ -10,6 +10,15 @@
  * 3. Поиск ближайшей свободной строки (не пропускает строки даже при наличии форматирования ниже).
  * 4. Полная поддержка новых полей: Роли, Стенды (площадь, тип, описание), Спикеры (площадка, тема), Направления, Side events.
  * 5. Блокировка LockService для защиты от одновременных запросов.
+ * 6. Приём запросов только с секретом WEBHOOK_SECRET и защита всех ячеек от formula injection.
+ *
+ * БЕЗОПАСНОСТЬ (обязательно):
+ * - «Настройки проекта» (Project Settings) -> «Свойства скрипта» (Script properties) ->
+ *   добавьте свойство WEBHOOK_SECRET с тем же значением, что и переменная WEBHOOK_SECRET в Vercel.
+ *   Без него скрипт отклоняет все запросы.
+ * - URL веб-приложения храните только в переменной GOOGLE_SCRIPT_URL в Vercel, не в коде.
+ * - При обновлении кода: «Развернуть» -> «Управление развертываниями» -> карандаш ->
+ *   «Версия: Новая версия» (URL останется прежним).
  */
 
 // Название листа для заявок на участие
@@ -41,6 +50,13 @@ var HEADERS = [
  * Обработка входящих POST-запросов от сайта
  */
 function doPost(e) {
+  // 0. Проверка секрета: принимаем запросы только от нашего сервера (Vercel)
+  var data = parseRequest(e);
+  if (!isAuthorized(data)) {
+    return jsonOutput({ status: 'error', message: 'Unauthorized' });
+  }
+  delete data.secret;
+
   var lock = LockService.getScriptLock();
   try {
     lock.waitLock(10000);
@@ -58,26 +74,10 @@ function doPost(e) {
     // 1. Проверяем наличие строки заголовков. Если таблица пуста — создаем шапку
     ensureHeaders(sheet);
 
-    // 2. Извлекаем данные из запроса (JSON или URL-encoded)
-    var data = {};
-    if (e && e.postData && e.postData.contents) {
-      try {
-        data = JSON.parse(e.postData.contents);
-      } catch (parseErr) {
-        data = e.parameter || {};
-      }
-    } else if (e && e.parameter) {
-      data = e.parameter;
-    }
 
     // 3. Форматируем телефон, чтобы Google Таблицы не воспринимали '+' как формулу (#ERROR!)
     var rawPhone = data.phone ? String(data.phone).trim() : '';
     var safePhone = rawPhone;
-    if (safePhone) {
-      if (safePhone.charAt(0) === '+' || safePhone.charAt(0) === '=' || safePhone.charAt(0) === '-') {
-        safePhone = "'" + safePhone;
-      }
-    }
 
     // 4. Форматируем площадь стенда
     var standArea = data.standArea ? String(data.standArea).trim() : '';
@@ -120,6 +120,9 @@ function doPost(e) {
     var targetRow = findNextEmptyRow(sheet);
 
     // 8. Записываем данные в целевую строку
+    // Защита от formula injection: любая ячейка, начинающаяся с = + - @, пишется как текст
+    newRow = newRow.map(escapeCell);
+
     var range = sheet.getRange(targetRow, 1, 1, newRow.length);
     range.setValues([newRow]);
 
@@ -139,10 +142,7 @@ function doPost(e) {
 
   } catch (error) {
     Logger.log('Error in doPost: ' + error.toString());
-    return ContentService.createTextOutput(JSON.stringify({
-      status: 'error',
-      message: error.toString()
-    })).setMimeType(ContentService.MimeType.JSON);
+    return jsonOutput({ status: 'error', message: 'Internal error' });
 
   } finally {
     lock.releaseLock();
@@ -245,4 +245,46 @@ function findNextEmptyRow(sheet) {
   }
 
   return lastRow + 1;
+}
+
+/**
+ * Извлекает данные из запроса (JSON или URL-encoded)
+ */
+function parseRequest(e) {
+  if (e && e.postData && e.postData.contents) {
+    try {
+      var parsed = JSON.parse(e.postData.contents);
+      if (parsed && typeof parsed === 'object') return parsed;
+    } catch (parseErr) {}
+  }
+  return {};
+}
+
+/**
+ * Сверяет секрет из запроса со свойством скрипта WEBHOOK_SECRET
+ * (Настройки проекта -> Свойства скрипта). Без свойства все запросы отклоняются.
+ */
+function isAuthorized(data) {
+  var expected = PropertiesService.getScriptProperties().getProperty('WEBHOOK_SECRET');
+  if (!expected || !data || typeof data.secret !== 'string') return false;
+  var given = data.secret;
+  if (given.length !== expected.length) return false;
+  var diff = 0;
+  for (var i = 0; i < expected.length; i++) {
+    diff |= expected.charCodeAt(i) ^ given.charCodeAt(i);
+  }
+  return diff === 0;
+}
+
+/**
+ * Экранирует значение ячейки, чтобы Google Таблицы не исполняли его как формулу
+ */
+function escapeCell(value) {
+  if (typeof value !== 'string') return value;
+  if (/^[=+\-@\t\r]/.test(value)) return "'" + value;
+  return value;
+}
+
+function jsonOutput(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
 }

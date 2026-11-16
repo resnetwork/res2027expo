@@ -386,7 +386,8 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
       // Final
       comment: '',
       agreementPolicy: false,
-      agreementNewsletter: true
+      agreementNewsletter: true,
+      hpField: ''
     };
   });
 
@@ -504,7 +505,8 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
       thematics: thematicsCompiled,
       sideEvents: sideEventsCompiled,
       comment: formData.comment,
-      agreementNewsletter: formData.agreementNewsletter
+      agreementNewsletter: formData.agreementNewsletter,
+      hpField: formData.hpField
     };
 
     try {
@@ -698,6 +700,11 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
           </div>
         ) : (
           <form onSubmit={handleSubmit} noValidate>
+            {/* Honeypot: скрытое поле-ловушка для ботов. Люди его не видят и не заполняют. */}
+            <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden' }}>
+              <label htmlFor="hp-res-field">Leave this field empty</label>
+              <input id="hp-res-field" type="text" name="hpField" tabIndex={-1} autoComplete="off" value={formData.hpField} onChange={handleInputChange} />
+            </div>
             {/* Card 1: Контакты (все плейсхолдеры убраны по пункту 1) */}
             <div className="part-card">
               <div className="part-card-header">
@@ -717,6 +724,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                     id="inp-company"
                     type="text"
                     name="company"
+                    maxLength={200}
                     value={formData.company}
                     onChange={handleInputChange}
                     className="part-input"
@@ -732,6 +740,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                     id="inp-countryCity"
                     type="text"
                     name="countryCity"
+                    maxLength={200}
                     value={formData.countryCity}
                     onChange={handleInputChange}
                     className="part-input"
@@ -747,6 +756,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                     id="inp-website"
                     type="url"
                     name="website"
+                    maxLength={300}
                     value={formData.website}
                     onChange={handleInputChange}
                     className="part-input"
@@ -761,6 +771,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                     id="inp-name"
                     type="text"
                     name="name"
+                    maxLength={200}
                     value={formData.name}
                     onChange={handleInputChange}
                     className="part-input"
@@ -776,6 +787,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                     id="inp-jobTitle"
                     type="text"
                     name="jobTitle"
+                    maxLength={200}
                     value={formData.jobTitle}
                     onChange={handleInputChange}
                     className="part-input"
@@ -791,6 +803,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                     id="inp-email"
                     type="email"
                     name="email"
+                    maxLength={254}
                     value={formData.email}
                     onChange={handleInputChange}
                     className="part-input"
@@ -806,6 +819,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                     id="inp-phone"
                     type="tel"
                     name="phone"
+                    maxLength={50}
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="part-input"
@@ -853,6 +867,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                   id="inp-otherRole"
                   type="text"
                   name="otherRole"
+                  maxLength={150}
                   value={formData.otherRole}
                   onChange={handleInputChange}
                   className="part-input"
@@ -880,6 +895,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                         max="2000"
                         step="1"
                         name="standArea"
+                        maxLength={20}
                         value={formData.standArea}
                         onChange={handleInputChange}
                         placeholder={t.standAreaPlaceholder || 'Например: 18'}
@@ -910,6 +926,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                       <textarea
                         id="inp-standDescription"
                         name="standDescription"
+                        maxLength={1000}
                         value={formData.standDescription}
                         onChange={handleInputChange}
                         className="part-textarea"
@@ -952,6 +969,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                       <textarea
                         id="inp-speakerTopic"
                         name="speakerTopic"
+                        maxLength={500}
                         value={formData.speakerTopic}
                         onChange={handleInputChange}
                         className="part-textarea"
@@ -1039,6 +1057,7 @@ const ParticipationPage = ({ onBackToHome, initialArea = '' }) => {
                 <textarea
                   id="inp-comment"
                   name="comment"
+                  maxLength={1500}
                   value={formData.comment}
                   onChange={handleInputChange}
                   className="part-textarea"

@@ -14,6 +14,14 @@
  * 7. В поле «Кто имеет доступ» (Who has access) ОБЯЗАТЕЛЬНО выберите: «Все» (Anyone).
  * 8. Нажмите «Развернуть» (Deploy), разрешите доступ (Authorize access), если потребуется.
  * 9. Скопируйте полученный URL веб-приложения (заканчивается на /exec) и передайте мне для подключения.
+ *
+ * БЕЗОПАСНОСТЬ (обязательно):
+ * - «Настройки проекта» (Project Settings) -> «Свойства скрипта» (Script properties) ->
+ *   добавьте свойство WEBHOOK_SECRET с тем же значением, что и переменная WEBHOOK_SECRET в Vercel.
+ *   Без него скрипт отклоняет все запросы.
+ * - URL веб-приложения храните только в переменной VISITOR_GOOGLE_SCRIPT_URL в Vercel, не в коде.
+ * - При обновлении кода: «Развернуть» -> «Управление развертываниями» -> карандаш ->
+ *   «Версия: Новая версия» (URL останется прежним).
  */
 
 // Название листа для посетителей
@@ -40,6 +48,13 @@ var HEADERS = [
  * Обработка входящих POST-запросов от сайта
  */
 function doPost(e) {
+  // 0. Проверка секрета: принимаем запросы только от нашего сервера (Vercel)
+  var data = parseRequest(e);
+  if (!isAuthorized(data)) {
+    return jsonOutput({ status: 'error', message: 'Unauthorized' });
+  }
+  delete data.secret;
+
   var lock = LockService.getScriptLock();
   try {
     lock.waitLock(10000);
@@ -57,26 +72,10 @@ function doPost(e) {
     // 1. Проверяем наличие строки заголовков. Если таблица пуста — создаем шапку
     ensureHeaders(sheet);
 
-    // 2. Извлекаем данные из запроса (JSON или URL-encoded)
-    var data = {};
-    if (e && e.postData && e.postData.contents) {
-      try {
-        data = JSON.parse(e.postData.contents);
-      } catch (parseErr) {
-        data = e.parameter || {};
-      }
-    } else if (e && e.parameter) {
-      data = e.parameter;
-    }
 
     // 3. Форматируем телефон, чтобы Google Таблицы не выдавали #ERROR!
     var rawPhone = data.phone ? String(data.phone).trim() : '';
     var safePhone = rawPhone;
-    if (safePhone) {
-      if (safePhone.charAt(0) === '+' || safePhone.charAt(0) === '=' || safePhone.charAt(0) === '-') {
-        safePhone = "'" + safePhone;
-      }
-    }
 
     // 4. Текущая дата и время
     var rawDate = data.date ? String(data.date).trim() : Utilities.formatDate(new Date(), 'Asia/Almaty', 'dd.MM.yyyy, HH:mm:ss');
@@ -108,6 +107,9 @@ function doPost(e) {
     var targetRow = findNextEmptyRow(sheet);
 
     // 7. Записываем данные
+    // Защита от formula injection: любая ячейка, начинающаяся с = + - @, пишется как текст
+    newRow = newRow.map(escapeCell);
+
     var range = sheet.getRange(targetRow, 1, 1, newRow.length);
     range.setValues([newRow]);
 
@@ -126,10 +128,7 @@ function doPost(e) {
 
   } catch (error) {
     Logger.log('Error in doPost: ' + error.toString());
-    return ContentService.createTextOutput(JSON.stringify({
-      status: 'error',
-      message: error.toString()
-    })).setMimeType(ContentService.MimeType.JSON);
+    return jsonOutput({ status: 'error', message: 'Internal error' });
 
   } finally {
     lock.releaseLock();
@@ -226,4 +225,46 @@ function findNextEmptyRow(sheet) {
   }
 
   return lastRow + 1;
+}
+
+/**
+ * Извлекает данные из запроса (JSON или URL-encoded)
+ */
+function parseRequest(e) {
+  if (e && e.postData && e.postData.contents) {
+    try {
+      var parsed = JSON.parse(e.postData.contents);
+      if (parsed && typeof parsed === 'object') return parsed;
+    } catch (parseErr) {}
+  }
+  return {};
+}
+
+/**
+ * Сверяет секрет из запроса со свойством скрипта WEBHOOK_SECRET
+ * (Настройки проекта -> Свойства скрипта). Без свойства все запросы отклоняются.
+ */
+function isAuthorized(data) {
+  var expected = PropertiesService.getScriptProperties().getProperty('WEBHOOK_SECRET');
+  if (!expected || !data || typeof data.secret !== 'string') return false;
+  var given = data.secret;
+  if (given.length !== expected.length) return false;
+  var diff = 0;
+  for (var i = 0; i < expected.length; i++) {
+    diff |= expected.charCodeAt(i) ^ given.charCodeAt(i);
+  }
+  return diff === 0;
+}
+
+/**
+ * Экранирует значение ячейки, чтобы Google Таблицы не исполняли его как формулу
+ */
+function escapeCell(value) {
+  if (typeof value !== 'string') return value;
+  if (/^[=+\-@\t\r]/.test(value)) return "'" + value;
+  return value;
+}
+
+function jsonOutput(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
 }

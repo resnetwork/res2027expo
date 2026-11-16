@@ -395,7 +395,8 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
     source: 'social',
     otherSource: '',
     agreementPolicy: false,
-    agreementNewsletter: true
+    agreementNewsletter: true,
+    hpField: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -497,7 +498,8 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
       thematics: formData.thematics,
       sideEvents: formData.sideEvents,
       source: chosenSource,
-      agreementNewsletter: formData.agreementNewsletter
+      agreementNewsletter: formData.agreementNewsletter,
+      hpField: formData.hpField
     };
 
     try {
@@ -602,6 +604,11 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
               <p className="vrm-subtitle">{t.subtitle}</p>
 
               <form onSubmit={handleSubmit} className="vrm-form" noValidate>
+                {/* Honeypot: скрытое поле-ловушка для ботов. Люди его не видят и не заполняют. */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden' }}>
+                  <label htmlFor="hp-res-field-visitor">Leave this field empty</label>
+                  <input id="hp-res-field-visitor" type="text" name="hpField" tabIndex={-1} autoComplete="off" value={formData.hpField} onChange={handleInputChange} />
+                </div>
                 {/* 1. Контакты */}
                 <div className="vrm-section">
                   <div className="vrm-sec-title">{t.contactTitle}</div>
@@ -614,6 +621,7 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
                         id="vrm-name"
                         type="text"
                         name="name"
+                        maxLength={200}
                         value={formData.name}
                         onChange={handleInputChange}
                         className="vrm-input"
@@ -629,6 +637,7 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
                         id="vrm-company"
                         type="text"
                         name="company"
+                        maxLength={200}
                         value={formData.company}
                         onChange={handleInputChange}
                         className="vrm-input"
@@ -644,6 +653,7 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
                         id="vrm-jobTitle"
                         type="text"
                         name="jobTitle"
+                        maxLength={200}
                         value={formData.jobTitle}
                         onChange={handleInputChange}
                         className="vrm-input"
@@ -659,6 +669,7 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
                         id="vrm-countryCity"
                         type="text"
                         name="countryCity"
+                        maxLength={200}
                         value={formData.countryCity}
                         onChange={handleInputChange}
                         className="vrm-input"
@@ -674,6 +685,7 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
                         id="vrm-email"
                         type="email"
                         name="email"
+                        maxLength={254}
                         value={formData.email}
                         onChange={handleInputChange}
                         className="vrm-input"
@@ -689,6 +701,7 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
                         id="vrm-phone"
                         type="tel"
                         name="phone"
+                        maxLength={50}
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="vrm-input"
@@ -724,6 +737,7 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
                       <input
                         type="text"
                         name="otherCategory"
+                        maxLength={150}
                         value={formData.otherCategory}
                         onChange={handleInputChange}
                         className="vrm-input"
@@ -834,6 +848,7 @@ const VisitorRegistrationModal = ({ isOpen, onClose }) => {
                       <input
                         type="text"
                         name="otherSource"
+                        maxLength={200}
                         value={formData.otherSource}
                         onChange={handleInputChange}
                         className="vrm-input"
