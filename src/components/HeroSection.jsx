@@ -177,6 +177,11 @@ const HeroSection = ({ onOpenModal, onOpenStand, onOpenVisitor }) => {
             <p className="hero-subtitle-slush">
               {t('hero.subtitle')}
             </p>
+
+            <div className="hero-event-info">
+              <time className="hero-event-date" dateTime="2027-05-05">{t('hero.date')}</time>
+              <span className="hero-event-venue">{t('hero.venue')}</span>
+            </div>
           </div>
           
           <div className="hero-bottom-bar">

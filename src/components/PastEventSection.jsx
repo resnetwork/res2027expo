@@ -17,30 +17,31 @@ const PastEventSection = ({ onOpenGallery }) => {
   // Curated 18 photos for "Как это было" showcase grid:
   // Photo 1 is the ONLY photo with the President (Official VIP group photo of heads of state).
   // All other 17 photos are pure exhibition stands, booths, pavilions, and expo atmosphere (without presidents).
+  // Order set by the client (19.11.2026). Desktop shows 6 per slide in a 3x2 grid, read left-to-right.
   const SHOWCASE_PHOTO_IDS = [
-    // --- Slide 1 (First 6 photos: exactly 1 president photo, 5 stands) ---
+    // --- Slide 1 ---
     1,   // Официальное общее фото глав государств (Единственное фото с Президентом)
-    76,  // Высокотехнологичный стенд КазМунайГаз с сотрудниками и экранами
-    90,  // Национальный павильон Швейцарии и Leica Geosystems с посетителями
-    70,  // Стенд Allur / Geely Galaxy с электромобилями на подиуме
-    91,  // Стенд Li Auto с электрокаром Li L6 и световой потолочной сеткой
-    75,  // Оживлённая главная выставочная аллея с павильонами Meros и Узбекистан
-
-    // --- Slide 2 (Photos 7 - 12: выставочные стенды и компании) ---
-    18,  // Национальный павильон Узбекистана с макетом ракеты и изогнутыми экранами
-    95,  // Стенд ARC Water & Energy с переговорными зонами и сотрудниками
-    97,  // Стенд Perm Region / Россия с деревянной архитектурой и стойкой
-    16,  // Центральный павильон с каскадными водопадами и посетителями
-    72,  // Интерактивный стенд UNICEF «School of the Future» с гостями
-    96,  // Стенд HongKong Walle Limited — зелёная металлургия и макет
-
-    // --- Slide 3 (Photos 13 - 18: масштабные павильоны и атмосфера выставки) ---
     85,  // Панорама пленарного саммита с водным зеркалом и залом
-    73,  // Павильон Туркменистана с венцами-экранами и экспозицией
-    88,  // Стенд Пермского края с представителем компании
-    82,  // Входная зона Hall B с флагами стран-участниц и волонтерами
-    74,  // Входной портал в выставочный зал RES+ EXPO с арками
-    3    // Зелёный живой оазис у павильона Азербайджана
+    84,  // Общее фото участников на сцене RES+ EXPO
+    12,  // Павильон Republic of Kazakhstan / Казгидромет
+    76,  // Высокотехнологичный стенд КазМунайГаз с сотрудниками и экранами
+    91,  // Стенд Li Auto с электрокаром Li L6 и световой потолочной сеткой
+
+    // --- Slide 2 ---
+    79,  // Стенд ERG
+    80,  // Стенд Freedom Bank
+    99,  // Стенд LONGi / Solarwaya
+    87,  // Стенд China Construction Bank (CCB)
+    70,  // Стенд Allur / Geely Galaxy с электромобилями на подиуме
+    104, // Стенд Карачаганак / КазМунайГаз
+
+    // --- Slide 3 ---
+    90,  // Национальный павильон Швейцарии и Leica Geosystems с посетителями
+    72,  // Интерактивный стенд UNICEF «School of the Future» с гостями
+    53,  // Команда Li Auto на стенде с Li L6 и Li MEGA
+    96,  // Стенд HongKong Walle Limited — зелёная металлургия и макет
+    102, // Стенд AuaSense с дроном
+    86   // Стенд China-Eurasian Business Council (CEBC)
   ];
 
   const showcasePhotos = SHOWCASE_PHOTO_IDS

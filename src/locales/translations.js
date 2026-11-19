@@ -12,6 +12,8 @@ export const translations = {
     hero: {
       title: 'Международная выставка<br/>зеленых технологий и устойчивых решений',
       subtitle: 'От видения к реализации: будущее устойчивого развития начинается здесь',
+      date: '5–7 мая 2027',
+      venue: 'Астана, МВЦ «EXPO»',
       days: 'Дней',
       hours: 'Часов',
       minutes: 'Минут',
@@ -293,6 +295,8 @@ export const translations = {
     hero: {
       title: 'Жасыл технологиялар<br/>мен тұрақты шешімдердің<br/>халықаралық көрмесі',
       subtitle: 'Көзқарастан – жүзеге асыруға: тұрақты дамудың болашағы осы жерден басталады',
+      date: '5–7 мамыр 2027',
+      venue: 'Астана, «EXPO» ХКО',
       days: 'Күн',
       hours: 'Сағат',
       minutes: 'Минут',
@@ -574,6 +578,8 @@ export const translations = {
     hero: {
       title: 'International Exhibition of<br/>Green Technologies and Sustainable Solutions',
       subtitle: 'From vision to reality: the future of sustainable development starts here',
+      date: 'May 5–7, 2027',
+      venue: 'Astana, IEC “EXPO”',
       days: 'Days',
       hours: 'Hours',
       minutes: 'Minutes',
@@ -855,6 +861,8 @@ export const translations = {
     hero: {
       title: '绿色技术与可持续解决方案<br/>国际展览会',
       subtitle: '从愿景到实践：可持续发展的未来从这里启航',
+      date: '2027年5月5日至7日',
+      venue: '阿斯塔纳 · EXPO 国际会展中心',
       days: '天',
       hours: '小时',
       minutes: '分钟',

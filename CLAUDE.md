@@ -26,6 +26,13 @@
 - **Деплой:** push в `main` → Vercel собирает автоматически (~30 с). Заголовки безопасности в `vercel.json`.
 - **Аналитика:** LinkedIn Insight Tag в `index.html` (конверсия `lintrk('track', { conversion_id: 32660553 })`
   после успешной отправки форм). Баннера cookies нет (осознанно, см. «Открытые вопросы»).
+- **Соцсети:** один список `SOCIAL_LINKS` в `src/components/Header.jsx` (шапка + мобильное меню), аккаунты
+  `@resplusexpo` (TG, IG, YT, FB, Threads, LinkedIn showcase) + WhatsApp. В шапке на десктопе места мало:
+  ≤1439px скрыта кнопка «RES Network», ≤1250px — иконки соцсетей (см. `Header.css`); в мобильном меню всё есть.
+  Блок после отправки формы (`TelegramCommunityInvite.jsx`, QR `public/telegram-qr.svg`) ведёт на канал
+  RES Network Community `t.me/resnetworkorg` — намеренно не менялся.
+- **Главный экран:** дата и место под подзаголовком (`hero.date`, `hero.venue` в переводах), порядок фото
+  галереи «Как это было» — `SHOWCASE_PHOTO_IDS` в `PastEventSection.jsx` (номер = файл `photo-N.webp`).
 - Утилиты `scratch/`, `scripts/`, `copy_speakers.cjs` — разовые локальные скрипты, на сайт не влияют.
 
 ## Переменные окружения Vercel (Production + Preview)
@@ -100,7 +107,7 @@ DKIM `google._domainkey` (2048, аутентификация включена), 
 
 ## Соглашения
 
-- Коммиты: `fix: website vX.Y (кратко)` / `feat: website vX.Y (кратко)`, последняя версия — **v6.0**.
+- Коммиты: `fix: website vX.Y (кратко)` / `feat: website vX.Y (кратко)`, последняя версия — **v6.1**.
 - Коммитить и пушить только по просьбе пользователя; push в `main` = выкладка на боевой сайт.
 - Проверять API на боевом сайте только запросами, которые ничего не пишут (GET → 405, OPTIONS → 204,
   `hpField` → фальшивый 200). Тестовые заявки — только с согласия пользователя и с пометкой «ТЕСТ — удалить».
